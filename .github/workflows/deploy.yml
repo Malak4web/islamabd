@@ -1,0 +1,65 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main # Change this to your main branch name if it's different (e.g., 'master')
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Update this to match your Laravel project's PHP version
+          extensions: mbstring, bcmath, pdo_mysql
+
+      - name: Install PHP Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Update this to match your project's Node version
+
+      - name: Install Node Dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Hostinger via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 92.113.24.73
+          username: u469743545
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 65002
+          source: "."
+          target: "/home/u469743545/domains/indesign-co.com/public_html/"
+          rm: false # Set to true if you want to clear target folder before upload, but false for SCP is safer
+          # Note: SCP doesn't exclude files natively like rsync. If you want to exclude node_modules and .git, it's better to remove them before SCP.
+          
+      - name: Execute Post-Deployment Scripts
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 92.113.24.73
+          username: u469743545
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 65002
+          script: |
+            cd /home/u469743545/domains/indesign-co.com/public_html
+
+            # Run database migrations
+            php artisan migrate --force
+
+            # Optimize the application
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
