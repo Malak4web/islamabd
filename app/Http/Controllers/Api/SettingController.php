@@ -44,7 +44,7 @@ class SettingController extends Controller
         $s['copyright']      = $locale === 'ar' ? ($s['copyright_ar']      ?? '') : ($s['copyright_en']      ?? '');
 
         // Format Image URLs
-        foreach (['favicon', 'logo_light', 'logo_dark', 'og_image'] as $key) {
+        foreach (['favicon', 'logo', 'logo_light', 'logo_dark', 'og_image'] as $key) {
             if (isset($s[$key]) && $s[$key] && !str_starts_with($s[$key], 'http')) {
                 $s[$key] = asset('storage/' . ltrim($s[$key], '/'));
             }

@@ -54,8 +54,8 @@ class SettingSeeder extends Seeder
             ['key' => 'footer_tagline_ar',   'value' => 'شركة إن ديزاين رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء.', 'group' => 'footer'],
             ['key' => 'copyright_en',        'value' => 'All Rights reserved to Indesign',  'group' => 'footer'],
             ['key' => 'copyright_ar',        'value' => 'جميع الحقوق محفوظة لشركة إن ديزاين', 'group' => 'footer'],
-            ['key' => 'logo',                'value' => 'https://indesign-co.com/wp-content/uploads/2023/07/logoo-1.png', 'group' => 'general'],
-            ['key' => 'favicon',             'value' => 'https://indesign-co.com/wp-content/uploads/2023/07/cropped-Fav-32x32.png', 'group' => 'general'],
+            ['key' => 'logo',                'value' => '/images/defaults/hero_fallback.jpg', 'group' => 'general'],
+            ['key' => 'favicon',             'value' => '/images/defaults/about_fallback.jpg', 'group' => 'general'],
         ];
 
         foreach ($settings as $setting) {
