@@ -6,7 +6,7 @@
         <div class="relative w-full lg:w-1/2 group">
           <div class="relative overflow-hidden rounded-3xl aspect-[4/5] shadow-2xl">
             <img 
-              :src="content?.image || 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1200'" 
+              :src="content?.image || '/images/defaults/about_fallback.jpg'" 
               alt="About InDesign" 
               class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
             />

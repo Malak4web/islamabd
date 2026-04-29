@@ -59,7 +59,7 @@ const heroSlides = computed(() => {
     const section = pageStore.currentPage?.sections?.find(s => s.key === 'hero')
     if (!section) return [
         { 
-            image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000',
+            image: '/images/defaults/hero_fallback.jpg',
             title_top: 'Innovative',
             title_bottom: 'Architecture',
             subtitle: 'Crafting Excellence',
@@ -72,7 +72,7 @@ const heroSlides = computed(() => {
     
     return [
         {
-            image: c.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000',
+            image: c.image || '/images/defaults/hero_fallback.jpg',
             title_top: isAr ? (c.title_ar_top || c.title_ar) : (c.title_en_top || c.title_en),
             title_bottom: isAr ? (c.title_ar_bottom || '') : (c.title_en_bottom || ''),
             subtitle: isAr ? c.subtitle_ar : c.subtitle_en,

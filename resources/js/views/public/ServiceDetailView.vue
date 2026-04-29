@@ -6,7 +6,7 @@
   <main v-else-if="serviceStore.currentService" class="bg-[#0a0a0a] min-h-screen">
     <!-- Page Header -->
     <section class="relative py-32 md:py-48 overflow-hidden bg-black">
-      <div class="absolute inset-0 bg-center bg-cover opacity-40" :style="{ backgroundImage: `url(${serviceStore.currentService.image || 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=2000'})` }"></div>
+      <div class="absolute inset-0 bg-center bg-cover opacity-40" :style="{ backgroundImage: `url(${serviceStore.currentService.image || '/images/defaults/about_fallback.jpg'})` }"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]"></div>
       
       <div class="relative container px-6 mx-auto text-center">
