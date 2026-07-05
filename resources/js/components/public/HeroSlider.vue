@@ -20,7 +20,7 @@
     <div class="relative flex items-center h-full container mx-auto px-6 pt-40">
       <div class="max-w-4xl space-y-8">
         <div class="overflow-hidden">
-           <span class="inline-block text-[#d4af37] text-sm md:text-base font-black tracking-[0.6em] uppercase mb-4 animate-slide-up">
+           <span class="inline-block text-[#d4af37] text-sm md:text-base font-black tracking-[0.2em] uppercase mb-4 animate-slide-up">
               {{ currentSlideData.subtitle }}
            </span>
         </div>
