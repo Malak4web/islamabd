@@ -1,7 +1,10 @@
 <template>
   <aside 
-    class="fixed top-0 left-0 z-50 h-screen transition-all duration-300 bg-slate-950 border-r border-slate-800"
-    :class="isCollapsed ? 'w-20' : 'w-64'"
+    class="fixed top-0 z-50 h-screen transition-all duration-300 bg-slate-950"
+    :class="[
+      isCollapsed ? 'w-20' : 'w-64',
+      localeStore.isArabic ? 'right-0 border-l border-slate-800' : 'left-0 border-r border-slate-800'
+    ]"
   >
     <!-- Header -->
     <div class="flex items-center h-20 px-6 border-b border-slate-800">
@@ -15,18 +18,18 @@
 
     <!-- Navigation -->
     <nav class="p-4 space-y-2">
-      <div v-for="item in navItems" :key="item.name">
+      <div v-for="item in navItems" :key="item.key">
         <RouterLink 
           :to="item.path" 
           class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group"
           :class="$route.name === item.routeName ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' : 'text-slate-400 hover:bg-slate-900 hover:text-white'"
-          :title="isCollapsed ? item.name : ''"
+          :title="isCollapsed ? $t('admin.' + item.key) : ''"
         >
           <component :is="item.icon" class="w-5 h-5 flex-shrink-0" />
-          <span v-if="!isCollapsed" class="font-bold text-xs uppercase tracking-widest">{{ item.name }}</span>
+          <span v-if="!isCollapsed" class="font-bold text-xs uppercase tracking-widest">{{ $t('admin.' + item.key) }}</span>
           
           <!-- Badge for contacts -->
-          <span v-if="!isCollapsed && item.name === 'Inbox' && newContactsCount" class="ml-auto px-2 py-0.5 bg-red-500 text-white text-[10px] rounded-full">
+          <span v-if="!isCollapsed && item.key === 'inbox' && newContactsCount" class="ml-auto rtl:ml-0 rtl:mr-auto px-2 py-0.5 bg-red-500 text-white text-[10px] rounded-full">
             {{ newContactsCount }}
           </span>
         </RouterLink>
@@ -41,7 +44,9 @@
         </div>
         <div v-if="!isCollapsed" class="flex flex-col min-w-0">
           <span class="text-xs font-bold text-white truncate">{{ auth.user?.name }}</span>
-          <button @click="handleLogout" class="text-[10px] font-bold text-slate-500 hover:text-red-400 text-left uppercase tracking-tighter">Logout</button>
+          <button @click="handleLogout" class="text-[10px] font-bold text-slate-500 hover:text-red-400 text-left rtl:text-right uppercase tracking-tighter">
+            {{ $t('admin.logout') }}
+          </button>
         </div>
       </div>
     </div>
@@ -49,10 +54,18 @@
     <!-- Collapse Toggle -->
     <button 
       @click="isCollapsed = !isCollapsed"
-      class="absolute -right-3 top-24 w-6 h-6 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-amber-500 transition-colors hidden lg:flex"
+      class="absolute top-24 w-6 h-6 bg-slate-800 border border-slate-700 rounded-full flex items-center justify-center text-slate-400 hover:text-amber-500 transition-colors hidden lg:flex"
+      :class="localeStore.isArabic ? '-left-3' : '-right-3'"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform" :class="{ 'rotate-180': isCollapsed }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        class="w-3 h-3 transition-transform" 
+        :class="{ 'rotate-180': isCollapsed }" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="localeStore.isArabic ? 'M9 5l7 7-7 7' : 'M15 19l-7-7 7-7'" />
       </svg>
     </button>
   </aside>
@@ -63,6 +76,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { useContactStore } from '@/stores/contactStore'
+import { useLocaleStore } from '@/stores/localeStore'
 import { 
   LayoutDashboard, 
   Settings, 
@@ -76,20 +90,21 @@ import {
 
 const auth = useAuthStore()
 const contactStore = useContactStore()
+const localeStore = useLocaleStore()
 const router = useRouter()
 const isCollapsed = ref(false)
 
 const newContactsCount = ref(0) // Should come from store
 
 const navItems = [
-  { name: 'Dashboard', path: '/admin', routeName: 'admin.dashboard', icon: LayoutDashboard },
-  { name: 'Pages', path: '/admin/pages', routeName: 'admin.pages', icon: FileText },
-  { name: 'Services', path: '/admin/services', routeName: 'admin.services', icon: Wrench },
-  { name: 'Projects', path: '/admin/projects', routeName: 'admin.projects', icon: Construction },
-  { name: 'Inbox', path: '/admin/contacts', routeName: 'admin.contacts', icon: Mail },
-  { name: 'Media', path: '/admin/media', routeName: 'admin.media', icon: ImageIcon },
-  { name: 'Code Injection', path: '/admin/code-injections', routeName: 'admin.code_injections', icon: Code },
-  { name: 'Settings', path: '/admin/settings', routeName: 'admin.settings', icon: Settings }
+  { name: 'Dashboard', key: 'dashboard', path: '/admin', routeName: 'admin.dashboard', icon: LayoutDashboard },
+  { name: 'Pages', key: 'pages', path: '/admin/pages', routeName: 'admin.pages', icon: FileText },
+  { name: 'Services', key: 'services', path: '/admin/services', routeName: 'admin.services', icon: Wrench },
+  { name: 'Projects', key: 'projects', path: '/admin/projects', routeName: 'admin.projects', icon: Construction },
+  { name: 'Inbox', key: 'inbox', path: '/admin/contacts', routeName: 'admin.contacts', icon: Mail },
+  { name: 'Media', key: 'media', path: '/admin/media', routeName: 'admin.media', icon: ImageIcon },
+  { name: 'Code Injection', key: 'code_injection', path: '/admin/code-injections', routeName: 'admin.code_injections', icon: Code },
+  { name: 'Settings', key: 'settings', path: '/admin/settings', routeName: 'admin.settings', icon: Settings }
 ]
 
 const handleLogout = async () => {

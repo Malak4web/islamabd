@@ -4,7 +4,11 @@
     
     <div 
       class="transition-all duration-300 min-h-screen flex flex-col"
-      :class="isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-64'"
+      :class="[
+        localeStore.isArabic 
+          ? (isSidebarCollapsed ? 'lg:pr-20 lg:pl-0' : 'lg:pr-64 lg:pl-0') 
+          : (isSidebarCollapsed ? 'lg:pl-20 lg:pr-0' : 'lg:pl-64 lg:pr-0')
+      ]"
     >
       <AdminTopBar />
       
@@ -34,8 +38,10 @@ import { ref, computed } from 'vue'
 import AdminSidebar from '@/components/admin/AdminSidebar.vue'
 import AdminTopBar from '@/components/admin/AdminTopBar.vue'
 import ToastNotification from '@/components/admin/ToastNotification.vue'
+import { useLocaleStore } from '@/stores/localeStore'
 
 const sidebar = ref(null)
+const localeStore = useLocaleStore()
 const isSidebarCollapsed = computed(() => sidebar.value?.isCollapsed || false)
 </script>
 
