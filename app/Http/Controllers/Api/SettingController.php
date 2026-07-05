@@ -18,7 +18,10 @@ class SettingController extends Controller
         $locale = app()->getLocale();
 
         // ── Locale-aware conveniences ─────────────────────────────────────
-        $s['site_name']  = $s['site_name'] ?? ($locale === 'ar' ? ($s['site_name_ar'] ?? 'إن ديزاين') : ($s['site_name_en'] ?? 'InDesign'));
+        $s['site_name']    = $s['site_name'] ?? ($locale === 'ar' ? ($s['site_name_ar'] ?? 'إن ديزاين') : ($s['site_name_en'] ?? 'InDesign'));
+        $s['site_name_en'] = $s['site_name_en'] ?? $s['site_name'];
+        $s['site_name_ar'] = $s['site_name_ar'] ?? $s['site_name'];
+
         $s['tagline']    = $locale === 'ar' ? ($s['tagline_ar']    ?? '')                   : ($s['tagline_en']    ?? '');
         $s['about']      = $locale === 'ar' ? ($s['about_short_ar'] ?? '')                  : ($s['about_short_en'] ?? '');
 
@@ -26,6 +29,11 @@ class SettingController extends Controller
         $s['address_en'] = $s['address_en'] ?? $s['address_kw_en'] ?? $s['address_eg_en'] ?? '';
         $s['address_ar'] = $s['address_ar'] ?? $s['address_kw_ar'] ?? $s['address_eg_ar'] ?? '';
         $s['address']    = $locale === 'ar' ? ($s['address_ar'] ?: $s['address_en']) : ($s['address_en'] ?: $s['address_ar']);
+
+        $s['address_kw_en'] = $s['address_kw_en'] ?? $s['address_en'];
+        $s['address_kw_ar'] = $s['address_kw_ar'] ?? $s['address_ar'];
+        $s['address_eg_en'] = $s['address_eg_en'] ?? $s['address_en'];
+        $s['address_eg_ar'] = $s['address_eg_ar'] ?? $s['address_ar'];
 
         $s['address_kw'] = $locale === 'ar' ? ($s['address_kw_ar'] ?? '') : ($s['address_kw_en'] ?? '');
         $s['address_eg'] = $locale === 'ar' ? ($s['address_eg_ar'] ?? '') : ($s['address_eg_en'] ?? '');
@@ -36,12 +44,32 @@ class SettingController extends Controller
         $s['email_main'] = $s['email_main'] ?? $s['contact_email'] ?? '';
         $s['email_inquiries'] = $s['email_inquiries'] ?? '';
 
+        $s['contact_phone_kw'] = $s['contact_phone_kw'] ?? $s['phone_1'];
+        $s['contact_phone_eg'] = $s['contact_phone_eg'] ?? $s['phone_2'];
+        $s['contact_email']    = $s['contact_email'] ?? $s['email_main'];
+
         // Social Media
         $s['facebook']  = $s['facebook'] ?? $s['facebook_url'] ?? '';
+        $s['facebook_url'] = $s['facebook'];
+
         $s['instagram'] = $s['instagram'] ?? $s['instagram_url'] ?? '';
+        $s['instagram_url'] = $s['instagram'];
+
         $s['linkedin']  = $s['linkedin'] ?? '';
-        $s['whatsapp']  = $s['whatsapp'] ?? $s['whatsapp_url'] ?? $s['whatsapp_number'] ?? '';
+        $s['linkedin_url'] = $s['linkedin'];
+
+        $whatsapp  = $s['whatsapp'] ?? $s['whatsapp_url'] ?? $s['whatsapp_number'] ?? '';
+        $s['whatsapp'] = $whatsapp;
+        if ($whatsapp && !str_starts_with($whatsapp, 'http')) {
+            $cleanNumber = preg_replace('/[^0-9+]/', '', $whatsapp);
+            $s['whatsapp_url'] = 'https://wa.me/' . ltrim($cleanNumber, '+');
+        } else {
+            $s['whatsapp_url'] = $whatsapp;
+        }
+        $s['whatsapp_number'] = $whatsapp;
+
         $s['youtube']   = $s['youtube'] ?? '';
+        $s['youtube_url'] = $s['youtube'];
 
         // Hero convenience
         $s['hero_title']    = $locale === 'ar' ? ($s['hero_title_ar']    ?? '') : ($s['hero_title_en']    ?? '');
@@ -52,6 +80,9 @@ class SettingController extends Controller
         $s['footer_tagline'] = $locale === 'ar' ? ($s['footer_tagline_ar'] ?? '') : ($s['footer_tagline_en'] ?? '');
         $s['copyright']      = $locale === 'ar' ? ($s['copyright_ar']      ?? '') : ($s['copyright_en']      ?? '');
         $s['footer_text']    = $s['footer_text'] ?? $s['copyright_en'] ?? $s['copyright'] ?? '';
+
+        $s['copyright_en']   = $s['copyright_en'] ?? $s['footer_text'];
+        $s['copyright_ar']   = $s['copyright_ar'] ?? $s['footer_text'];
 
         // Format Image URLs
         foreach (['favicon', 'logo', 'logo_light', 'logo_dark', 'og_image'] as $key) {
