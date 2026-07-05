@@ -20,7 +20,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         \Illuminate\Support\Facades\View::composer('app', function ($view) {
-            $favicon = \App\Models\Setting::get('favicon');
+            $favicon = null;
+            try {
+                $favicon = \App\Models\Setting::get('favicon');
+            } catch (\Exception $e) {
+                // Database not migrated or missing
+            }
             if (!$favicon) {
                 $favicon = 'https://indesign-co.com/wp-content/uploads/2023/07/cropped-Fav-32x32.png';
             }

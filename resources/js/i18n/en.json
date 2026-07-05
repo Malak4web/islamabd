@@ -58,7 +58,8 @@
         "filter_commercial": "Commercial",
         "filter_administrative": "Administrative",
         "filter_residential": "Residential",
-        "filter_exterior": "Exterior"
+        "filter_exterior": "Exterior",
+        "featured": "Featured"
     },
     "cta": {
         "title": "Ready to bring your Vision to life?",

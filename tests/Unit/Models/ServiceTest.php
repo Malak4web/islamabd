@@ -14,7 +14,7 @@ class ServiceTest extends TestCase
     {
         $service = new Service();
         $this->assertEquals([
-            'title_en', 'title_ar', 'description_en', 'description_ar', 'icon', 'image', 'order', 'is_active'
+            'title_en', 'title_ar', 'description_en', 'description_ar', 'icon', 'image', 'gallery', 'order', 'is_active'
         ], $service->getFillable());
     }
 

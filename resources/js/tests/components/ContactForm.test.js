@@ -5,7 +5,12 @@ import ContactForm from '@/components/public/ContactForm.vue'
 import { useContactStore } from '@/stores/contactStore'
 import api from '@/api/axios'
 
-vi.mock('@/api/axios')
+vi.mock('@/api/axios', () => ({
+    default: {
+        get: vi.fn(() => Promise.resolve({ data: { data: [] } })),
+        post: vi.fn(() => Promise.resolve({ data: {} }))
+    }
+}))
 
 describe('ContactForm.vue', () => {
     beforeEach(() => {

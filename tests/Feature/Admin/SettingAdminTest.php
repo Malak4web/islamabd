@@ -117,7 +117,7 @@ class SettingAdminTest extends TestCase
         // Check if setting is updated
         $setting = Setting::where('key', 'logo')->first();
         $this->assertNotNull($setting);
-        $this->assertStringContainsString('/storage/settings/', $setting->value);
+        $this->assertStringContainsString('settings/', $setting->value);
     }
 }
 

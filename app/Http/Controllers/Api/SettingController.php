@@ -18,21 +18,30 @@ class SettingController extends Controller
         $locale = app()->getLocale();
 
         // ── Locale-aware conveniences ─────────────────────────────────────
-        $s['site_name']  = $locale === 'ar' ? ($s['site_name_ar']  ?? 'إن ديزاين')          : ($s['site_name_en']  ?? 'InDesign');
+        $s['site_name']  = $s['site_name'] ?? ($locale === 'ar' ? ($s['site_name_ar'] ?? 'إن ديزاين') : ($s['site_name_en'] ?? 'InDesign'));
         $s['tagline']    = $locale === 'ar' ? ($s['tagline_ar']    ?? '')                   : ($s['tagline_en']    ?? '');
         $s['about']      = $locale === 'ar' ? ($s['about_short_ar'] ?? '')                  : ($s['about_short_en'] ?? '');
 
         // Contact convenience aliases (used by ContactView & AppHeader)
-        $s['address']    = $locale === 'ar'
-            ? ($s['address_kw_ar'] ?? $s['address_eg_ar'] ?? $s['address_ar'] ?? '')
-            : ($s['address_kw_en'] ?? $s['address_eg_en'] ?? $s['address_en'] ?? '');
+        $s['address_en'] = $s['address_en'] ?? $s['address_kw_en'] ?? $s['address_eg_en'] ?? '';
+        $s['address_ar'] = $s['address_ar'] ?? $s['address_kw_ar'] ?? $s['address_eg_ar'] ?? '';
+        $s['address']    = $locale === 'ar' ? ($s['address_ar'] ?: $s['address_en']) : ($s['address_en'] ?: $s['address_ar']);
 
         $s['address_kw'] = $locale === 'ar' ? ($s['address_kw_ar'] ?? '') : ($s['address_kw_en'] ?? '');
         $s['address_eg'] = $locale === 'ar' ? ($s['address_eg_ar'] ?? '') : ($s['address_eg_en'] ?? '');
 
-        $s['phone_main'] = $s['contact_phone_kw'] ?? '';
-        $s['phone_2']    = $s['contact_phone_eg'] ?? '';
-        $s['email_main'] = $s['contact_email']    ?? '';
+        $s['phone_1']    = $s['phone_1'] ?? $s['contact_phone_kw'] ?? '';
+        $s['phone_main'] = $s['phone_1'];
+        $s['phone_2']    = $s['phone_2'] ?? $s['contact_phone_eg'] ?? '';
+        $s['email_main'] = $s['email_main'] ?? $s['contact_email'] ?? '';
+        $s['email_inquiries'] = $s['email_inquiries'] ?? '';
+
+        // Social Media
+        $s['facebook']  = $s['facebook'] ?? $s['facebook_url'] ?? '';
+        $s['instagram'] = $s['instagram'] ?? $s['instagram_url'] ?? '';
+        $s['linkedin']  = $s['linkedin'] ?? '';
+        $s['whatsapp']  = $s['whatsapp'] ?? $s['whatsapp_url'] ?? $s['whatsapp_number'] ?? '';
+        $s['youtube']   = $s['youtube'] ?? '';
 
         // Hero convenience
         $s['hero_title']    = $locale === 'ar' ? ($s['hero_title_ar']    ?? '') : ($s['hero_title_en']    ?? '');
@@ -42,6 +51,7 @@ class SettingController extends Controller
         // Footer convenience
         $s['footer_tagline'] = $locale === 'ar' ? ($s['footer_tagline_ar'] ?? '') : ($s['footer_tagline_en'] ?? '');
         $s['copyright']      = $locale === 'ar' ? ($s['copyright_ar']      ?? '') : ($s['copyright_en']      ?? '');
+        $s['footer_text']    = $s['footer_text'] ?? $s['copyright_en'] ?? $s['copyright'] ?? '';
 
         // Format Image URLs
         foreach (['favicon', 'logo', 'logo_light', 'logo_dark', 'og_image'] as $key) {

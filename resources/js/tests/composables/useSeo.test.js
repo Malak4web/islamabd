@@ -1,9 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { ref, nextTick } from 'vue'
+import { setActivePinia, createPinia } from 'pinia'
 import { useSeo } from '@/composables/useSeo'
 
 describe('useSeo composable', () => {
     beforeEach(() => {
+        setActivePinia(createPinia())
         document.head.innerHTML = ''
         document.title = ''
     })
