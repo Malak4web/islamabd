@@ -1,6 +1,6 @@
 <template>
     <div class="p-8 font-['Outfit'] bg-[#0a0a0a] min-h-screen text-white">
-        <h1 class="text-3xl font-bold mb-8 bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] bg-clip-text text-transparent">Content Management</h1>
+        <h1 class="text-3xl font-bold mb-8 bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] bg-clip-text text-transparent">{{ $t('admin.content_management') }}</h1>
 
         <div v-if="pageStore.isLoading" class="flex justify-center py-20">
             <svg class="animate-spin h-10 w-10 text-[#d4af37]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -18,7 +18,7 @@
             >
                 <div class="flex justify-between items-start mb-4">
                     <div>
-                        <h2 class="text-xl font-bold group-hover:text-[#d4af37] transition-colors">{{ page.title_en }}</h2>
+                        <h2 class="text-xl font-bold group-hover:text-[#d4af37] transition-colors">{{ isAr ? page.title_ar : page.title_en }}</h2>
                         <p class="text-[#555] text-sm font-mono mt-1">/{{ page.slug }}</p>
                     </div>
                     <div class="p-2 bg-[#1a1a1a] rounded-lg text-[#888] group-hover:text-[#d4af37]">
@@ -32,9 +32,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                         </svg>
-                        Sections
+                        {{ $t('admin.sections') }}
                     </span>
-                    <span v-if="page.meta_title" class="px-2 py-0.5 bg-green-900/20 text-green-500 rounded-md text-[10px] uppercase font-bold tracking-wider">SEO Ready</span>
+                    <span v-if="page.meta_title" class="px-2 py-0.5 bg-green-900/20 text-green-500 rounded-md text-[10px] uppercase font-bold tracking-wider">{{ $t('admin.seo_ready') }}</span>
                 </div>
             </router-link>
         </div>
@@ -42,10 +42,11 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { usePageStore } from '@/stores/pageStore'
 
 const pageStore = usePageStore()
+const isAr = computed(() => localStorage.getItem('locale') === 'ar')
 
 onMounted(() => {
     pageStore.fetchPages()

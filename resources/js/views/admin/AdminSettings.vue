@@ -1,13 +1,13 @@
 <template>
     <div class="p-8 font-['Outfit'] bg-[#0a0a0a] min-h-screen text-white">
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] bg-clip-text text-transparent">Site Settings</h1>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] bg-clip-text text-transparent">{{ $t('admin.settings') }}</h1>
             <div v-if="store.isLoading" class="flex items-center gap-2 text-[#d4af37]">
                 <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Saving...
+                {{ $t('admin.saving') }}
             </div>
         </div>
 
@@ -22,17 +22,17 @@
                     activeTab === tab.id ? 'border-b-2 border-[#d4af37] text-[#d4af37]' : 'text-[#888] hover:text-[#ccc]'
                 ]"
             >
-                {{ tab.name }}
+                {{ tab.id === 'general' ? $t('admin.tab_general') : (tab.id === 'contact' ? $t('admin.tab_contact') : $t('admin.tab_social')) }}
             </button>
         </div>
 
         <!-- Settings Form -->
-        <div class="bg-[#141414] border border-[#222] rounded-2xl p-8 shadow-xl max-w-4xl">
+        <div class="bg-[#141414] border border-[#222] rounded-2xl p-8 shadow-xl max-w-4xl text-start">
             <!-- General Tab -->
             <div v-if="activeTab === 'general'" class="space-y-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-4">Site Logo</label>
+                        <label class="block text-sm font-medium text-[#888] mb-4">{{ $t('admin.site_logo') }}</label>
                         <div class="relative group w-40 h-40 bg-[#1a1a1a] border-2 border-dashed border-[#333] rounded-xl flex items-center justify-center overflow-hidden mb-4">
                             <img v-if="getSetting('logo')" :src="getSetting('logo')" class="w-full h-full object-contain p-2">
                             <div v-else class="text-[#444]">
@@ -43,7 +43,7 @@
                             <input type="file" @change="handleFileUpload('logo', $event)" class="absolute inset-0 opacity-0 cursor-pointer">
                         </div>
 
-                        <label class="block text-sm font-medium text-[#888] mb-4">Site Favicon</label>
+                        <label class="block text-sm font-medium text-[#888] mb-4">{{ $t('admin.site_favicon') }}</label>
                         <div class="relative group w-20 h-20 bg-[#1a1a1a] border-2 border-dashed border-[#333] rounded-xl flex items-center justify-center overflow-hidden">
                             <img v-if="getSetting('favicon')" :src="getSetting('favicon')" class="w-full h-full object-contain p-2">
                             <div v-else class="text-[#444]">
@@ -56,11 +56,11 @@
                     </div>
                     <div class="space-y-6">
                         <div>
-                            <label class="block text-sm font-medium text-[#888] mb-2">Site Name</label>
+                            <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.site_name') }}</label>
                             <input v-model="form.site_name" type="text" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-[#888] mb-2">Footer Copyright Text</label>
+                            <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.footer_copyright_text') }}</label>
                             <input v-model="form.footer_text" type="text" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                         </div>
                     </div>
@@ -71,29 +71,29 @@
             <div v-if="activeTab === 'contact'" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2">Primary Phone</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.phone_primary') }}</label>
                         <input v-model="form.phone_1" type="tel" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2">Secondary Phone</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.phone_secondary') }}</label>
                         <input v-model="form.phone_2" type="tel" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2">Main Email</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.email_main') }}</label>
                         <input v-model="form.email_main" type="email" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2">Inquiries Email</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.email_inquiries') }}</label>
                         <input v-model="form.email_inquiries" type="email" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2">Address (English)</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2">{{ $t('admin.address_en') }}</label>
                         <textarea v-model="form.address_en" rows="3" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none"></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-[#888] mb-2 text-right">العنوان (عربي)</label>
+                        <label class="block text-sm font-medium text-[#888] mb-2 text-right">{{ $t('admin.address_ar') }}</label>
                         <textarea v-model="form.address_ar" dir="rtl" rows="3" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none"></textarea>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
             <!-- Social Tab -->
             <div v-if="activeTab === 'social'" class="space-y-6">
                 <div v-for="sc in ['facebook', 'instagram', 'linkedin', 'whatsapp', 'youtube']" :key="sc">
-                    <label class="block text-sm font-medium text-[#888] mb-2 capitalize">{{ sc }} URL</label>
+                    <label class="block text-sm font-medium text-[#888] mb-2 capitalize">{{ sc }}</label>
                     <input v-model="form[sc]" type="url" class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl focus:ring-2 focus:ring-[#d4af37] outline-none">
                 </div>
             </div>
@@ -113,7 +113,7 @@
                     :disabled="store.isLoading"
                     class="px-10 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-[#0a0a0a] font-bold rounded-xl hover:opacity-90 transition-all disabled:opacity-50"
                 >
-                    Save Changes
+                    {{ $t('admin.save') }}
                 </button>
             </div>
         </div>
@@ -123,8 +123,10 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue'
 import { useSettingStore } from '@/stores/settingStore'
+import { useI18n } from 'vue-i18n'
 
 const store = useSettingStore()
+const { t } = useI18n()
 const activeTab = ref('general')
 const rawSettings = ref([])
 
@@ -175,9 +177,9 @@ const saveSettings = async () => {
     
     try {
         await store.bulkUpdate(settingsToSave)
-        alert('Settings saved successfully!')
+        alert(t('admin.save_success'))
     } catch (err) {
-        alert('Failed to save settings')
+        alert(t('admin.save_failed'))
     }
 }
 </script>

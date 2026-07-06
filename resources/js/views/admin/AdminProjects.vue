@@ -3,15 +3,15 @@
     <!-- Header Area -->
     <div class="flex items-center justify-between">
       <div class="space-y-1">
-        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">Portfolio</h1>
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Manage your architectural design milestones</p>
+        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">{{ $t('admin.portfolio') }}</h1>
+        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.portfolio_manage') }}</p>
       </div>
       <button 
         @click="openAddModal"
         class="flex items-center gap-3 px-8 py-4 bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white hover:scale-105 active:scale-95 transition-all shadow-xl shadow-amber-500/10"
       >
         <Plus class="w-4 h-4" />
-        New Project
+        {{ $t('admin.new_project') }}
       </button>
     </div>
 
@@ -24,12 +24,12 @@
                 v-model="categoryFilter" 
                 class="bg-slate-950 border border-slate-800 pl-12 pr-8 py-3 rounded-xl outline-none focus:border-amber-500 transition-all text-xs font-bold uppercase tracking-widest text-slate-400 appearance-none"
              >
-                <option value="all">All Categories</option>
-                <option value="residential">Residential</option>
-                <option value="commercial">Commercial</option>
-                <option value="hospitality">Hospitality</option>
-                <option value="landscape">Landscape</option>
-                <option value="retail">Retail</option>
+                <option value="all">{{ $t('admin.cat_all') }}</option>
+                <option value="residential">{{ $t('admin.cat_residential') }}</option>
+                <option value="commercial">{{ $t('admin.cat_commercial') }}</option>
+                <option value="hospitality">{{ $t('admin.cat_hospitality') }}</option>
+                <option value="landscape">{{ $t('admin.cat_landscape') }}</option>
+                <option value="retail">{{ $t('admin.cat_retail') }}</option>
              </select>
           </div>
           
@@ -38,7 +38,7 @@
              <input 
                 v-model="searchQuery"
                 type="text" 
-                placeholder="Search projects..."
+                :placeholder="$t('admin.search_projects')"
                 class="bg-slate-950 border border-slate-800 pl-12 pr-8 py-3 rounded-xl outline-none focus:border-amber-500 transition-all text-xs font-bold text-white min-w-[300px]"
              >
           </div>
@@ -74,7 +74,7 @@
              <!-- Badges -->
              <div class="absolute top-6 left-6 flex flex-col gap-2">
                 <span v-if="project.is_featured" class="px-3 py-1 bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-widest rounded-lg flex items-center gap-1.5 shadow-lg">
-                   <Star class="w-3 h-3 fill-current" /> Featured
+                   <Star class="w-3 h-3 fill-current" /> {{ $t('admin.featured') }}
                 </span>
                 <span class="px-3 py-1 bg-slate-950/80 backdrop-blur-sm text-white text-[10px] font-black uppercase tracking-widest rounded-lg border border-white/10">
                    {{ project.category }}
@@ -93,7 +93,7 @@
           </div>
           
           <div class="p-8 space-y-4 flex-1 flex flex-col">
-             <div class="space-y-1 flex-1">
+             <div class="space-y-1 flex-1 text-start">
                 <h3 class="text-base font-bold text-white uppercase tracking-tight line-clamp-1">{{ project.title_en }}</h3>
                 <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ project.title_ar }}</p>
              </div>
@@ -106,7 +106,7 @@
                   :class="project.is_active ? 'text-emerald-500' : 'text-slate-600'"
                 >
                    <div class="w-1.5 h-1.5 rounded-full" :class="project.is_active ? 'bg-emerald-500 animate-pulse' : 'bg-slate-700'"></div>
-                   {{ project.is_active ? 'Public' : 'Hidden' }}
+                   {{ project.is_active ? $t('admin.public') : $t('admin.hidden') }}
                 </button>
                 <button @click="toggleFeatured(project)" class="text-slate-600 hover:text-amber-500 transition-colors">
                    <Star class="w-4 h-4" :class="{ 'fill-current text-amber-500': project.is_featured }" />
@@ -118,19 +118,19 @@
 
     <!-- List View -->
     <div v-else class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
-       <table class="w-full text-left">
+       <table class="w-full text-start">
           <thead>
-             <tr class="bg-slate-950/30 border-b border-slate-800">
-                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Project</th>
-                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Category</th>
-                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Status</th>
-                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">Featured</th>
-                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-right">Actions</th>
+             <tr class="bg-slate-950/30 border-b border-slate-800 text-start">
+                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-start">{{ $t('admin.project') }}</th>
+                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-start">{{ $t('admin.category') }}</th>
+                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">{{ $t('admin.tbl_status') }}</th>
+                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-center">{{ $t('admin.featured') }}</th>
+                <th class="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-end">{{ $t('admin.actions') }}</th>
              </tr>
           </thead>
           <tbody class="divide-y divide-slate-800/50">
              <tr v-for="project in filteredProjects" :key="project.id" class="hover:bg-white/[0.02] transition-colors group">
-                <td class="px-8 py-6 flex items-center gap-6">
+                <td class="px-8 py-6 flex items-center gap-6 text-start">
                    <div class="w-16 h-10 bg-slate-950 rounded-lg overflow-hidden border border-slate-800 shrink-0">
                       <img v-if="project.cover_image" :src="project.cover_image" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all">
                    </div>
@@ -139,14 +139,14 @@
                       <p class="text-[10px] font-bold text-slate-600">{{ project.title_ar }}</p>
                    </div>
                 </td>
-                <td class="px-8 py-6">
+                <td class="px-8 py-6 text-start">
                    <span class="px-3 py-1 bg-slate-800 text-[10px] font-bold text-slate-400 rounded-lg border border-slate-700 uppercase tracking-widest">
                       {{ project.category }}
                    </span>
                 </td>
                 <td class="px-8 py-6 text-center">
                    <button @click="toggleProject(project)" class="mx-auto flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter border transition-all" :class="project.is_active ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-500' : 'border-slate-800 bg-slate-800/50 text-slate-500'">
-                      {{ project.is_active ? 'Active' : 'Draft' }}
+                      {{ project.is_active ? $t('admin.active') : $t('admin.draft') }}
                    </button>
                 </td>
                 <td class="px-8 py-6 text-center">
@@ -154,7 +154,7 @@
                       <Star class="w-5 h-5" :class="{ 'fill-current text-amber-500': project.is_featured }" />
                    </button>
                 </td>
-                <td class="px-8 py-6 text-right space-x-2">
+                <td class="px-8 py-6 text-end space-x-2 rtl:space-x-reverse">
                    <button @click="editProject(project)" class="w-8 h-8 inline-flex items-center justify-center bg-slate-950 text-slate-500 hover:text-amber-500 rounded-lg border border-slate-800 transition-all">
                       <Edit3 class="w-4 h-4" />
                    </button>
@@ -182,8 +182,8 @@
 
     <ConfirmModal 
       :is-open="showDeleteConfirm"
-      title="Delete Portfolio Entry"
-      :message="`Confirm deletion of '${projectToDelete?.title_en}'? All associated gallery media will be detached.`"
+      :title="$t('admin.delete_portfolio_entry')"
+      :message="`${$t('admin.delete_project_confirm')} (${projectToDelete?.title_en})`"
       @cancel="showDeleteConfirm = false"
       @confirm="deleteProject"
     />

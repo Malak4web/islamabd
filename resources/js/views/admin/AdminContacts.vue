@@ -3,8 +3,8 @@
     <!-- Header & Filter Area -->
     <div class="flex items-end justify-between">
       <div class="space-y-1">
-        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">Inbox</h1>
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Manage client inquiries and design requests</p>
+        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">{{ $t('admin.inbox') }}</h1>
+        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.contacts_manage') }}</p>
       </div>
       
       <div class="flex gap-2 bg-slate-900 p-1 rounded-2xl border border-slate-800">
@@ -15,7 +15,7 @@
           class="px-6 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all relative"
           :class="currentFilter === (status === 'all' ? '' : status) ? 'bg-amber-500 text-slate-950 shadow-lg' : 'text-slate-500 hover:text-white'"
         >
-          {{ status }}
+          {{ status === 'all' ? $t('admin.filter_all') : (status === 'new' ? $t('admin.status_new') : (status === 'read' ? $t('admin.status_read') : $t('admin.status_replied'))) }}
         </button>
       </div>
     </div>
@@ -27,12 +27,12 @@
            <div class="w-8 h-8 bg-amber-500 text-slate-950 rounded-full flex items-center justify-center font-black text-xs">
               {{ selectedIds.length }}
            </div>
-           <span class="text-[10px] font-bold text-white uppercase tracking-widest">Selected Inquiries</span>
+           <span class="text-[10px] font-bold text-white uppercase tracking-widest">{{ $t('admin.selected_inquiries') }}</span>
         </div>
         <div class="h-6 w-px bg-slate-800"></div>
         <div class="flex items-center gap-4">
            <button @click="bulkDelete" class="flex items-center gap-2 text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-white transition-colors">
-              <Trash2 class="w-4 h-4" /> Delete Permanently
+              <Trash2 class="w-4 h-4" /> {{ $t('admin.delete_permanently') }}
            </button>
         </div>
       </div>
@@ -40,26 +40,26 @@
 
     <!-- Contacts Table -->
     <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
-      <div class="grid grid-cols-12 gap-4 p-8 border-b border-slate-800 text-[10px] font-black text-slate-500 uppercase tracking-widest bg-slate-950/30">
+      <div class="grid grid-cols-12 gap-4 p-8 border-b border-slate-800 text-[10px] font-black text-slate-500 uppercase tracking-widest bg-slate-950/30 text-start">
         <div class="col-span-1 flex justify-center">
           <input type="checkbox" :checked="isAllSelected" @change="toggleSelectAll" class="w-5 h-5 bg-slate-950 border-slate-800 rounded-lg accent-amber-500 cursor-pointer">
         </div>
-        <div class="col-span-4">Sender Overview</div>
-        <div class="col-span-3 text-center">Inquiry Subject</div>
-        <div class="col-span-2 text-center">Status</div>
-        <div class="col-span-2 text-right">Actions</div>
+        <div class="col-span-4 text-start">{{ $t('admin.sender_overview') }}</div>
+        <div class="col-span-3 text-center">{{ $t('admin.inquiry_subject') }}</div>
+        <div class="col-span-2 text-center">{{ $t('admin.tbl_status') }}</div>
+        <div class="col-span-2 text-end">{{ $t('admin.actions') }}</div>
       </div>
 
       <div v-if="store.isLoading" class="p-40 text-center space-y-4">
         <div class="w-16 h-16 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mx-auto"></div>
-        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Synchronizing Inbox...</p>
+        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ $t('admin.syncing_inbox') }}</p>
       </div>
 
       <div v-else-if="store.contacts.length === 0" class="p-40 text-center space-y-4">
          <div class="w-20 h-20 mx-auto bg-slate-950 rounded-3xl flex items-center justify-center text-slate-800 border border-slate-800">
             <Mail class="w-10 h-10" />
          </div>
-         <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">Your inbox is clear</p>
+         <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">{{ $t('admin.inbox_clear') }}</p>
       </div>
 
       <div v-else class="divide-y divide-slate-800/50">
@@ -73,7 +73,7 @@
             <input type="checkbox" :value="contact.id" v-model="selectedIds" class="w-5 h-5 bg-slate-950 border-slate-800 rounded-lg accent-amber-500 cursor-pointer">
           </div>
           
-          <div class="col-span-4 cursor-pointer space-y-1" @click="viewContact(contact)">
+          <div class="col-span-4 cursor-pointer space-y-1 text-start" @click="viewContact(contact)">
             <h3 class="text-base font-bold transition-colors group-hover:text-amber-500 truncate uppercase tracking-tight" :class="contact.status === 'new' ? 'text-white' : 'text-slate-500'">
               {{ contact.name }}
             </h3>
@@ -82,7 +82,7 @@
           
           <div class="col-span-3 text-center">
              <span class="px-3 py-1 bg-slate-950 text-[10px] font-bold text-slate-500 rounded-lg border border-slate-800 uppercase tracking-widest group-hover:text-amber-500 group-hover:border-amber-500/20 transition-all">
-                {{ contact.service || 'General' }}
+                {{ contact.service || $t('admin.general_inquiry') }}
              </span>
           </div>
           
@@ -96,11 +96,11 @@
               }"
             >
               <div class="w-1.5 h-1.5 rounded-full" :class="contact.status === 'new' ? 'bg-red-500 animate-pulse' : (contact.status === 'read' ? 'bg-slate-700' : 'bg-emerald-500')"></div>
-              {{ contact.status }}
+              {{ contact.status === 'new' ? $t('admin.status_new') : (contact.status === 'read' ? $t('admin.status_read') : $t('admin.status_replied')) }}
             </span>
           </div>
           
-          <div class="col-span-2 text-right flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all">
+          <div class="col-span-2 text-end flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all">
             <button @click.stop="viewContact(contact)" class="w-10 h-10 flex items-center justify-center bg-slate-950 text-slate-500 hover:text-amber-500 hover:border-amber-500/30 border border-slate-800 rounded-xl transition-all">
               <Eye class="w-4 h-4" />
             </button>
@@ -118,10 +118,10 @@
           @click="fetchPage(store.pagination.current_page - 1)"
           class="px-8 py-3 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl border border-slate-800 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-white"
         >
-          Previous
+          {{ $t('admin.previous') }}
         </button>
         <div class="flex items-center gap-4">
-           <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Archive Perspective</span>
+           <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ $t('admin.archive_perspective') }}</span>
            <div class="px-4 py-2 bg-slate-900 rounded-lg text-xs font-bold text-amber-500 border border-slate-800">
               {{ store.pagination.current_page }} / {{ store.pagination.last_page }}
            </div>
@@ -131,7 +131,7 @@
           @click="fetchPage(store.pagination.current_page + 1)"
           class="px-8 py-3 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl border border-slate-800 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-white"
         >
-          Next
+          {{ $t('admin.next') }}
         </button>
       </div>
     </div>
@@ -148,8 +148,8 @@
 
     <ConfirmModal 
       :is-open="showDeleteConfirm"
-      title="Discard Message"
-      :message="`Are you sure you want to permanently remove this inquiry from '${contactToDelete?.name}'?`"
+      :title="$t('admin.discard_message')"
+      :message="`${$t('admin.delete_contact_confirm')} (${contactToDelete?.name})`"
       @cancel="showDeleteConfirm = false"
       @confirm="deleteContact"
     />
@@ -159,6 +159,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useContactStore } from '@/stores/contactStore'
+import { useI18n } from 'vue-i18n'
 import { 
   Mail, 
   Trash2, 
@@ -170,6 +171,7 @@ import ContactDetailModal from '@/components/admin/ContactDetailModal.vue'
 import ConfirmModal from '@/components/admin/ConfirmModal.vue'
 
 const store = useContactStore()
+const { t } = useI18n()
 const currentFilter = ref('')
 const selectedIds = ref([])
 const viewingContact = ref(null)
@@ -243,7 +245,7 @@ const deleteContact = async () => {
 }
 
 const bulkDelete = async () => {
-    if (confirm(`Delete ${selectedIds.value.length} messages?`)) {
+    if (confirm(t('admin.confirm_delete') + ' (' + selectedIds.value.length + ')')) {
         await store.bulkDelete(selectedIds.value)
         selectedIds.value = []
     }

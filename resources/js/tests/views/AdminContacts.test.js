@@ -28,7 +28,7 @@ describe('AdminContacts.vue', () => {
         await flushPromises()
         
         expect(wrapper.text()).toContain('Sara')
-        expect(wrapper.text()).toContain('new')
+        expect(wrapper.text().toLowerCase()).toContain('new')
     })
 
     it('filter tabs call store with correct status', async () => {
@@ -36,7 +36,7 @@ describe('AdminContacts.vue', () => {
         await flushPromises()
         
         const tabs = wrapper.findAll('button')
-        const readTab = tabs.find(b => b.text() === 'read')
+        const readTab = tabs.find(b => b.text().toLowerCase() === 'read')
         await readTab.trigger('click')
         
         expect(api.get).toHaveBeenCalledWith('/admin/contacts', {

@@ -15,10 +15,10 @@
                     'bg-emerald-500/10 text-emerald-500': contact.status === 'replied'
                   }"
                 >
-                  {{ contact.status }}
+                  {{ contact.status === 'new' ? $t('admin.status_new') : (contact.status === 'read' ? $t('admin.status_read') : $t('admin.status_replied')) }}
                 </span>
              </div>
-             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Received on {{ new Date(contact.created_at).toLocaleString() }}</p>
+             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.received_on') }} {{ new Date(contact.created_at).toLocaleString() }}</p>
           </div>
           <button @click="$emit('close')" class="w-12 h-12 flex items-center justify-center text-slate-500 hover:text-white transition-colors bg-white/5 rounded-2xl">
             <X class="w-6 h-6" />
@@ -26,12 +26,12 @@
         </div>
 
         <!-- Content -->
-        <div class="flex-1 p-10 overflow-y-auto space-y-10 custom-scrollbar">
+        <div class="flex-1 p-10 overflow-y-auto space-y-10 custom-scrollbar text-start">
            <!-- Fast Info -->
            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-4 group">
                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Phone Number</span>
+                    <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ $t('admin.phone_number') }}</span>
                     <button @click="copy(contact.phone)" class="text-slate-700 hover:text-amber-500 transition-colors">
                        <Copy class="w-4 h-4" />
                     </button>
@@ -40,22 +40,22 @@
               </div>
               <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-4 group">
                  <div class="flex items-center justify-between">
-                    <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Email Address</span>
+                    <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ $t('admin.email_address') }}</span>
                     <button @click="copy(contact.email)" class="text-slate-700 hover:text-amber-500 transition-colors">
                        <Copy class="w-4 h-4" />
                     </button>
                  </div>
-                 <p class="text-lg font-bold text-white selection:bg-amber-500 selection:text-slate-950">{{ contact.email || 'N/A' }}</p>
+                 <p class="text-lg font-bold text-white selection:bg-amber-500 selection:text-slate-950">{{ contact.email || '—' }}</p>
               </div>
               <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl space-y-4 col-span-full">
-                 <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Requested Service</span>
-                 <p class="text-lg font-bold text-amber-500 uppercase tracking-tight">{{ contact.service || 'General Inquiry' }}</p>
+                 <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ $t('admin.requested_service') }}</span>
+                 <p class="text-lg font-bold text-amber-500 uppercase tracking-tight">{{ contact.service || $t('admin.general_inquiry') }}</p>
               </div>
            </div>
 
            <!-- Message -->
            <div class="space-y-6">
-              <label class="block text-[10px] font-bold uppercase text-slate-500 tracking-widest">Inquiry Content</label>
+              <label class="block text-[10px] font-bold uppercase text-slate-500 tracking-widest">{{ $t('admin.inquiry_content') }}</label>
               <div class="p-10 bg-slate-950 border border-slate-800 rounded-[2.5rem] text-slate-300 leading-relaxed font-medium whitespace-pre-wrap shadow-inner">
                  {{ contact.message }}
               </div>
@@ -70,18 +70,18 @@
               @click="$emit('mark-read')"
               class="px-8 py-4 bg-slate-800 text-white font-bold text-[10px] uppercase tracking-widest rounded-2xl hover:bg-slate-700 transition-all active:scale-95"
             >
-              Mark as Read
+              {{ $t('admin.mark_read') }}
             </button>
             <button 
               v-if="contact.status !== 'replied'" 
               @click="$emit('mark-replied')"
               class="px-8 py-4 bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold text-[10px] uppercase tracking-widest rounded-2xl hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
             >
-              Mark Replied
+              {{ $t('admin.mark_replied') }}
             </button>
           </div>
           <button @click="$emit('delete')" class="px-8 py-4 text-red-500 hover:text-red-400 font-bold text-[10px] uppercase tracking-widest transition-colors">
-            Discard
+            {{ $t('admin.discard') }}
           </button>
         </div>
       </div>
@@ -92,6 +92,7 @@
 <script setup>
 import { X, Copy, CheckCircle } from 'lucide-vue-next'
 import { useToast } from '@/composables/useToast'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -101,11 +102,12 @@ const props = defineProps({
 const emit = defineEmits(['close', 'mark-read', 'mark-replied', 'delete'])
 
 const { toast } = useToast()
+const { t } = useI18n()
 
 const copy = (text) => {
   if (!text) return
   navigator.clipboard.writeText(text)
-  toast.info('Copied to clipboard')
+  toast.info(t('admin.copied_clipboard'))
 }
 </script>
 

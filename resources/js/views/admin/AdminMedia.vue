@@ -3,8 +3,8 @@
     <!-- Header -->
     <div class="flex items-center justify-between">
       <div class="space-y-1">
-        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">Media Library</h1>
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Manage your high-fidelity architectural assets</p>
+        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">{{ $t('admin.media_library') }}</h1>
+        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.media_manage') }}</p>
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       @drop.prevent="handleDrop"
     >
       <div v-if="isDragging" class="absolute inset-0 bg-amber-500/10 backdrop-blur-sm z-10 pointer-events-none flex items-center justify-center">
-         <p class="text-xl font-black text-amber-500 uppercase animate-bounce">Drop to Upload</p>
+         <p class="text-xl font-black text-amber-500 uppercase animate-bounce">{{ $t('admin.drop_upload') }}</p>
       </div>
 
       <div class="relative z-0 space-y-6">
@@ -24,8 +24,8 @@
             <UploadCloud class="w-10 h-10" />
          </div>
          <div class="space-y-2">
-            <h3 class="text-lg font-bold text-white uppercase tracking-tight">Drop images here or click to browse</h3>
-            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-black">Supports JPG, PNG, WEBP, SVG (Max 5MB)</p>
+            <h3 class="text-lg font-bold text-white uppercase tracking-tight">{{ $t('admin.drop_or_browse') }}</h3>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-black">{{ $t('admin.media_formats_hint') }}</p>
          </div>
          <input type="file" multiple class="absolute inset-0 opacity-0 cursor-pointer" @change="handleFileSelect">
          
@@ -37,7 +37,7 @@
                  :style="{ width: `${mediaStore.uploadProgress}%` }"
                ></div>
             </div>
-            <p class="mt-2 text-[10px] font-black text-amber-500 uppercase tracking-widest">Uploading {{ mediaStore.uploadProgress }}%</p>
+            <p class="mt-2 text-[10px] font-black text-amber-500 uppercase tracking-widest">{{ $t('admin.uploading') }} {{ mediaStore.uploadProgress }}%</p>
          </div>
       </div>
     </div>
@@ -45,9 +45,9 @@
     <!-- Media Grid -->
     <div class="space-y-8">
        <div class="flex items-center justify-between px-4">
-          <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Asset Collection</h3>
+          <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">{{ $t('admin.asset_collection') }}</h3>
           <div class="flex items-center gap-4">
-             <span class="text-[10px] font-bold text-slate-600 uppercase">{{ mediaStore.items.length }} Files</span>
+             <span class="text-[10px] font-bold text-slate-600 uppercase">{{ mediaStore.items.length }} {{ $t('admin.files') }}</span>
           </div>
        </div>
 
@@ -59,7 +59,7 @@
           <div class="w-20 h-20 mx-auto bg-slate-950 rounded-3xl flex items-center justify-center text-slate-800 border border-slate-800">
              <ImageIcon class="w-10 h-10" />
           </div>
-          <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">Your library is empty</p>
+          <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">{{ $t('admin.library_empty') }}</p>
        </div>
 
        <div v-else class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
@@ -70,10 +70,10 @@
              <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center gap-4 p-4">
                 <p class="text-[10px] font-bold text-white truncate w-full text-center mb-2 px-2 uppercase tracking-tighter">{{ item.filename }}</p>
                 <div class="flex gap-2">
-                   <button @click="copyUrl(item.url)" class="w-10 h-10 bg-white text-slate-950 rounded-xl flex items-center justify-center hover:bg-amber-500 transition-colors shadow-2xl" title="Copy URL">
+                   <button @click="copyUrl(item.url)" class="w-10 h-10 bg-white text-slate-950 rounded-xl flex items-center justify-center hover:bg-amber-500 transition-colors shadow-2xl" :title="$t('admin.copied_clipboard')">
                       <Copy class="w-4 h-4" />
                    </button>
-                   <button @click="confirmDelete(item)" class="w-10 h-10 bg-red-500 text-white rounded-xl flex items-center justify-center hover:bg-red-600 transition-colors shadow-2xl" title="Delete">
+                   <button @click="confirmDelete(item)" class="w-10 h-10 bg-red-500 text-white rounded-xl flex items-center justify-center hover:bg-red-600 transition-colors shadow-2xl" :title="$t('admin.delete')">
                       <Trash2 class="w-4 h-4" />
                    </button>
                 </div>
@@ -85,8 +85,8 @@
     <!-- Confirm Modal -->
     <ConfirmModal 
       :is-open="showDeleteConfirm"
-      title="Discard Asset"
-      message="Are you sure you want to permanently remove this image? This will break any content using this URL."
+      :title="$t('admin.discard_asset')"
+      :message="$t('admin.delete_asset_confirm')"
       @cancel="showDeleteConfirm = false"
       @confirm="handleDelete"
     />
@@ -97,6 +97,7 @@
 import { ref, onMounted } from 'vue'
 import { useMediaStore } from '@/stores/mediaStore'
 import { useToast } from '@/composables/useToast'
+import { useI18n } from 'vue-i18n'
 import { 
   UploadCloud, 
   Image as ImageIcon, 
@@ -109,6 +110,7 @@ import ConfirmModal from '@/components/admin/ConfirmModal.vue'
 
 const mediaStore = useMediaStore()
 const { toast } = useToast()
+const { t } = useI18n()
 const isDragging = ref(false)
 const showDeleteConfirm = ref(false)
 const itemToDelete = ref(null)
@@ -131,15 +133,15 @@ const handleDrop = (event) => {
 const uploadFiles = async (files) => {
     try {
         await mediaStore.uploadMedia(files)
-        toast.success(`Successfully uploaded ${files.length} assets`)
+        toast.success(t('admin.upload_success') + ` (${files.length})`)
     } catch (err) {
-        toast.error('Failed to upload some assets')
+        toast.error(t('admin.upload_failed'))
     }
 }
 
 const copyUrl = (url) => {
     navigator.clipboard.writeText(url)
-    toast.info('Asset URL copied to clipboard')
+    toast.info(t('admin.asset_url_copied'))
 }
 
 const confirmDelete = (item) => {
@@ -151,11 +153,11 @@ const handleDelete = async () => {
     if (!itemToDelete.value) return
     try {
         await mediaStore.deleteMedia(itemToDelete.value.id)
-        toast.success('Asset removed successfully')
+        toast.success(t('admin.asset_removed'))
         showDeleteConfirm.value = false
         itemToDelete.value = null
     } catch (err) {
-        toast.error('Failed to remove asset')
+        toast.error(t('admin.asset_remove_failed'))
     }
 }
 </script>
