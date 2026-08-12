@@ -113,7 +113,7 @@
                  8.3:1. The old build put white on this same gold — 2.3:1, the
                  least readable element on the most important button. -->
             <RouterLink
-              to="/projects"
+              :to="activeSlide.cta_link || '/services'"
               class="press inline-flex items-center justify-center gap-2.5 rounded-xs bg-gold px-8 py-4 text-label font-semibold tracking-wide text-ink transition duration-base ease-out-quart hover:bg-gold-soft focus-visible:bg-gold-soft"
             >
               {{ activeSlide.cta_primary || $t('hero.cta_primary') }}

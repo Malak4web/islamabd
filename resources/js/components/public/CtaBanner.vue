@@ -41,7 +41,7 @@
 
         <div v-reveal="{ delay: 150 }" class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
           <RouterLink
-            to="/contact"
+            :to="primaryLink"
             class="press inline-flex items-center justify-center gap-2.5 rounded-xs bg-gold px-8 py-4 text-label font-semibold tracking-wide text-ink transition duration-base ease-out-quart hover:bg-gold-soft"
           >
             {{ primaryLabel }}
@@ -87,6 +87,7 @@ const pick = (en, ar, fallbackKey) =>
 const title = pick('title_en', 'title_ar', 'cta.title')
 const body = pick('body_en', 'body_ar', 'cta.subtitle')
 const primaryLabel = pick('cta_en', 'cta_ar', 'cta.primary')
+const primaryLink = computed(() => props.content?.cta_link || '/services')
 
 const phone = computed(
   () => settingStore.settings.phone_main || settingStore.settings.contact_phone_eg || ''
