@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 65002
           source: "."
-          target: "/home/u469743545/domains/indesign-co.com/public_html/"
+          target: "/home/u469743545/domains/ea-interiors.art/public_html/"
           rm: false # Set to true if you want to clear target folder before upload, but false for SCP is safer
           # Note: SCP doesn't exclude files natively like rsync. If you want to exclude node_modules and .git, it's better to remove them before SCP.
           
@@ -53,7 +53,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 65002
           script: |
-            cd /home/u469743545/domains/indesign-co.com/public_html
+            cd /home/u469743545/domains/ea-interiors.art/public_html
 
             # Run database migrations
             php artisan migrate --force
