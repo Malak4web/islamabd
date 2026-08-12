@@ -18,7 +18,7 @@ class PagesSeeder extends Seeder
                 'slug' => 'home',
                 'title_en' => 'Home',
                 'title_ar' => 'الرئيسية',
-                'meta_title' => 'InDesign | Premium Interior Design',
+                'meta_title' => 'Eslam Abdulghani Designs | Premium Interior Design',
                 'meta_description' => 'Bespoke interior design solutions in Dubai.',
                 'sections' => [
                     [
@@ -47,14 +47,14 @@ class PagesSeeder extends Seeder
                 'slug' => 'about',
                 'title_en' => 'About Us',
                 'title_ar' => 'من نحن',
-                'meta_title' => 'About InDesign | Our Story',
+                'meta_title' => 'About Eslam Abdulghani Designs | Our Story',
                 'sections' => [
                     [
                         'key' => 'story',
                         'order' => 1,
                         'content' => [
                             'title_en' => 'Our Journey',
-                            'description_en' => 'Founded in 2012, InDesign has been...'
+                            'description_en' => 'Founded in 2012, Eslam Abdulghani Designs has been...'
                         ]
                     ]
                 ]

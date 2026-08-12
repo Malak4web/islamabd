@@ -32,8 +32,8 @@ class SectionSeeder extends Seeder
                     'content' => [
                         'label_en'   => 'About Our Company',
                         'label_ar'   => 'عن شركتنا',
-                        'text_en'    => "Founded in 1983 as a carpentry business, Indesign has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
-                        'text_ar'    => "تأسست إن ديزاين عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
+                        'text_en'    => "Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
+                        'text_ar'    => "تأسست إسلام عبد الغني ديزاينز عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
                         'cta_en'     => 'Free Consultation',
                         'cta_ar'     => 'استشارة مجانية',
                     ],
@@ -76,8 +76,8 @@ class SectionSeeder extends Seeder
                     'content' => [
                         'title_en' => 'Contact Us',
                         'title_ar' => 'اتصل بنا',
-                        'body_en'  => 'InDesign is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements.',
-                        'body_ar'  => 'إن ديزاين رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء، مع بذل جهد إضافي لفهم احتياجاتهم الفريدة.',
+                        'body_en'  => 'Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements.',
+                        'body_ar'  => 'إسلام عبد الغني ديزاينز رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء، مع بذل جهد إضافي لفهم احتياجاتهم الفريدة.',
                     ],
                 ],
             ];
@@ -98,11 +98,11 @@ class SectionSeeder extends Seeder
                     'key'   => 'hero',
                     'order' => 1,
                     'content' => [
-                        'title_en'    => 'About InDesign',
-                        'title_ar'    => 'عن إن ديزاين',
+                        'title_en'    => 'About Eslam Abdulghani Designs',
+                        'title_ar'    => 'عن إسلام عبد الغني ديزاينز',
                         'subtitle_en' => 'Leading the way in creative design and construction excellence since 1983.',
                         'subtitle_ar' => 'ريادة الطريق في الإبداع والتميز الإنشائي منذ عام 1983.',
-                        'image'       => 'https://indesign-co.com/wp-content/uploads/2024/10/431451442_249354111594226_167009839475597367_n.jpg',
+                        'image'       => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431451442_249354111594226_167009839475597367_n.jpg',
                     ],
                 ],
                 [
@@ -111,9 +111,9 @@ class SectionSeeder extends Seeder
                     'content' => [
                         'title_en' => 'Our Legacy',
                         'title_ar' => 'إرثنا',
-                        'body_en'  => "Founded in 1983 as a carpentry business, Indesign has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
-                        'body_ar'  => "تأسست إن ديزاين عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
-                        'image'    => 'https://indesign-co.com/wp-content/uploads/2024/10/431521273_249354248260879_9084258774243773194_n.jpg',
+                        'body_en'  => "Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
+                        'body_ar'  => "تأسست إسلام عبد الغني ديزاينز عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
+                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431521273_249354248260879_9084258774243773194_n.jpg',
                     ],
                 ],
                 [
@@ -122,9 +122,9 @@ class SectionSeeder extends Seeder
                     'content' => [
                         'title_en' => 'Our Mission',
                         'title_ar' => 'مهمتنا',
-                        'body_en'  => 'Indesign is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.',
-                        'body_ar'  => 'إن ديزاين رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء، مع بذل جهد إضافي لفهم احتياجاتهم الفريدة. التزامنا بالجودة والتميز لا مثيل له.',
-                        'image'    => 'https://indesign-co.com/wp-content/uploads/2024/10/431064703_249353734927597_2057987504516509134_n.jpg',
+                        'body_en'  => 'Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.',
+                        'body_ar'  => 'إسلام عبد الغني ديزاينز رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء، مع بذل جهد إضافي لفهم احتياجاتهم الفريدة. التزامنا بالجودة والتميز لا مثيل له.',
+                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431064703_249353734927597_2057987504516509134_n.jpg',
                     ],
                 ],
                 [
@@ -135,7 +135,7 @@ class SectionSeeder extends Seeder
                         'title_ar' => 'خبراتنا',
                         'body_en'  => 'We specialize in construction, interior design, finishes, furnishing, house design, landscape, timber and architectural design.',
                         'body_ar'  => 'نتخصص في الإنشاءات، التصميم الداخلي، التشطيبات، الأثاث، تصميم المنازل، تنسيق المواقع، والنجارة والتصميم المعماري.',
-                        'image'    => 'https://indesign-co.com/wp-content/uploads/2024/10/431069338_249354318260872_9127296206807023491_n.jpg',
+                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431069338_249354318260872_9127296206807023491_n.jpg',
                     ],
                 ],
             ];
@@ -262,7 +262,7 @@ class SectionSeeder extends Seeder
                         'egypt_ar'   => 'بيفرلي هيلز – مجمع بولجون للأعمال، الشيخ زايد، مصر',
                         'phone_kw'   => '+965 5505 3010',
                         'phone_eg'   => '+20 100 559 8277',
-                        'email'      => 'info@indesign-co.com',
+                        'email'      => 'info@eslamabdulghanidesigns.com',
                     ],
                 ],
             ];

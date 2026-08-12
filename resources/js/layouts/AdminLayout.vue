@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+  <div class="min-h-screen bg-[#F7F5F0] font-sans text-[#111111] selection:bg-[#C5A880] selection:text-white">
     <AdminSidebar ref="sidebar" />
     
     <div 
@@ -21,9 +21,9 @@
       </main>
       
       <!-- Footer -->
-      <footer class="p-8 text-center border-t border-slate-900">
-        <p class="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase">
-          &copy; {{ new Date().getFullYear() }} INDESIGN Control Panel. All Rights Reserved.
+      <footer class="p-8 text-center border-t border-[#E0DACE]">
+        <p class="text-[10px] font-bold tracking-[0.3em] text-[#555555] uppercase">
+          &copy; {{ new Date().getFullYear() }} ESLAM ABDULGHANI DESIGNS Control Panel. All Rights Reserved.
         </p>
       </footer>
     </div>

@@ -3,12 +3,12 @@
     <!-- Header Area -->
     <div class="flex items-center justify-between">
       <div class="space-y-1">
-        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">{{ $t('admin.services') }}</h1>
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.services_manage') }}</p>
+        <h1 class="text-4xl font-black text-[#111111] uppercase tracking-tighter">{{ $t('admin.services') }}</h1>
+        <p class="text-[10px] font-bold text-[#555555] uppercase tracking-[0.2em]">{{ $t('admin.services_manage') }}</p>
       </div>
       <button 
         @click="openAddModal"
-        class="flex items-center gap-3 px-8 py-4 bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-white hover:scale-105 active:scale-95 transition-all shadow-xl shadow-amber-500/10"
+        class="flex items-center gap-3 px-8 py-4 bg-[#C5A880] text-white font-black text-[10px] uppercase tracking-[0.2em] rounded-2xl hover:bg-[#111111] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-[#C5A880]/10"
       >
         <Plus class="w-4 h-4" />
         {{ $t('admin.new_service') }}
@@ -17,38 +17,38 @@
 
     <!-- Stats Preview -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-       <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl flex items-center justify-between">
+       <div class="p-6 bg-[#FFFFFF] border border-[#E0DACE] rounded-3xl flex items-center justify-between shadow-sm">
           <div class="space-y-1">
-             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{{ $t('admin.total_active') }}</p>
-             <h4 class="text-2xl font-black text-white">{{ serviceStore.services.filter(s => s.is_active).length }}</h4>
+             <p class="text-[10px] font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.total_active') }}</p>
+             <h4 class="text-2xl font-black text-[#111111]">{{ serviceStore.services.filter(s => s.is_active).length }}</h4>
           </div>
-          <div class="w-10 h-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center">
+          <div class="w-10 h-10 bg-emerald-500/10 text-emerald-600 rounded-xl flex items-center justify-center">
              <CheckCircle class="w-5 h-5" />
           </div>
        </div>
-       <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl flex items-center justify-between">
+       <div class="p-6 bg-[#FFFFFF] border border-[#E0DACE] rounded-3xl flex items-center justify-between shadow-sm">
           <div class="space-y-1">
-             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{{ $t('admin.drafts') }}</p>
-             <h4 class="text-2xl font-black text-white">{{ serviceStore.services.filter(s => !s.is_active).length }}</h4>
+             <p class="text-[10px] font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.drafts') }}</p>
+             <h4 class="text-2xl font-black text-[#111111]">{{ serviceStore.services.filter(s => !s.is_active).length }}</h4>
           </div>
-          <div class="w-10 h-10 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center">
+          <div class="w-10 h-10 bg-[#C5A880]/15 text-[#C5A880] rounded-xl flex items-center justify-center">
              <Edit3 class="w-5 h-5" />
           </div>
        </div>
-       <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl flex items-center justify-between">
+       <div class="p-6 bg-[#FFFFFF] border border-[#E0DACE] rounded-3xl flex items-center justify-between shadow-sm">
           <div class="space-y-1">
-             <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{{ $t('admin.display_order') }}</p>
-             <h4 class="text-2xl font-black text-white">{{ $t('admin.manual') }}</h4>
+             <p class="text-[10px] font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.display_order') }}</p>
+             <h4 class="text-2xl font-black text-[#111111]">{{ $t('admin.manual') }}</h4>
           </div>
-          <div class="w-10 h-10 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center">
+          <div class="w-10 h-10 bg-blue-500/10 text-blue-600 rounded-xl flex items-center justify-center">
              <Move class="w-5 h-5" />
           </div>
        </div>
     </div>
 
     <!-- Draggable List -->
-    <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
-      <div class="grid grid-cols-12 gap-4 p-8 border-b border-slate-800 text-[10px] font-black text-slate-500 uppercase tracking-widest bg-slate-950/30 text-start">
+    <div class="bg-[#FFFFFF] border border-[#E0DACE] rounded-[2.5rem] overflow-hidden shadow-md">
+      <div class="grid grid-cols-12 gap-4 p-8 border-b border-[#E0DACE] text-[10px] font-black text-[#555555] uppercase tracking-widest bg-[#F7F5F0] text-start">
         <div class="col-span-1"></div>
         <div class="col-span-5">{{ $t('admin.service_overview') }}</div>
         <div class="col-span-2 text-center">{{ $t('admin.relevance') }}</div>
@@ -61,29 +61,29 @@
         item-key="id" 
         @end="handleReorder"
         handle=".drag-handle"
-        class="divide-y divide-slate-800/50"
+        class="divide-y divide-[#E0DACE]"
       >
         <template #item="{ element }">
-          <div class="grid grid-cols-12 gap-4 p-8 items-center group hover:bg-white/[0.02] transition-colors">
+          <div class="grid grid-cols-12 gap-4 p-8 items-center group hover:bg-[#F0ECE1]/50 transition-colors">
             <div class="col-span-1">
-              <div class="drag-handle cursor-grab active:cursor-grabbing p-3 text-slate-700 group-hover:text-amber-500 transition-colors bg-slate-950 rounded-xl border border-transparent group-hover:border-amber-500/20">
+              <div class="drag-handle cursor-grab active:cursor-grabbing p-3 text-[#555555] group-hover:text-[#C5A880] transition-colors bg-[#F7F5F0] rounded-xl border border-transparent group-hover:border-[#C5A880]/30">
                 <GripVertical class="w-5 h-5" />
               </div>
             </div>
             <div class="col-span-5 flex items-center gap-6">
-              <div class="w-16 h-16 bg-slate-950 rounded-2xl p-4 border border-slate-800 flex-shrink-0 relative overflow-hidden group-hover:border-amber-500/30 transition-all">
-                <img v-if="element.icon" :src="element.icon" class="w-full h-full object-contain filter invert opacity-60 group-hover:opacity-100 transition-all">
-                <div v-else class="w-full h-full flex items-center justify-center text-slate-800">
+              <div class="w-16 h-16 bg-[#F0ECE1] rounded-2xl p-4 border border-[#E0DACE] flex-shrink-0 relative overflow-hidden group-hover:border-[#C5A880]/30 transition-all">
+                <img v-if="element.icon" :src="element.icon" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-all">
+                <div v-else class="w-full h-full flex items-center justify-center text-[#555555]">
                    <Box class="w-6 h-6" />
                 </div>
               </div>
               <div class="space-y-1">
-                <h3 class="text-base font-bold text-white group-hover:text-amber-500 transition-colors uppercase tracking-tight">{{ element.title_en }}</h3>
-                <p class="text-xs text-slate-500 font-bold tracking-widest">{{ element.title_ar }}</p>
+                <h3 class="text-base font-bold text-[#111111] group-hover:text-[#C5A880] transition-colors uppercase tracking-tight">{{ element.title_en }}</h3>
+                <p class="text-xs text-[#555555] font-bold tracking-widest">{{ element.title_ar }}</p>
               </div>
             </div>
             <div class="col-span-2 text-center">
-               <span class="text-xs font-mono font-bold text-slate-600 group-hover:text-slate-400 transition-colors">
+               <span class="text-xs font-mono font-bold text-[#555555] group-hover:text-[#111111] transition-colors">
                   #{{ element.order }}
                </span>
             </div>
@@ -92,17 +92,17 @@
                 @click="toggleService(element)"
                 data-test-toggle
                 class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter border transition-all"
-                :class="element.is_active ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-500' : 'border-slate-800 bg-slate-800/50 text-slate-500'"
+                :class="element.is_active ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-600' : 'border-[#E0DACE] bg-[#F0ECE1] text-[#555555]'"
               >
-                <div class="w-1.5 h-1.5 rounded-full" :class="element.is_active ? 'bg-emerald-500 animate-pulse' : 'bg-slate-600'"></div>
+                <div class="w-1.5 h-1.5 rounded-full" :class="element.is_active ? 'bg-emerald-500 animate-pulse' : 'bg-[#555555]'"></div>
                 {{ element.is_active ? $t('admin.active') : $t('admin.draft') }}
               </button>
             </div>
             <div class="col-span-2 text-end flex justify-end gap-3">
-              <button @click="editService(element)" class="w-10 h-10 flex items-center justify-center bg-slate-950 text-slate-500 hover:text-amber-500 hover:border-amber-500/30 border border-slate-800 rounded-xl transition-all">
+              <button @click="editService(element)" class="w-10 h-10 flex items-center justify-center bg-[#F7F5F0] text-[#555555] hover:text-[#C5A880] hover:border-[#C5A880]/30 border border-[#E0DACE] rounded-xl transition-all">
                 <Edit3 class="w-4 h-4" />
               </button>
-              <button @click="openDeleteConfirm(element)" class="w-10 h-10 flex items-center justify-center bg-slate-950 text-slate-500 hover:text-red-500 hover:border-red-500/30 border border-slate-800 rounded-xl transition-all">
+              <button @click="openDeleteConfirm(element)" class="w-10 h-10 flex items-center justify-center bg-[#F7F5F0] text-[#555555] hover:text-red-500 hover:border-red-500/30 border border-[#E0DACE] rounded-xl transition-all">
                 <Trash2 class="w-4 h-4" />
               </button>
             </div>
@@ -111,10 +111,10 @@
       </draggable>
 
       <div v-if="!localServices.length" class="p-24 text-center space-y-4">
-         <div class="w-20 h-20 mx-auto bg-slate-950 rounded-3xl flex items-center justify-center text-slate-800 border border-slate-800">
+         <div class="w-20 h-20 mx-auto bg-[#F0ECE1] rounded-3xl flex items-center justify-center text-[#555555] border border-[#E0DACE]">
             <Wrench class="w-10 h-10" />
          </div>
-         <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">{{ $t('admin.no_services_found') }}</p>
+         <p class="text-[10px] font-bold text-[#555555] uppercase tracking-[0.4em]">{{ $t('admin.no_services_found') }}</p>
       </div>
     </div>
 

@@ -1,59 +1,71 @@
 <template>
-  <div v-if="serviceStore.loading && !serviceStore.currentService" class="flex items-center justify-center min-h-screen bg-black">
-    <div class="w-16 h-16 border-4 border-[#d4af37]/20 border-t-[#d4af37] rounded-full animate-spin"></div>
+  <div v-if="serviceStore.loading && !service" class="flex min-h-[62svh] items-center justify-center bg-canvas">
+    <span class="sr-only">{{ $t('common.loading') }}</span>
+    <div class="h-10 w-10 animate-spin rounded-pill border-2 border-line border-t-gold-deep" role="status"></div>
   </div>
 
-  <main v-else-if="serviceStore.currentService" class="bg-[#0a0a0a] min-h-screen">
-    <!-- Page Header -->
-    <section class="relative py-32 md:py-48 overflow-hidden bg-black">
-      <div class="absolute inset-0 bg-center bg-cover opacity-40" :style="{ backgroundImage: `url(${serviceStore.currentService.image || '/images/defaults/about_fallback.jpg'})` }"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]"></div>
-      
-      <div class="relative container px-6 mx-auto text-center">
-        <span class="text-xs font-bold tracking-[0.5em] text-[#d4af37] uppercase mb-6 block">{{ $t('services.expertise') }}</span>
-        <h1 class="text-[1.75rem] leading-[2] font-black text-white uppercase tracking-tighter">
-           {{ serviceStore.currentService.title }}
-        </h1>
-      </div>
-    </section>
+  <main v-else-if="service" class="min-h-[62svh] bg-canvas">
+    <!-- The image was a background layer at 30% opacity behind the title, which
+         is neither a legible photograph nor a clean type surface. It is the
+         header's plate now, at full strength, with the title cut into it. -->
+    <PageHeader
+      :title="service.title"
+      :lede="$t('services.expertise')"
+      :image="plate"
+      :image-alt="service.title"
+      :placeholder="markName"
+    />
 
-    <!-- Content -->
-    <section class="py-20 md:py-32">
-       <div class="container px-6 mx-auto">
-          <div class="space-y-24">
-             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
-                <div class="lg:col-span-8 space-y-10 md:space-y-12">
-                   <div class="space-y-6 md:space-y-8">
-                      <h2 class="text-[1.75rem] leading-[2] font-bold text-[#d4af37] uppercase">{{ $t('services.overview') }}</h2>
-                      <p class="text-lg sm:text-2xl text-gray-300 leading-relaxed font-light whitespace-pre-line">
-                         {{ isAr ? serviceStore.currentService.description_ar : serviceStore.currentService.description }}
-                      </p>
-                   </div>
+    <section class="py-12 sm:py-24">
+      <div class="container mx-auto px-6 sm:px-8">
+        <!-- The enquiry card leads in the document and is placed back into the
+             right-hand column from `lg`. On a phone it used to sit under the
+             whole overview and gallery — the one action on the page, last. -->
+        <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
+          <aside class="lg:col-span-4 lg:col-start-9 lg:row-start-1 lg:sticky lg:top-28">
+            <div v-reveal class="border border-line bg-canvas-raised p-6 sm:p-8">
+              <EaiIcon :name="markName" :size="30" draw class="text-gold-deep" />
+              <h2 class="mt-4 text-subhead font-medium text-ink sm:mt-5">{{ $t('services.inquiry_title') }}</h2>
+              <p class="mt-3 text-ink-muted">{{ $t('services.inquiry_text') }}</p>
+              <RouterLink
+                to="/contact"
+                class="press mt-6 flex items-center justify-center gap-2.5 rounded-xs bg-gold px-6 py-4 text-label font-semibold tracking-wide text-ink transition duration-base ease-out-quart hover:bg-gold-soft sm:mt-7"
+              >
+                {{ $t('services.get_quote') }}
+                <EaiIcon name="arrow-right" :size="16" flip />
+              </RouterLink>
+            </div>
+          </aside>
 
-                   <!-- Service Gallery -->
-                   <div v-if="serviceStore.currentService.gallery && serviceStore.currentService.gallery.length > 0" class="space-y-8 pt-12">
-                      <h2 class="text-[1.75rem] leading-[2] font-bold text-[#d4af37] uppercase">{{ $t('services.gallery') }}</h2>
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                         <div v-for="(image, index) in serviceStore.currentService.gallery" :key="index" class="aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/10 group">
-                            <img :src="image" :alt="serviceStore.currentService.title" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                         </div>
-                      </div>
-                   </div>
-                </div>
+          <div class="min-w-0 lg:col-span-8 lg:col-start-1 lg:row-start-1">
+            <h2 class="text-label font-semibold text-gold-deep">{{ $t('services.overview') }}</h2>
+            <p class="mt-4 max-w-prose whitespace-pre-line text-lede text-ink-muted">
+              {{ description }}
+            </p>
 
-                <!-- Sidebar Inquiry -->
-                <div class="lg:col-span-4 sticky top-32">
-                   <div class="p-10 bg-gradient-to-br from-[#111] to-black rounded-3xl border border-white/5 shadow-2xl space-y-10">
-                      <h3 class="text-[1.75rem] leading-[2] font-black text-white uppercase tracking-tight">{{ $t('services.inquiry_title') }}</h3>
-                      <p class="text-sm text-gray-500 leading-relaxed">{{ $t('services.inquiry_text') }}</p>
-                      <RouterLink to="/contact" class="flex items-center justify-center w-full py-5 text-xs font-bold tracking-[0.3em] text-black uppercase bg-[#d4af37] rounded-full transition-all hover:bg-white active:scale-95 shadow-xl shadow-[#d4af37]/10">
-                         {{ $t('services.get_quote') }}
-                      </RouterLink>
-                   </div>
-                </div>
-             </div>
+            <div v-if="gallery.length" class="mt-12 sm:mt-14">
+              <h2 class="text-label font-semibold text-gold-deep">{{ $t('services.gallery') }}</h2>
+              <div class="rail-sm rail-bleed mt-5 gap-4 pb-2 sm:grid sm:grid-cols-2">
+                <figure
+                  v-for="(image, index) in gallery"
+                  :key="index"
+                  v-depth
+                  v-reveal:wipe
+                  class="group set-plate w-[86%] overflow-hidden bg-canvas-inset sm:w-auto [--set-max:4deg]"
+                >
+                  <AppImage
+                    :src="image"
+                    sizes="(min-width: 640px) 33vw, 86vw"
+                    :alt="`${service.title} — ${index + 1}`"
+                    :placeholder="markName"
+                    img-class="plate-img aspect-[4/3] w-full object-cover"
+                  />
+                </figure>
+              </div>
+            </div>
           </div>
-       </div>
+        </div>
+      </div>
     </section>
 
     <CtaBanner />
@@ -61,24 +73,58 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useServiceStore } from '@/stores/serviceStore'
 import { useLocaleStore } from '@/stores/localeStore'
 import { useSeo } from '@/composables/useSeo'
 import { storeToRefs } from 'pinia'
+import PageHeader from '@/components/public/PageHeader.vue'
 import CtaBanner from '@/components/public/CtaBanner.vue'
+import AppImage from '@/components/public/AppImage.vue'
+import EaiIcon from '@/components/icons/EaiIcon.vue'
+import { SERVICE_IMAGES, SERVICE_IMAGE_WIDTHS, serviceKey, srcset, fallback } from '@/lib/media'
 
 const route = useRoute()
 const serviceStore = useServiceStore()
 const localeStore = useLocaleStore()
 const { currentService } = storeToRefs(serviceStore)
 
+const service = computed(() => serviceStore.currentService)
 const isAr = computed(() => localeStore.isArabic)
+
+const markName = computed(() => serviceKey(service.value) || 'building')
+
+const description = computed(() =>
+  isAr.value
+    ? service.value?.description_ar || service.value?.description
+    : service.value?.description
+)
+
+/**
+ * The header plate: the record's own image, backed by the locally hosted
+ * default for its service line if that image is absent or fails to load.
+ */
+const plate = computed(() => {
+  const key = serviceKey(service.value)
+  const local = key && SERVICE_IMAGES[key] ? SERVICE_IMAGES[key] : null
+  return {
+    src: service.value?.image || (local ? fallback(local, SERVICE_IMAGE_WIDTHS) : ''),
+    srcset: service.value?.image || !local ? undefined : srcset(local, SERVICE_IMAGE_WIDTHS),
+    fallbackSrc: local ? fallback(local, SERVICE_IMAGE_WIDTHS) : '',
+    fallbackSrcset: local ? srcset(local, SERVICE_IMAGE_WIDTHS) : '',
+  }
+})
+
+const gallery = computed(() =>
+  Array.isArray(service.value?.gallery) ? service.value.gallery.filter(Boolean) : []
+)
 
 useSeo(currentService)
 
-onMounted(() => {
-    serviceStore.fetchService(route.params.id)
-})
+onMounted(() => serviceStore.fetchService(route.params.id))
+
+// Navigating between two service pages reuses the component, so without this
+// the route id changes and the old service stays on screen.
+watch(() => route.params.id, (id) => id && serviceStore.fetchService(id))
 </script>

@@ -1,65 +1,95 @@
 <template>
-  <section class="py-20 sm:py-32 bg-[#0a0a0a] overflow-hidden">
-    <div class="container px-6 mx-auto">
-      <div class="flex flex-col items-center gap-16 lg:gap-20 lg:flex-row">
-        <!-- Image Column -->
-        <div class="relative w-full lg:w-1/2 group">
-          <div class="relative overflow-hidden rounded-3xl aspect-[4/5] shadow-2xl">
-            <img 
-              :src="content?.image || '/images/defaults/about_fallback.jpg'" 
-              alt="About InDesign" 
-              class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          </div>
-          
-          <!-- Decorative element -->
-          <div 
-            class="absolute p-6 sm:p-8 -bottom-6 sm:-bottom-10 shadow-2xl bg-[#111] rounded-2xl sm:rounded-3xl border border-white/5 backdrop-blur-xl z-20"
-            :class="store.isArabic ? '-left-4 sm:-left-10' : '-right-4 sm:-right-10'"
+  <section class="bg-canvas py-20 sm:py-28 lg:py-36">
+    <div class="container mx-auto px-6 sm:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+        <!-- Image ---------------------------------------------------------
+             Square-cornered and unadorned. The old treatment wrapped it in a
+             3xl radius, a 2xl "15+ YEARS OF EXCELLENCE" card floating off the
+             corner, and a gradient veil — three decorations competing with the
+             photograph they were decorating. -->
+        <!-- The arch, with a second one struck behind it as an outline — the
+             drawn opening and the built one, offset. It is the practice's own
+             subject matter used as its identity, and it is the reason this
+             block reads as an interiors studio rather than as a stock photo in
+             a box. -->
+        <figure class="relative">
+          <!-- Logical insets only. Pairing these with an `isArabic` conditional
+               flips them twice and lands the outline back where it started. -->
+          <!-- The two arches now sit on different planes and separate as the
+               section scrolls: the drawn opening lags, the built one runs with
+               the photograph inside it. It is the same offset the flat version
+               had, made literal. -->
+          <span
+            v-depth
+            class="arch depth-plane pointer-events-none absolute -top-8 bottom-14 start-14 hidden border border-gold/55 lg:block [inset-inline-end:-2rem] [--arch-rise:22%]"
+            aria-hidden="true"
+          ></span>
+
+          <div
+            v-depth
+            v-tilt="{ max: 3 }"
+            v-reveal:wipe
+            class="arch group set-plate relative overflow-hidden bg-canvas-inset [--arch-rise:22%] [--set-max:3deg] [--set-z:-14px]"
           >
-             <div class="flex items-center gap-3 sm:gap-4">
-                <span class="text-3xl sm:text-5xl font-black text-[#d4af37]">15+</span>
-                <div class="flex flex-col leading-none">
-                   <span class="text-[8px] sm:text-xs font-bold tracking-[0.2em] uppercase text-white">{{ $t('about.years') }}</span>
-                   <span class="text-[8px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#d4af37]">{{ $t('about.excellence') }}</span>
-                </div>
-             </div>
+            <img
+              :src="aboutImage.src"
+              :srcset="aboutImage.srcset"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              :alt="aboutImage.alt"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="1050"
+              class="plate-img aspect-[4/3] w-full object-cover lg:aspect-[4/5]"
+            />
+            <span class="sheen" aria-hidden="true"></span>
           </div>
-        </div>
+        </figure>
 
-        <!-- Text Column -->
-        <div class="w-full lg:w-1/2 space-y-8 lg:space-y-10 pt-10 lg:pt-0">
-          <div class="space-y-4">
-            <span class="text-xs font-bold tracking-[0.5em] text-[#d4af37] uppercase">
-                {{ isAr ? (content?.label_ar || $t('about.label')) : (content?.label_en || $t('about.label')) }}
-            </span>
-            <h2 class="text-[1.75rem] leading-[2] font-black text-white uppercase tracking-tighter">
-              {{ isAr ? (content?.title_ar || $t('about.title')) : (content?.title_en || $t('about.title')) }}
-            </h2>
-          </div>
+        <!-- Copy ---------------------------------------------------------- -->
+        <div>
+          <span v-reveal:rule class="block h-px w-14 bg-gold" aria-hidden="true"></span>
 
-          <p class="text-base sm:text-lg leading-relaxed text-gray-400">
-            {{ isAr ? (content?.text_ar || $t('about.body')) : (content?.text_en || $t('about.body')) }}
+          <h2 v-reveal class="mt-7 text-title font-light text-ink">
+            {{ title }}
+          </h2>
+
+          <p v-reveal="{ delay: 90 }" class="mt-6 max-w-prose text-lede text-ink-muted">
+            {{ body }}
           </p>
 
-          <div class="grid grid-cols-2 gap-12 pt-6">
-            <div v-for="stat in stats" :key="stat.key" class="space-y-2">
-              <span class="text-3xl font-black text-white uppercase">{{ stat.value }}</span>
-              <p class="text-[10px] font-bold tracking-[0.3em] uppercase text-[#d4af37]">{{ $t(`about.stats.${stat.key}`) }}</p>
+          <!-- Practice facts as a plain definition list. Previously these were
+               four black-weight numerals over wide-tracked gold labels — the
+               hero-metric block every SaaS landing page ships. The numbers are
+               the same; they no longer pretend to be the headline. -->
+          <!-- The figures are set in the display face, light, at heading size,
+               over their labels in the small annotating one. Same two voices as
+               the rest of the page — a number stated in the practice's own
+               typography stops being a statistic and becomes a fact it is
+               proud of. `tabular-nums` keeps the four of them on a common
+               vertical, which is the whole reason they are worth setting
+               large. -->
+          <dl class="mt-10 grid grid-cols-2 gap-x-8 gap-y-7 border-t border-line pt-8 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+            <div v-for="(stat, i) in stats" :key="stat.key" v-reveal="{ delay: 140 + i * 80 }">
+              <dt class="text-label text-ink-subtle">{{ $t(`about.stats.${stat.key}`) }}</dt>
+              <dd class="mt-1 font-display text-heading font-light tabular-nums text-ink">
+                {{ stat.value }}
+              </dd>
             </div>
-          </div>
+          </dl>
 
-          <div class="pt-10">
-            <RouterLink to="/about" class="group flex items-center gap-6 text-xs font-bold tracking-[0.3em] text-white uppercase transition-all duration-300">
-               {{ isAr ? (content?.cta_ar || $t('about.cta')) : (content?.cta_en || $t('about.cta')) }}
-               <span class="flex items-center justify-center w-12 h-12 transition-all duration-300 bg-white/5 border border-white/10 rounded-full group-hover:bg-[#d4af37] group-hover:text-black group-hover:scale-110">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path :d="store.isArabic ? 'M19 12H5m0 0l7 7m-7-7l7-7' : 'M5 12h14m0 0l-7-7m7 7l-7 7'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                  </svg>
-               </span>
-            </RouterLink>
-          </div>
+          <RouterLink
+            to="/about"
+            class="group mt-10 inline-flex items-center gap-3 text-label font-semibold text-ink transition-colors duration-base hover:text-gold-deep"
+          >
+            {{ ctaLabel }}
+            <EaiIcon
+              name="arrow-right"
+              :size="16"
+              flip
+              class="transition-transform duration-base ease-out-quart group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
+            />
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -68,22 +98,42 @@
 
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useLocaleStore } from '@/stores/localeStore'
+import EaiIcon from '@/components/icons/EaiIcon.vue'
+import { ABOUT_IMAGE, srcset, fallback } from '@/lib/media'
 
 const props = defineProps({
-    content: {
-        type: Object,
-        default: () => ({})
-    }
+  content: { type: Object, default: () => ({}) },
 })
 
-const store = useLocaleStore()
-const isAr = computed(() => store.isArabic)
+const { t } = useI18n()
+const localeStore = useLocaleStore()
+const isAr = computed(() => localeStore.isArabic)
+
+const pick = (en, ar, key) =>
+  computed(() => (isAr.value ? props.content?.[ar] : props.content?.[en]) || t(key))
+
+const title = pick('title_en', 'title_ar', 'about.title')
+const body = pick('text_en', 'text_ar', 'about.body')
+const ctaLabel = pick('cta_en', 'cta_ar', 'about.cta')
+
+const aboutImage = computed(() => {
+  const lang = isAr.value ? 'ar' : 'en'
+  if (props.content?.image) {
+    return { src: props.content.image, srcset: undefined, alt: ABOUT_IMAGE.alt[lang] }
+  }
+  return {
+    src: fallback(ABOUT_IMAGE.base, ABOUT_IMAGE.widths),
+    srcset: srcset(ABOUT_IMAGE.base, ABOUT_IMAGE.widths),
+    alt: ABOUT_IMAGE.alt[lang],
+  }
+})
 
 const stats = [
   { key: 'projects', value: '250+' },
   { key: 'clients', value: '180+' },
   { key: 'awards', value: '45' },
-  { key: 'architects', value: '30+' }
+  { key: 'architects', value: '30+' },
 ]
 </script>

@@ -2,72 +2,1052 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   Eslam Abdulghani Interiors — design tokens
+   --------------------------------------------------------------------------
+   Authored in OKLCH so the ramp is perceptually even and editable by hand:
+   change L to move lightness without shifting hue, change C to move saturation
+   without shifting lightness. Every value below sits on hue 75.4 — the measured
+   hue of the brand gold #C5A880 — so neutrals are tinted toward the brand's own
+   colour rather than toward a generic "warm".
+
+   Values are stored as a bare `L C H` triple so Tailwind can inject an alpha
+   channel: `oklch(var(--c-ink) / <alpha-value>)`.
+
+   CONTRAST IS VERIFIED, NOT EYEBALLED. Ratios below are WCAG 2.2 against the
+   stated background. Do not introduce a colour here without checking it.
+   ========================================================================== */
+
 @layer base {
+  :root {
+    /* --- Surfaces ------------------------------------------------------- */
+    --c-canvas:       97.7% 0.0034 75.4;  /* #f9f7f5  page ground            */
+    --c-surface:      95.3% 0.0058 75.4;  /* #f1efeb  alternating sections   */
+    --c-canvas-inset: 93.0% 0.0080 75.4;  /* #ebe7e2  wells, image placeholders */
+
+    /* --- Ink ------------------------------------------------------------ */
+    --c-ink:          17.9% 0.0052 75.4;  /* #13110f  headings   17.6:1 on canvas */
+    --c-ink-muted:    40.0% 0.0098 75.4;  /* #4b4742  body        8.6:1 on canvas */
+    --c-ink-subtle:   50.5% 0.0106 75.4;  /* #68645e  meta        5.5:1 on canvas */
+
+    /* --- Rules ---------------------------------------------------------- */
+    --c-line:         89.0% 0.0121 75.4;  /* #dfdad2  hairlines              */
+    --c-line-strong:  80.0% 0.0184 75.4;  /* #c5bcb1  input borders, 3:1 UI  */
+
+    /* --- Gold -----------------------------------------------------------
+       The brand mark. --c-gold is a MATERIAL: fills, edges, small solids.
+       At 74.7% lightness it is physically incapable of carrying text on a
+       light ground (2.1:1) — use --c-gold-deep for anything that is read.
+       --c-gold-deep is the same hue, deepened only until it is text-safe.   */
+    --c-gold:         74.7% 0.0638 75.4;  /* #C5A880  fills/edges. 8.3:1 vs ink */
+    --c-gold-deep:    53.6% 0.0751 75.4;  /* #876739  text. 4.9:1 canvas, 4.5:1 surface */
+    --c-gold-soft:    88.0% 0.0345 75.4;  /* #e5d5bf  hover beds             */
+    --c-gold-wash:    95.5% 0.0142 75.4;  /* #f6efe6  tinted section ground  */
+
+    /* --- Feedback (admin surfaces) -------------------------------------- */
+    --c-positive:     52.0% 0.1100 150;   /* text-safe on canvas             */
+    --c-critical:     52.0% 0.1750 27;    /* text-safe on canvas             */
+    --c-notice:       52.0% 0.1200 65;    /* text-safe on canvas             */
+
+    /* --- Type ------------------------------------------------------------
+       Swapping the display face is a one-line change here. Cairo carries
+       Arabic in both roles; its metrics differ from the Latin face, so the
+       [lang="ar"] block below re-tunes leading and tracking rather than
+       inheriting Latin values.                                             */
+    --font-display:    'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+    --font-body:       'Inter', system-ui, sans-serif;
+    --font-arabic:     'Cairo', system-ui, sans-serif;
+    --font-arabic-display: 'Amiri', 'Cormorant Garamond', serif;
+
+    /* --- Motion ----------------------------------------------------------
+       Exponential ease-out only. No bounce, no elastic — this brand does not
+       overshoot.                                                            */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-fast:   180ms;
+    --dur-base:   320ms;
+    --dur-slow:   620ms;
+    --dur-reveal: 900ms;
+
+    /* --- Direction ---------------------------------------------------------
+       CSS has no logical equivalent of a gradient angle or a translate sign,
+       so direction-dependent values are published as variables here and
+       flipped once, globally, for RTL.
+
+       These must NOT be expressed as `:global([dir='rtl']) .thing` inside a
+       component's <style scoped>. Vue's scoped compiler rewrites that form to
+       a bare `[dir='rtl']`, dropping the descendant entirely — which applied
+       `transform: scaleX(-1)` and `translate(-100%)` directly to <html> and
+       mirrored the whole Arabic site. Keep direction logic in this file. */
+    --dir-angle: 90deg;   /* gradient axis: 90deg = toward the inline end */
+    --dir-sign: 1;        /* multiply x-translations by this               */
+    --dir-origin: 0%;     /* transform-origin on the inline start          */
+
+    /* --- App shell ---------------------------------------------------------
+       On a phone this site runs as an application: a compact bar at the top
+       and a tab bar at the bottom, with the document scrolling between them.
+       Both bars are fixed, so their heights have to be published as tokens —
+       every fixed overlay and every page's last section needs to know how much
+       room to leave, and hard-coding `pb-20` in eleven components is how that
+       goes out of sync.
+
+       `env(safe-area-inset-bottom)` is the home indicator on a modern iPhone.
+       It resolves to 0px everywhere else, so this needs no feature query. */
+    --bar-h: 3.875rem;                                /* top app bar, < lg   */
+    --tabbar-h: 3.875rem;                             /* bottom tab bar      */
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --shell-bottom: calc(var(--tabbar-h) + var(--safe-b));
+  }
+
+  /* The tab bar is a phone and tablet affordance. From `lg` the header carries
+     the full navigation, so the shell reserves nothing. */
+  @media (min-width: 1024px) {
     :root {
-        font-family: 'Inter', sans-serif;
+      --shell-bottom: 0px;
     }
-    
-    [lang="ar"] {
-        font-family: 'Cairo', sans-serif;
-    }
-    
-    [lang="ar"] input, 
-    [lang="ar"] textarea {
-        direction: rtl;
-        text-align: right;
-    }
+  }
 
-    @keyframes slowZoom {
-        from { transform: scale(1); }
-        to { transform: scale(1.15); }
-    }
+  [dir='rtl'] {
+    --dir-angle: 270deg;
+    --dir-sign: -1;
+    --dir-origin: 100%;
+  }
 
-    @keyframes kenBurns {
-        0% { transform: scale(1.1) translate(0, 0); }
-        100% { transform: scale(1.3) translate(-2%, -2%); }
-    }
+  /* Arabic runs on different metrics: Cairo's x-height and ascenders need
+     more leading, and Arabic script must never be letter-spaced (it breaks
+     the joins between glyphs). */
+  [lang='ar'] {
+    --font-display: var(--font-arabic-display);
+    --font-body: var(--font-arabic);
+  }
+  /* Amiri is a Naskh cut off the Bulaq press: fine, high-contrast, and drawn
+     with long ascenders and deep descenders, so it needs more leading than
+     Cairo did. Tracking stays at zero — Arabic glyphs join, and letter-spacing
+     breaks the join.
 
-    @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
+     `font-size-adjust` and NOT a font-size of its own: Amiri sets optically
+     smaller than Cormorant at the same value, and the correction has to scale
+     with whatever heading it lands on. A relative `font-size: 1.06em` resolves
+     against the PARENT, not the heading — it silently collapsed every Arabic
+     heading on the site to a sixteenth of a rem plus six percent.
 
-    @keyframes scaleX {
-        0% { transform: scaleX(0); }
-        100% { transform: scaleX(1); }
-    }
+     0.50 against Amiri's own 0.433 is a ~15% lift, which is what it takes for
+     an Arabic title to hold the same weight on the page as its Latin twin.
+     Where the property is unsupported the heading simply renders at nominal
+     size — smaller than intended, never broken. */
+  [lang='ar'] h1,
+  [lang='ar'] h2,
+  [lang='ar'] h3,
+  [lang='ar'] h4 {
+    letter-spacing: 0 !important;
+    font-size-adjust: 0.5;
+  }
+  /* Leading splits by size the way it does in any properly set page: a display
+     line wants less than a sub-head, and Amiri's deep descenders mean both
+     want more than Cormorant. */
+  [lang='ar'] h1,
+  [lang='ar'] h2 {
+    line-height: 1.32;
+  }
+  [lang='ar'] h3,
+  [lang='ar'] h4 {
+    line-height: 1.45;
+  }
+  [lang='ar'] body,
+  [lang='ar'] p {
+    line-height: 1.85;
+  }
+  [lang='ar'] input,
+  [lang='ar'] textarea {
+    direction: rtl;
+    text-align: right;
+  }
 
-    @keyframes gradientText {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* Anchors and router jumps must clear the fixed top bar, or a heading
+       lands underneath it. One value, both bar heights. */
+    scroll-padding-top: calc(var(--bar-h) + 1rem);
+  }
 
-    .animate-slow-zoom {
-        animation: slowZoom 20s infinite alternate linear;
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 6.5rem;
     }
+  }
 
-    .animate-ken-burns {
-        animation: kenBurns 25s infinite alternate linear;
-    }
+  body {
+    font-family: var(--font-body);
+    background-color: oklch(var(--c-canvas));
+    color: oklch(var(--c-ink-muted));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
 
-    .animate-fade-in-up {
-        animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: oklch(var(--c-ink));
+    text-wrap: balance;
+  }
 
-    .animate-scale-x {
-        animation: scaleX 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+  /* Long-form prose only — keeps orphans off the last line. */
+  p {
+    text-wrap: pretty;
+  }
 
-    .animate-gradient-text {
-        animation: gradientText 6s ease infinite;
-    }
+  /* A visible, on-brand focus ring. The default browser ring disappears
+     against a warm canvas; this one is a solid ink outline offset off the
+     element so it reads on photography too. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid oklch(var(--c-ink));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
-    .delay-100 {
-        animation-delay: 0.1s;
+  ::selection {
+    background: oklch(var(--c-gold));
+    color: oklch(var(--c-ink));
+  }
+
+  /* Off-screen until focused, then it lands as a real plate in the top
+     inline-start corner. Not `display: none` — a hidden element cannot be
+     focused, which is the one thing this has to do. */
+  .skip-link {
+    position: fixed;
+    z-index: 70;
+    top: 0.5rem;
+    inset-inline-start: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background-color: oklch(var(--c-ink));
+    color: oklch(var(--c-canvas));
+    font-size: 0.8125rem;
+    font-weight: 600;
+    transform: translateY(-200%);
+    transition: transform var(--dur-fast) var(--ease-out-quart);
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline-color: oklch(var(--c-gold));
+  }
+
+  /* ------------------------------------------------------------------------
+     Touch
+
+     `touch-action: manipulation` drops the browser's 300ms double-tap-to-zoom
+     wait, which is the difference between an interface that answers and one
+     that hesitates. It is scoped to coarse pointers so a trackpad keeps every
+     gesture it has.
+
+     The grey flash Chrome and Safari paint over a tapped element is replaced,
+     not merely removed: `:active` below gives every control a press state of
+     its own, in the brand's own colour, within one frame.
+     ------------------------------------------------------------------------ */
+  @media (pointer: coarse) {
+    a,
+    button,
+    label,
+    summary,
+    [role='button'],
+    input,
+    select,
+    textarea {
+      touch-action: manipulation;
     }
-    
-    .delay-200 {
-        animation-delay: 0.2s;
+  }
+
+  a,
+  button,
+  [role='button'] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Anything a finger can hit clears 44px in its short axis. Scoped to coarse
+     pointers so the desktop keeps its tighter rhythm, and written with
+     `:where()` so specificity stays at zero — a component that states its own
+     height still wins. Inline anchors inside prose are unaffected: an inline
+     box ignores `min-height`, so this lifts buttons and block links without
+     blowing paragraph leading apart. */
+  @media (pointer: coarse) {
+    :where(button, [role='button'], a[href], input, select, textarea) {
+      min-height: 44px;
     }
+  }
+}
+
+/* ==========================================================================
+   Motion utilities
+   Every animation below has a reduced-motion path. The rule is: reveals
+   enhance an already-visible default — content is never hidden behind an
+   animation that may not fire.
+   ========================================================================== */
+
+@layer utilities {
+  @keyframes eai-ken-burns {
+    from { transform: scale(1.06) translate3d(0, 0, 0); }
+    to   { transform: scale(1.18) translate3d(-1.5%, -1.5%, 0); }
+  }
+  @keyframes eai-rise {
+    from { opacity: 0; transform: translate3d(0, 1.25rem, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  @keyframes eai-rule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  @keyframes eai-draw {
+    from { stroke-dashoffset: var(--draw-len, 160); }
+    to   { stroke-dashoffset: 0; }
+  }
+  /* clip-path takes no logical values, so the wipe is written per direction.
+     The 0.001px keeps a sub-pixel sliver rendered: a fully collapsed clip
+     makes some engines drop the layer and re-composite on the first frame. */
+  @keyframes eai-wipe {
+    from { clip-path: inset(0 calc(100% - 0.001px) 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes eai-wipe-rtl {
+    from { clip-path: inset(0 0 0 calc(100% - 0.001px)); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+
+  /* --- Ambient loops. All signed by --dir-sign so they run WITH the reading
+     direction: content enters from the trailing edge in both languages. --- */
+  @keyframes eai-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(calc(-50% * var(--dir-sign)), 0, 0); }
+  }
+  @keyframes eai-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(calc(-4.5rem * var(--dir-sign)), -4.5rem, 0); }
+  }
+  @keyframes eai-sweep {
+    0%        { transform: translate3d(calc(-120% * var(--dir-sign)), 0, 0); }
+    /* Holds off-rail for most of the cycle: a line that passes every seven
+       seconds is a detail, one that never leaves is a distraction. */
+    60%, 100% { transform: translate3d(calc(560% * var(--dir-sign)), 0, 0); }
+  }
+
+  .animate-ken-burns {
+    animation: eai-ken-burns 24s var(--ease-out-quart) infinite alternate;
+    will-change: transform;
+  }
+
+  /* Starts at opacity 0 and animates to 1 with `forwards`. Safe because the
+     animation is unconditional (not class-toggled on scroll), so it always
+     runs on load; under reduced motion the element is simply visible. */
+  .animate-fade-in-up {
+    animation: eai-rise var(--dur-reveal) var(--ease-out-expo) both;
+  }
+
+  .animate-scale-x {
+    animation: eai-rule var(--dur-slow) var(--ease-out-expo) both;
+    transform-origin: var(--dir-origin) 50%;
+  }
+
+  /* ------------------------------------------------------------------------
+     Scroll reveal
+
+     The contract: the DEFAULT state of every element below is visible. The
+     `pending` state — the only one that hides anything — is written by the
+     v-reveal directive, and only after it has confirmed IntersectionObserver
+     exists and reduced motion is off. So if JS never runs, if the observer
+     never fires, or if the page is rendered headless, the content is simply
+     there. A reveal enhances; it never gates.
+     ------------------------------------------------------------------------ */
+  [data-reveal='pending'] {
+    opacity: 0;
+  }
+  [data-reveal='pending'][data-reveal-anim='rise'] {
+    transform: translate3d(0, 1.5rem, 0);
+  }
+  [data-reveal='pending'][data-reveal-anim='rule'] {
+    transform: scaleX(0);
+    transform-origin: var(--dir-origin) 50%;
+  }
+  /* A wipe along the inline axis — the reveal a drawing gets when it comes off
+     the plotter. Used on photographs, where a fade reads as a loading state. */
+  [data-reveal='pending'][data-reveal-anim='wipe'] {
+    opacity: 1;
+    clip-path: inset(0 calc(100% - 0.001px) 0 0);
+  }
+  [dir='rtl'] [data-reveal='pending'][data-reveal-anim='wipe'] {
+    clip-path: inset(0 0 0 calc(100% - 0.001px));
+  }
+
+  [data-reveal='in'] {
+    animation-duration: var(--dur-reveal);
+    animation-timing-function: var(--ease-out-expo);
+    animation-fill-mode: both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal='in'][data-reveal-anim='rise'] {
+    animation-name: eai-rise;
+  }
+  [data-reveal='in'][data-reveal-anim='rule'] {
+    animation-name: eai-rule;
+    animation-duration: var(--dur-slow);
+    transform-origin: var(--dir-origin) 50%;
+  }
+  [data-reveal='in'][data-reveal-anim='wipe'] {
+    animation-name: eai-wipe;
+    animation-duration: 1100ms;
+  }
+  [dir='rtl'] [data-reveal='in'][data-reveal-anim='wipe'] {
+    animation-name: eai-wipe-rtl;
+  }
+
+  /* ------------------------------------------------------------------------
+     Line-draw
+
+     An architectural mark that draws itself, the way a plotter lays down a
+     drawing. `--draw-len` is set per <path> from getTotalLength() so every
+     stroke completes together instead of short paths snapping shut early;
+     the 160 fallback covers the case where measurement is unavailable.
+     ------------------------------------------------------------------------ */
+  .eai-icon--draw path {
+    stroke-dasharray: var(--draw-len, 160);
+    stroke-dashoffset: 0;
+  }
+  [data-reveal='pending'] .eai-icon--draw path {
+    stroke-dashoffset: var(--draw-len, 160);
+  }
+  [data-reveal='in'] .eai-icon--draw path {
+    animation: eai-draw 1400ms var(--ease-out-quart) both;
+    animation-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+  }
+
+  /* ------------------------------------------------------------------------
+     Aperture — the chamfered image frame
+
+     A 45 degree corner cut, the way a drawing chamfers a corner it does not
+     want to leave square. It is the one shape this site repeats, so it has to
+     mirror correctly: clip-path takes no logical values, which is why both
+     directions are written out here rather than composed from a utility.
+     ------------------------------------------------------------------------ */
+  .aperture-frame {
+    position: relative;
+    --chamfer: 2rem;
+  }
+  .aperture {
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--chamfer)) 0,
+      100% var(--chamfer),
+      100% 100%,
+      0 100%
+    );
+  }
+  [dir='rtl'] .aperture {
+    clip-path: polygon(
+      var(--chamfer) 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 var(--chamfer)
+    );
+  }
+
+  /* The gold hairline that traces the cut. It sits outside .aperture because
+     the clip would otherwise eat it. Geometry: the cut runs corner to corner
+     across a --chamfer square, so the rule is that square's diagonal, centred
+     on the square's centre and rotated 45deg toward the inline end. */
+  .aperture-edge {
+    position: absolute;
+    top: calc(var(--chamfer) / 2);
+    inset-inline-end: calc(var(--chamfer) / 2);
+    width: calc(var(--chamfer) * 1.41422);
+    height: 1px;
+    background-color: oklch(var(--c-gold));
+    transform: translate(calc(50% * var(--dir-sign)), -50%)
+      rotate(calc(45deg * var(--dir-sign)));
+    pointer-events: none;
+  }
+
+  /* ------------------------------------------------------------------------
+     Arch — the portrait frame
+
+     The rule this site follows: portrait images arch, wide plates chamfer.
+     An arch is the most legible architectural form there is, it is native to
+     the contemporary interiors this practice actually builds in Kuwait and
+     Cairo, and — unlike every other shape here — it is symmetric, so it needs
+     no RTL handling at all.
+
+     Elliptical corners rather than clip-path: `overflow: hidden` then clips the
+     photograph to the same curve, and the shape stays animatable alongside the
+     wipe reveal.
+     ------------------------------------------------------------------------ */
+  .arch {
+    border-radius: 50% 50% 0 0 / var(--arch-rise, 22%) var(--arch-rise, 22%) 0 0;
+  }
+
+  /* ------------------------------------------------------------------------
+     Dimension line
+
+     The single most recognisable annotation in engineering drawing: a span
+     with a tick at each end. It replaces the decorative "// 03 +" marker that
+     was standing in for architectural voice — this measures the section and
+     ties its two ends together, which is real work rather than costume.
+
+     Logical insets throughout, so it needs no RTL handling. Drop a
+     `.sweep-rail` inside and the plotter line runs along it.
+     ------------------------------------------------------------------------ */
+  .dimension {
+    position: relative;
+    height: 1px;
+    background-color: oklch(var(--c-line-strong));
+  }
+  .dimension::before,
+  .dimension::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    width: 1px;
+    height: 11px;
+    background-color: oklch(var(--c-gold-deep));
+  }
+  .dimension::before {
+    inset-inline-start: 0;
+  }
+  .dimension::after {
+    inset-inline-end: 0;
+  }
+
+  /* ------------------------------------------------------------------------
+     Drafting grid — a modular setting-out grid, used only on ink surfaces.
+     Kept at 0.08 alpha: a blueprint underlay, not a pattern.
+     ------------------------------------------------------------------------ */
+  .grid-draft {
+    background-image:
+      linear-gradient(to right, oklch(var(--c-gold) / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(var(--c-gold) / 0.08) 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    background-position: center;
+  }
+
+  /* ------------------------------------------------------------------------
+     Ambient motion
+
+     Three loops that never stop, all travelling with the reading direction via
+     `--dir-sign`, all pure transforms on the compositor, all switched off under
+     reduced motion. They are slow on purpose: at these durations the eye reads
+     them as the page being alive, not as something demanding attention.
+     ------------------------------------------------------------------------ */
+
+  /* Marquee. The track holds its content twice, so translating by exactly half
+     its width lands on an identical frame and the loop is seamless. */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: eai-marquee var(--marquee-dur, 48s) linear infinite;
+    will-change: transform;
+  }
+  .marquee-mask {
+    /* Fades both ends into the surface so items enter and leave rather than
+       being cut off at a hard edge. */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* Setting-out grid drifting by exactly one module, so it never visibly jumps. */
+  .grid-draft--drift {
+    animation: eai-drift 26s linear infinite;
+    will-change: transform;
+  }
+
+  /* A gold segment travelling along a rail — the plotter passing over the
+     sheet. Used once per page header, on the top edge of the plate. */
+  .sweep-rail {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  /* Same rail, run along the bottom edge — the seam where a photographic plate
+     meets the sheet below it. Declared here rather than composed from `top-auto
+     bottom-0`, because both would land in the same cascade layer as
+     `.sweep-rail` and lose to it on source order. */
+  .sweep-rail--foot {
+    top: auto;
+    bottom: 0;
+  }
+  .sweep-rail::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 22%;
+    background-image: linear-gradient(
+      var(--dir-angle),
+      oklch(var(--c-gold) / 0),
+      oklch(var(--c-gold)),
+      oklch(var(--c-gold) / 0)
+    );
+    animation: eai-sweep 7s var(--ease-out-quart) infinite;
+  }
+
+  /* ------------------------------------------------------------------------
+     App shell
+
+     Three utilities that keep every fixed overlay honest about the tab bar.
+     They read `--shell-bottom`, which is the tab bar plus the home indicator
+     below `lg` and exactly 0 above it — so the same class is correct on a
+     phone, a tablet in landscape and a desktop, and none of them needs a
+     breakpoint written at the call site.
+     ------------------------------------------------------------------------ */
+  .pb-shell {
+    padding-bottom: var(--shell-bottom);
+  }
+  .bottom-shell {
+    bottom: calc(var(--shell-bottom) + 1.5rem);
+  }
+  .h-shell {
+    height: var(--shell-bottom);
+  }
+
+  /* ------------------------------------------------------------------------
+     Press
+
+     A tap has to answer inside 100ms or the interface reads as broken, and we
+     removed the browser's own grey flash to get there. This is the
+     replacement: a 2% settle on `transform` only, so it runs on the
+     compositor and never reflows the row it sits in.
+
+     `:active` is deliberate rather than `:hover` — a phone has no hover, and
+     hiding an affordance behind one is how a touch device ends up with a
+     control that never reveals itself.
+     ------------------------------------------------------------------------ */
+  /* Longhands, not the `transition` shorthand. These rules are emitted after
+     Tailwind's, so a shorthand here would reset `transition-property` and take
+     the hover colour change off every button that also carries `transition
+     duration-base` — feedback bought at the price of the state it replaces. */
+  .press {
+    transition-property: scale, transform, color, background-color, border-color, box-shadow, opacity;
+    transition-duration: var(--dur-fast);
+    transition-timing-function: var(--ease-out-quart);
+  }
+  /* The individual `scale` property, not `transform: scale()`. Half the pressable
+     things on this site are also tilt plates, and `transform` is a single slot:
+     a shorthand here would flatten the card to zero rotation for as long as a
+     finger was on it, which is a glitch on the one frame a visitor is looking
+     hardest. Individual transform properties compose in a fixed order and
+     transition separately, so the press and the tilt can both be true. */
+  .press:active {
+    scale: 0.98;
+  }
+  .press-sm:active {
+    scale: 0.94;
+  }
+
+  /* ------------------------------------------------------------------------
+     Depth — the third dimension
+
+     This practice sells space. A site that sells space and renders as a stack
+     of flat rectangles is arguing against itself, so the page has a Z axis:
+     photographs are openings with a room behind them rather than pictures lying
+     on the sheet, cards are plates you can tip toward you, and a route change
+     moves you through the volume instead of cross-fading it.
+
+     Three rules hold it together.
+
+     1. The JS writes NUMBERS, not transforms. `v-depth` publishes `--depth`
+        (-1..+1 through the viewport) and `v-tilt` publishes `--tx`/`--ty`
+        (the cursor over the element); every visual consequence is declared
+        here. That is what lets one element carry a per-frame scroll parallax,
+        a 620ms hover zoom and a press state at once — three owners of movement
+        that would otherwise be fighting over one `transform` slot.
+     2. Depth is never load-bearing. Both custom properties default to 0 below,
+        so an element whose directive declines to run — reduced motion, coarse
+        pointer, no observer, headless — sits exactly where the flat stylesheet
+        put it. Nothing is positioned by a number that might not arrive.
+     3. `perspective()` inside the transform function, never the `perspective`
+        property on an ancestor. An ancestor with `perspective` becomes the
+        containing block for every `position: fixed` descendant, which would
+        drop the gallery lightbox into the middle of the page the moment it
+        opened. It also gives each card its own vanishing point, which is what
+        makes a grid read as a dozen separate plates rather than one folded
+        sheet.
+     ------------------------------------------------------------------------ */
+  [data-depth],
+  [data-tilt] {
+    --depth: 0;
+    --tx: 0;
+    --ty: 0;
+  }
+
+  /* A photograph is an opening, not a picture. The image is oversized inside
+     its frame and drifts against the scroll, so the frame behaves like a window
+     with a room behind it — the parallax IS the depth cue, and on a phone,
+     where there is no cursor to tilt anything, it is the whole effect.
+
+     `translate` and `scale` rather than one `transform`: see rule 1 above. The
+     drift updates every frame and the zoom is a slow ease, and they have to be
+     able to run on the same element.
+
+     The two numbers are arithmetic, not taste, and they are kept as low as the
+     effect survives. The image is displaced by up to ±3% of its own height, so
+     the scale has to cover twice that before the frame's edge shows through:
+     1.06 is the floor, and 1.1 is the floor plus a margin for rounding. Every
+     point of scale above that is a permanent crop off a photograph this
+     practice is being judged on, which is why the drift is not larger. */
+  .plate-img {
+    --plate-travel: 3%;
+    --plate-scale: 1.1;
+    translate: 0 calc(var(--depth, 0) * var(--plate-travel));
+    scale: var(--plate-scale);
+    transition: scale var(--dur-slow) var(--ease-out-quart);
+  }
+  .group:hover .plate-img,
+  .group:focus-visible .plate-img {
+    --plate-scale: 1.17;
+  }
+
+  /* ------------------------------------------------------------------------
+     Scroll-set plates
+
+     A card is not a rectangle that scrolls past — it is a sheet being laid onto
+     the page. Low on the screen it lies back with its far edge away from you;
+     at the middle it is flat and closest; leaving at the top it tips the other
+     way. The recession is `--depth` SQUARED, so it is symmetric about the
+     centre: every plate is furthest at both ends of its travel and nearest when
+     you are actually looking at it.
+
+     This is the piece that makes the scroll itself three-dimensional. It is
+     continuous and scroll-linked, not a one-shot entrance — the plate is
+     oriented by where it is, so scrolling back up runs it backwards, which a
+     fired-once reveal can never do.
+     ------------------------------------------------------------------------ */
+  .set-plate {
+    --set-max: 6deg;
+    --set-z: -30px;
+    transform: perspective(var(--tilt-depth, 1200px))
+      rotateX(calc(var(--depth, 0) * var(--set-max) * -1))
+      translate3d(0, 0, calc(var(--depth, 0) * var(--depth, 0) * var(--set-z)));
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+
+  /* The plate. `--tilt-max` is 4.5deg because a card is a photograph on a sheet,
+     not a playing card being flourished — past about 6deg the crop visibly
+     shears and the whole thing turns into a toy.
+
+     Retargeting a 320ms ease-out on every pointer frame IS the smoothing: the
+     plane chases the cursor with roughly an 80ms time constant, which reads as
+     weight. A lerp loop would spend a rAF to arrive at the same place. */
+  [data-tilt] {
+    /* Two perspectives doing two jobs. The function inside `transform` projects
+       the element's OWN rotation; the `perspective` property projects its
+       children's, which is what lets the frame inside lift off the plate. They
+       are not interchangeable and neither one covers both cases.
+       `transform-style` stays flat on purpose: with preserve-3d the parent's
+       matrix — perspective function and all — would be composed onto the child
+       a second time, and the lift would arrive doubled. */
+    perspective: var(--tilt-depth, 1200px);
+    /* Both orientations in one transform, because they land on one element and
+       `transform` is one slot. The scroll terms default to 0deg/0px, so a plate
+       that is only tilted behaves exactly as it did before `.set-plate`
+       existed; a plate that is both adds the cursor's angle to the angle the
+       scroll already gave it. This rule must stay AFTER `.set-plate` — it is
+       the one that wins when an element carries both. */
+    transform: perspective(var(--tilt-depth, 1200px))
+      rotateX(
+        calc(
+          var(--ty) * var(--tilt-max, 4.5deg) * -1 + var(--depth) * var(--set-max, 0deg) * -1
+        )
+      )
+      rotateY(calc(var(--tx) * var(--tilt-max, 4.5deg)))
+      translate3d(0, 0, calc(var(--depth) * var(--depth) * var(--set-z, 0px)));
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+  /* The photograph rides forward off the caption, so the card has an inside.
+     26px against a 1200px viewer is a 2% lift — enough to separate the two
+     planes, small enough that the frame's own edge stays sharp. Type is
+     deliberately left on the base plane: a Z-translated glyph is rasterised at
+     one size and displayed at another, and slightly soft body copy is a worse
+     bargain than a slightly flatter card.
+
+     `.tilt-lift` and `.plate-img` are two different planes and must not land on
+     the same element: each owns a `transition`, and the later rule wins
+     outright and silently drops the other's easing. The frame lifts, the
+     photograph inside it drifts — put them one level apart. */
+  .tilt-lift {
+    transition: transform var(--dur-base) var(--ease-out-quart);
+  }
+  [data-tilt='on'] .tilt-lift {
+    transform: translate3d(0, 0, 26px);
+  }
+
+  /* Light. A plate tipped toward a room's light catches it on the near edge;
+     without that the rotation reads as a skew rather than as a surface. Canvas
+     white at 0.22 falling to nothing — a highlight on a print, not a gloss on a
+     screen. It follows the cursor because on a screen the cursor is where the
+     visitor believes the light is. */
+  .sheen {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    background-image: radial-gradient(
+      42% 58% at calc(50% + var(--tx, 0) * 46%) calc(50% + var(--ty, 0) * 46%),
+      oklch(var(--c-canvas) / 0.22),
+      oklch(var(--c-canvas) / 0.07) 45%,
+      transparent 72%
+    );
+    transition: opacity var(--dur-base) var(--ease-out-quart);
+  }
+  [data-tilt='on'] .sheen {
+    opacity: 1;
+  }
+
+  /* Copy that runs ahead of the scroll. Used once per page, on the hero, where
+     it separates the words from the photograph behind them without moving
+     either off its own grid. 3.5rem over a full viewport of travel is about a
+     line and a half — felt, not watched. */
+  .depth-lede {
+    translate: 0 calc(var(--depth, 0) * -3.5rem);
+  }
+
+  /* The hero dolly. The photograph pushes IN as the copy runs out, so leaving
+     the hero reads as walking into the room rather than sliding off a poster.
+
+     A scale and not a translate, deliberately: the plate is full-bleed with
+     nothing to clip it, so any displacement would show an edge, while a scale
+     only ever crops. It also composes with the Ken Burns rather than fighting
+     it — that loop owns `transform`, this owns `scale`, and the two multiply. */
+  .hero-dolly {
+    scale: calc(1 + var(--depth, 0) * 0.055);
+  }
+  /* The same idea at a quarter of the amplitude, for a plate that has to stay
+     visibly aligned to the column beside it. */
+  .depth-plane {
+    translate: 0 calc(var(--depth, 0) * -0.9rem);
+  }
+
+  /* ------------------------------------------------------------------------
+     Rail — the horizontal snap track
+
+     Filters, service lines and the featured grid become one-row rails on a
+     phone. A rail is the only pattern that lets a phone show a set as a set:
+     the alternative is a wrapped block that eats four vertical screens, or a
+     truncated list that hides most of the work.
+
+     `scroll-snap-align: start` plus `scroll-padding-inline` means an item
+     always lands flush with the container's own gutter rather than against
+     the raw viewport edge, and the next item peeks — which is the affordance.
+     Logical properties throughout, so it scrolls the correct way in Arabic.
+     ------------------------------------------------------------------------ */
+  .rail,
+  .rail-sm {
+    /* Load-bearing. `overflow` does not clip an absolutely positioned
+       descendant whose containing block sits above the scroller — and a card
+       carries several, including the `sr-only` spans Tailwind positions
+       absolutely. Without this they resolve against the nearest positioned
+       ancestor outside the rail, land at the far end of the track's scroll
+       width, and drag the document's layout viewport out with them: 390px of
+       content reporting 584px, every fixed bar stretched to match, and a
+       horizontal scrollbar on a page whose every visible box fits. */
+    position: relative;
+    /* Also load-bearing. A grid or flex item's automatic minimum size is its
+       content, and a scroll container's max-content size is the full length of
+       its track — so a rail dropped into a grid cell sizes the whole column to
+       the sum of its items instead of scrolling inside one. `min-width: 0`
+       lets the track shrink to the space that is actually available, which is
+       what makes the overflow scroll rather than push. */
+    min-width: 0;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar,
+  .rail-sm::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > *,
+  .rail-sm > * {
+    flex: none;
+    scroll-snap-align: start;
+  }
+
+  /* Bleeds the track to the viewport edge while keeping the first and last
+     item aligned to the page gutter, so the row reads as continuing off-screen
+     instead of stopping at an arbitrary margin. */
+  .rail-bleed {
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    scroll-padding-inline-start: 1.5rem;
+  }
+
+  /* `.rail-sm` is a phone-only rail: above 640px the element goes back to
+     whatever grid or wrapped row its Tailwind classes describe.
+
+     It is written as a max-width query rather than as an `sm:` override
+     because both would land in the same cascade layer, and these rules are
+     declared after Tailwind's — a `sm:grid` would lose to `.rail`'s
+     `display: flex` on source order and the grid would never come back. */
+  @media (min-width: 640px) {
+    .rail-sm {
+      display: revert;
+      overflow-x: revert;
+      scroll-snap-type: none;
+    }
+    .rail-sm > * {
+      flex: revert;
+      scroll-snap-align: none;
+    }
+    .rail-sm.rail-bleed {
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     A heading set at annotation size IS an annotation.
+
+     "The Concept", "Our Expertise", "Gallery" are `<h2>`s for the document
+     outline, but on the page they are captions — and every `<h*>` inherits the
+     display face. A classical serif at thirteen pixels, semibold, reads as a
+     mistake rather than as a title. Binding the face to the size instead of to
+     the tag means the voice follows the role, and no component has to remember.
+     ------------------------------------------------------------------------ */
+  .text-label {
+    font-family: var(--font-body);
+  }
+
+  .delay-100 { animation-delay: 90ms; }
+  .delay-200 { animation-delay: 180ms; }
+  .delay-300 { animation-delay: 270ms; }
+  .delay-400 { animation-delay: 360ms; }
+
+  /* Hairline rule used to separate sections. Replaces the ad-hoc
+     `bg-gradient-to-r from-gold/40 to-transparent` divs scattered around. */
+  .rule-gold {
+    background-image: linear-gradient(
+      var(--dir-angle),
+      oklch(var(--c-gold) / 0.85),
+      oklch(var(--c-gold) / 0)
+    );
+  }
+
+  /* Directional glyphs (arrows) mirror under RTL. This lives here rather than
+     in EaiIcon's scoped block for the reason documented on --dir-angle. */
+  [dir='rtl'] .eai-icon--flip {
+    transform: scaleX(-1);
+  }
+
+  /* The hero's slide change: the next frame is drawn across the last one along
+     the reading axis, rather than dissolved into it. Both directions live here
+     because a scoped `[dir='rtl']` override would have to out-specify this
+     rule from a different stylesheet. */
+  .hero-wipe-in {
+    animation: eai-wipe 1200ms var(--ease-out-expo) both;
+  }
+  [dir='rtl'] .hero-wipe-in {
+    animation-name: eai-wipe-rtl;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rail {
+    scroll-behavior: auto;
+  }
+  /* The press state stays — it is feedback, not decoration, and a tap with no
+     acknowledgement reads as a broken control. What goes is the travel: the
+     button dims instead of moving, which is a state change rather than
+     motion. */
+  .press,
+  .press-sm {
+    transition: none;
+  }
+  .press:active,
+  .press-sm:active {
+    transform: none;
+    scale: none;
+    opacity: 0.68;
+  }
+  /* Depth goes flat. All three directives already decline to run under this
+     preference, so none of these values is ever written — this is the belt to
+     that braces, for a preference toggled after the elements mounted, and it is
+     also what guarantees the photographs land on their true crop rather than
+     the 1.14 overscan the parallax needs. */
+  [data-depth],
+  [data-tilt] {
+    --depth: 0 !important;
+    --tx: 0 !important;
+    --ty: 0 !important;
+  }
+  [data-tilt],
+  .set-plate,
+  .tilt-lift {
+    transform: none !important;
+    transition: none !important;
+  }
+  .plate-img,
+  .hero-dolly {
+    translate: none !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+  .sheen {
+    display: none !important;
+  }
+  .depth-lede,
+  .depth-plane {
+    translate: none !important;
+  }
+  /* Content still arrives — it just arrives immediately. `both` fill on the
+     reveal keyframes means we must force the end state, not merely stop. */
+  .animate-ken-burns,
+  .animate-fade-in-up,
+  .animate-scale-x,
+  .hero-wipe-in,
+  [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  /* The ambient loops stop entirely. A marquee that still creeps is the single
+     worst thing this stylesheet could do to someone who asked for less motion.
+     What is left is a static strip of the first few marks — the ticker is
+     decorative and aria-hidden, and the same eight lines are listed as real
+     links directly above it, so nothing is lost by freezing it. */
+  .marquee-track,
+  .grid-draft--drift,
+  .sweep-rail::after {
+    animation: none !important;
+    transform: none !important;
+  }
+  .sweep-rail {
+    display: none !important;
+  }
+  /* The directive already declines to mark anything pending under reduced
+     motion; this is the belt to that braces, for a preference changed after
+     the element mounted. */
+  .eai-icon--draw path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

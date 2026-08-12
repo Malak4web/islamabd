@@ -18,7 +18,7 @@ describe('Setting Store', () => {
 
     it('fetchSettings populates state', async () => {
         const store = useSettingStore()
-        const mockData = { site_name: 'InDesign', phone: '123' }
+        const mockData = { site_name: 'Eslam Abdulghani Designs', phone: '123' }
         api.get.mockResolvedValue({ data: { data: mockData } })
 
         await store.fetchSettings()

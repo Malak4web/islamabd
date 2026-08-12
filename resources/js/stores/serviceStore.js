@@ -106,6 +106,10 @@ export const useServiceStore = defineStore('service', () => {
         services,
         currentService,
         loading,
+        // Every other store in the app names this `isLoading`, so call sites
+        // reached for that name here too — and silently got `undefined`, which
+        // meant the loading skeletons never rendered. Both names now resolve.
+        isLoading: loading,
         fetchServices,
         fetchService,
         fetchAdminServices,

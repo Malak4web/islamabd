@@ -1,0 +1,1820 @@
+{
+  "total_db_matches": 193,
+  "db_tables": {
+    "migrations": {
+      "column_count": 3,
+      "row_count": 17,
+      "columns": [
+        "id",
+        "migration",
+        "batch"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "users": {
+      "column_count": 8,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "email",
+        "email_verified_at",
+        "password",
+        "remember_token",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "password_reset_tokens": {
+      "column_count": 3,
+      "row_count": 0,
+      "columns": [
+        "email",
+        "token",
+        "created_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "sessions": {
+      "column_count": 6,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "user_id",
+        "ip_address",
+        "user_agent",
+        "payload",
+        "last_activity"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "cache": {
+      "column_count": 3,
+      "row_count": 2,
+      "columns": [
+        "key",
+        "value",
+        "expiration"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "cache_locks": {
+      "column_count": 3,
+      "row_count": 0,
+      "columns": [
+        "key",
+        "owner",
+        "expiration"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "jobs": {
+      "column_count": 7,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "queue",
+        "payload",
+        "attempts",
+        "reserved_at",
+        "available_at",
+        "created_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "job_batches": {
+      "column_count": 10,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "total_jobs",
+        "pending_jobs",
+        "failed_jobs",
+        "failed_job_ids",
+        "options",
+        "cancelled_at",
+        "created_at",
+        "finished_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "failed_jobs": {
+      "column_count": 7,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "uuid",
+        "connection",
+        "queue",
+        "payload",
+        "exception",
+        "failed_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "media": {
+      "column_count": 18,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "model_type",
+        "model_id",
+        "uuid",
+        "collection_name",
+        "name",
+        "file_name",
+        "mime_type",
+        "disk",
+        "conversions_disk",
+        "size",
+        "manipulations",
+        "custom_properties",
+        "generated_conversions",
+        "responsive_images",
+        "order_column",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "permissions": {
+      "column_count": 5,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "guard_name",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "roles": {
+      "column_count": 5,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "guard_name",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "model_has_permissions": {
+      "column_count": 3,
+      "row_count": 0,
+      "columns": [
+        "permission_id",
+        "model_type",
+        "model_id"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "model_has_roles": {
+      "column_count": 3,
+      "row_count": 0,
+      "columns": [
+        "role_id",
+        "model_type",
+        "model_id"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "role_has_permissions": {
+      "column_count": 2,
+      "row_count": 0,
+      "columns": [
+        "permission_id",
+        "role_id"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "personal_access_tokens": {
+      "column_count": 10,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "tokenable_type",
+        "tokenable_id",
+        "name",
+        "token",
+        "abilities",
+        "last_used_at",
+        "expires_at",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "telescope_entries": {
+      "column_count": 8,
+      "row_count": 0,
+      "columns": [
+        "sequence",
+        "uuid",
+        "batch_id",
+        "family_hash",
+        "should_display_on_index",
+        "type",
+        "content",
+        "created_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "telescope_entries_tags": {
+      "column_count": 2,
+      "row_count": 0,
+      "columns": [
+        "entry_uuid",
+        "tag"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "telescope_monitoring": {
+      "column_count": 1,
+      "row_count": 0,
+      "columns": [
+        "tag"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "admins": {
+      "column_count": 8,
+      "row_count": 1,
+      "columns": [
+        "id",
+        "name",
+        "email",
+        "password",
+        "remember_token",
+        "email_verified_at",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "settings": {
+      "column_count": 7,
+      "row_count": 48,
+      "columns": [
+        "id",
+        "key",
+        "value",
+        "group",
+        "type",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 8,
+      "matches": [
+        {
+          "row_index": 15,
+          "column": "value",
+          "value": "https://www.google.com/maps/place/INdesign+general+contracting%26real+estate/@30.0487358,30.9769539,15z",
+          "matches": [
+            "INdesign"
+          ]
+        },
+        {
+          "row_index": 16,
+          "column": "value",
+          "value": "https://www.facebook.com/Indesign_co-107586265299910/",
+          "matches": [
+            "Indesign"
+          ]
+        },
+        {
+          "row_index": 17,
+          "column": "value",
+          "value": "https://www.instagram.com/indesign_co/",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 35,
+          "column": "value",
+          "value": "إن ديزاين",
+          "matches": [
+            "إن ديزاين"
+          ]
+        },
+        {
+          "row_index": 36,
+          "column": "value",
+          "value": "All Rights reserved to Indesign",
+          "matches": [
+            "Indesign"
+          ]
+        },
+        {
+          "row_index": 39,
+          "column": "value",
+          "value": "info@indesign-co.com",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 43,
+          "column": "value",
+          "value": "https://www.facebook.com/Indesign_co-107586265299910/",
+          "matches": [
+            "Indesign"
+          ]
+        },
+        {
+          "row_index": 44,
+          "column": "value",
+          "value": "https://www.instagram.com/indesign_co/",
+          "matches": [
+            "indesign"
+          ]
+        }
+      ]
+    },
+    "pages": {
+      "column_count": 9,
+      "row_count": 5,
+      "columns": [
+        "id",
+        "slug",
+        "title_en",
+        "title_ar",
+        "meta_title",
+        "meta_description",
+        "og_image",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "sections": {
+      "column_count": 8,
+      "row_count": 18,
+      "columns": [
+        "id",
+        "page_id",
+        "key",
+        "content",
+        "order",
+        "is_active",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 4,
+      "matches": [
+        {
+          "row_index": 6,
+          "column": "content",
+          "value": "{\"title_en\":\"About Eslam Abdulghani Designs\",\"title_ar\":\"\\u0639\\u0646 \\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632\",\"subtitle_en\":\"Leading the way in creative design and construction excellence since 1983.\",\"subtitle_ar\":\"\\u0631\\u064a\\u0627\\u062f\\u0629 \\u0627\\u0644\\u0637\\u0631\\u064a\\u0642 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0628\\u062f\\u0627\\u0639 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0626\\u064a \\u0645\\u0646\\u0630 \\u0639\\u0627\\u0645 1983.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431451442_249354111594226_167009839475597367_n.jpg\"}",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 7,
+          "column": "content",
+          "value": "{\"title_en\":\"Our Legacy\",\"title_ar\":\"\\u0625\\u0631\\u062b\\u0646\\u0627\",\"body_en\":\"Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\\n\\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.\",\"body_ar\":\"\\u062a\\u0623\\u0633\\u0633\\u062a \\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0639\\u0627\\u0645 1983 \\u0643\\u0645\\u0635\\u0646\\u0639 \\u0644\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629\\u060c \\u0648\\u0646\\u0645\\u062a \\u0644\\u062a\\u0635\\u0628\\u062d \\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u0643\\u0627\\u0645\\u0644\\u0629 \\u0644\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a. \\u0628\\u062f\\u0623\\u0646\\u0627 \\u0639\\u0645\\u0644\\u064a\\u0627\\u062a\\u0646\\u0627 \\u0641\\u064a \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0639\\u0627\\u0645 2018 \\u0648\\u062a\\u0648\\u0633\\u0639\\u0646\\u0627 \\u0625\\u0644\\u0649 \\u0645\\u0635\\u0631 \\u0639\\u0627\\u0645 2020.\\n\\n\\u0646\\u0642\\u062f\\u0645 \\u062d\\u0644\\u0648\\u0644 \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0625\\u0628\\u062f\\u0627\\u0639\\u064a\\u0629 \\u0628\\u0623\\u0639\\u0644\\u0649 \\u0645\\u0639\\u0627\\u064a\\u064a\\u0631 \\u0627\\u0644\\u0623\\u0645\\u0627\\u0646\\u0629 \\u0648\\u0627\\u0644\\u0643\\u0641\\u0627\\u0621\\u0629. \\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u0627\\u0644\\u0627\\u0633\\u062a\\u062f\\u0627\\u0645\\u0629 \\u0648\\u062c\\u0648\\u062f\\u0629 \\u0627\\u0644\\u062d\\u0631\\u0641\\u064a\\u0629 \\u064a\\u0636\\u0645\\u0646 \\u062a\\u062c\\u0627\\u0648\\u0632 \\u062a\\u0648\\u0642\\u0639\\u0627\\u062a \\u0639\\u0645\\u0644\\u0627\\u0626\\u0646\\u0627 \\u0648\\u062a\\u0631\\u0643 \\u0623\\u062b\\u0631 \\u062f\\u0627\\u0626\\u0645 \\u0641\\u064a \\u0627\\u0644\\u0645\\u062c\\u062a\\u0645\\u0639\\u0627\\u062a.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431521273_249354248260879_9084258774243773194_n.jpg\"}",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 8,
+          "column": "content",
+          "value": "{\"title_en\":\"Our Mission\",\"title_ar\":\"\\u0645\\u0647\\u0645\\u062a\\u0646\\u0627\",\"body_en\":\"Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.\",\"body_ar\":\"\\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0631\\u0627\\u0626\\u062f\\u0629 \\u0641\\u064a \\u062a\\u0642\\u062f\\u064a\\u0645 \\u062e\\u062f\\u0645\\u0627\\u062a \\u0627\\u0644\\u062a\\u0634\\u064a\\u064a\\u062f \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0644\\u0639\\u0645\\u0644\\u0627\\u0626\\u0647\\u0627 \\u0645\\u0646 \\u062e\\u0644\\u0627\\u0644 \\u0627\\u0644\\u0634\\u0631\\u0627\\u0643\\u0629 \\u0645\\u0639\\u0647\\u0645 \\u0637\\u0648\\u0627\\u0644 \\u0639\\u0645\\u0644\\u064a\\u0629 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0628\\u0646\\u0627\\u0621\\u060c \\u0645\\u0639 \\u0628\\u0630\\u0644 \\u062c\\u0647\\u062f \\u0625\\u0636\\u0627\\u0641\\u064a \\u0644\\u0641\\u0647\\u0645 \\u0627\\u062d\\u062a\\u064a\\u0627\\u062c\\u0627\\u062a\\u0647\\u0645 \\u0627\\u0644\\u0641\\u0631\\u064a\\u062f\\u0629. \\u0627\\u0644\\u062a\\u0632\\u0627\\u0645\\u0646\\u0627 \\u0628\\u0627\\u0644\\u062c\\u0648\\u062f\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0644\\u0627 \\u0645\\u062b\\u064a\\u0644 \\u0644\\u0647.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431064703_249353734927597_2057987504516509134_n.jpg\"}",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 9,
+          "column": "content",
+          "value": "{\"title_en\":\"Our Expertise\",\"title_ar\":\"\\u062e\\u0628\\u0631\\u0627\\u062a\\u0646\\u0627\",\"body_en\":\"We specialize in construction, interior design, finishes, furnishing, house design, landscape, timber and architectural design.\",\"body_ar\":\"\\u0646\\u062a\\u062e\\u0635\\u0635 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a\\u060c \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a\\u060c \\u0627\\u0644\\u062a\\u0634\\u0637\\u064a\\u0628\\u0627\\u062a\\u060c \\u0627\\u0644\\u0623\\u062b\\u0627\\u062b\\u060c \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0646\\u0627\\u0632\\u0644\\u060c \\u062a\\u0646\\u0633\\u064a\\u0642 \\u0627\\u0644\\u0645\\u0648\\u0627\\u0642\\u0639\\u060c \\u0648\\u0627\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0639\\u0645\\u0627\\u0631\\u064a.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431069338_249354318260872_9127296206807023491_n.jpg\"}",
+          "matches": [
+            "indesign"
+          ]
+        }
+      ]
+    },
+    "services": {
+      "column_count": 12,
+      "row_count": 8,
+      "columns": [
+        "id",
+        "title_en",
+        "title_ar",
+        "description_en",
+        "description_ar",
+        "icon",
+        "image",
+        "order",
+        "is_active",
+        "created_at",
+        "updated_at",
+        "gallery"
+      ],
+      "match_count": 3,
+      "matches": [
+        {
+          "row_index": 0,
+          "column": "icon",
+          "value": "https://indesign-co.com/wp-content/uploads/elementor/thumbs/001-01-qoz8m7bq30sumoc0m0686c97vqcnhwhli2zhfg9kw4.png",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 0,
+          "column": "image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/06/SLS02666-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 0,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/3-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/4-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "column_count": 13,
+      "row_count": 6,
+      "columns": [
+        "id",
+        "title_en",
+        "title_ar",
+        "category",
+        "description_en",
+        "description_ar",
+        "cover_image",
+        "gallery",
+        "is_featured",
+        "is_active",
+        "order",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 12,
+      "matches": [
+        {
+          "row_index": 0,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/06/IMG_1064-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 0,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431521273_249354248260879_9084258774243773194_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431069338_249354318260872_9127296206807023491_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431064703_249353734927597_2057987504516509134_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/SLS02143-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02666-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02698-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02492-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02274-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02271-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02161-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02157-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02155-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02151-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02128-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02122-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02118-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02109-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02106-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02096-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05362-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05331-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05328-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05307-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05294-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05286-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05239-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05184-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05178-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05156-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05155-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05135-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05130-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05124-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05117-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05097-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05095-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05094-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05083-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05076-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05050-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05049-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05040-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05033-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05029-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05025-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05021-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05002-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04991-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04990-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04980-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04977-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04974-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04961-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04930-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 1,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/07/DJI_0692-1-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 1,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4687-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4690-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4700-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4701-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4702-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4703-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4704-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4709-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4710-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4714-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4715-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4716-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4717-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4718-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0681-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0682-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0683-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0684-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4761-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4790-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4807-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4772-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4774-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4776-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4777-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4778-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4789-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4793-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4800-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4803-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4806-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 2,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/07/IMGL9030-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 2,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431063630_249353781594259_5689123842104526545_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-4-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-5-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-8-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/2-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/3-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/4-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/6-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/7-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/8-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/9-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/10-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f6-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f7-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f8-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/121-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 3,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/07/IMG_0021-1-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 3,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430277216_1352287925461347_1482441092481871420_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430187672_1163210438027805_4478764908786592930_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430179274_769656151421679_8402067980927927391_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/429570926_316724571386081_5150029571726570143_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/410395563_1051760962692460_1337822609701656133_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/410255682_738169971494585_4293157350355911939_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409995927_1372748510299834_5922128585773870750_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409770019_797370845486775_2885072288991995327_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409514150_346654444648260_7924834200601429968_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409457672_1121905602508203_6425203796692482657_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409219001_869605344810146_6016965710121084028_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409186189_3592189707735519_623123727450809135_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409182981_261238606645794_8017927131335275523_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409079728_841744651291193_6891918843774932265_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/3.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/5-1.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/7.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/9.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f5-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f8-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 4,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/07/1X5A0045-scaled.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 4,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392930496_1291836064824358_4658950987903062964_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392928961_839797971151476_1861535071263112828_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392831420_1079854069712318_7985987945997610485_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392799060_1379846469408289_7819370333900157346_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391472076_285503621110982_2906889662971802851_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391437502_863705191645618_9068991527210653072_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391427395_1004895070621491_49609551471208718_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391408060_2023948158004469_9027478810253374342_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/386898039_3357245487900018_4018734360447413512_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/2-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/4-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/8-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/9-scaled.jpg\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 5,
+          "column": "cover_image",
+          "value": "https://indesign-co.com/wp-content/uploads/2024/06/2-1.jpg",
+          "matches": [
+            "indesign"
+          ]
+        },
+        {
+          "row_index": 5,
+          "column": "gallery",
+          "value": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/14.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/13.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/12.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/10.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/9.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/8.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/7.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/6.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/5.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/4.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/3.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/2.png\"]",
+          "matches": [
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign",
+            "indesign"
+          ]
+        }
+      ]
+    },
+    "contacts": {
+      "column_count": 9,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "phone",
+        "email",
+        "service",
+        "message",
+        "status",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "code_injections": {
+      "column_count": 8,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "name",
+        "code",
+        "location",
+        "is_active",
+        "pages",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    },
+    "media_files": {
+      "column_count": 7,
+      "row_count": 0,
+      "columns": [
+        "id",
+        "filename",
+        "path",
+        "mime_type",
+        "size",
+        "created_at",
+        "updated_at"
+      ],
+      "match_count": 0,
+      "matches": []
+    }
+  },
+  "key_tables_contents": {
+    "settings": [
+      {
+        "id": 1,
+        "key": "site_name_en",
+        "value": "Eslam Abdulghani Designs",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 2,
+        "key": "site_name_ar",
+        "value": "إسلام عبد الغني ديزاينز",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 3,
+        "key": "tagline_en",
+        "value": "Create Designs Inspire",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 4,
+        "key": "tagline_ar",
+        "value": "نصمم لنلهم",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 5,
+        "key": "about_short_en",
+        "value": "Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 6,
+        "key": "about_short_ar",
+        "value": "تأسست شركة إسلام عبد الغني ديزاينز عام 1983 كمصنع للنجارة، ثم تطورت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 7,
+        "key": "contact_email",
+        "value": "info@eslamabdulghanidesigns.com",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 8,
+        "key": "contact_phone_kw",
+        "value": "+965 5505 3010",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 9,
+        "key": "contact_phone_eg",
+        "value": "+20 100 559 8277",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 10,
+        "key": "whatsapp_number",
+        "value": "+201128608608",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 11,
+        "key": "address_kw_en",
+        "value": "Oula Tower, 3 Khalid Ibn Al Waleed St, Kuwait City",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 12,
+        "key": "address_kw_ar",
+        "value": "برج أولى، شارع خالد بن الوليد 3، مدينة الكويت",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 13,
+        "key": "address_eg_en",
+        "value": "Beverly Hills – The Polygon Business Park, El Sheikh Zayed, Egypt",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 14,
+        "key": "address_eg_ar",
+        "value": "بيفرلي هيلز – مجمع بولجون للأعمال، الشيخ زايد، مصر",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 15,
+        "key": "google_maps_kw",
+        "value": "https://www.google.com/maps/place/IN+DESIGN+GENERAL+TRADE+OF+BUILDINGS/@29.3738229,47.989865,15z",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 16,
+        "key": "google_maps_eg",
+        "value": "https://www.google.com/maps/place/INdesign+general+contracting%26real+estate/@30.0487358,30.9769539,15z",
+        "group": "contact",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 17,
+        "key": "facebook_url",
+        "value": "https://www.facebook.com/Indesign_co-107586265299910/",
+        "group": "social",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 18,
+        "key": "instagram_url",
+        "value": "https://www.instagram.com/indesign_co/",
+        "group": "social",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 19,
+        "key": "whatsapp_url",
+        "value": "https://wa.link/c9xdr3",
+        "group": "social",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 20,
+        "key": "meta_title_en",
+        "value": "Eslam Abdulghani Designs – Create Designs Inspire",
+        "group": "seo",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 21,
+        "key": "meta_title_ar",
+        "value": "إسلام عبد الغني ديزاينز – نصمم لنلهم",
+        "group": "seo",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 22,
+        "key": "meta_description_en",
+        "value": "Eslam Abdulghani Designs is a leader in providing interior fit-out and design services, specializing in administrative, commercial, residential, and exterior design across Kuwait and Egypt.",
+        "group": "seo",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 23,
+        "key": "meta_description_ar",
+        "value": "إسلام عبد الغني ديزاينز رائدة في خدمات التشييد والتصميم الداخلي، متخصصة في التصميم الإداري والتجاري والسكني والخارجي في الكويت ومصر.",
+        "group": "seo",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 24,
+        "key": "hero_title_en",
+        "value": "Solutions to Transform Your Space",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 25,
+        "key": "hero_title_ar",
+        "value": "حلول لتحويل مساحتك",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 26,
+        "key": "hero_subtitle_en",
+        "value": "By balancing the art and science of designing an interior space, we deliver the perfect combination of technical and artistic aspects to provide our clients with extreme satisfaction.",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 27,
+        "key": "hero_subtitle_ar",
+        "value": "من خلال الموازنة بين فن وعلم تصميم المساحات الداخلية، نقدم المزيج المثالي من الجوانب التقنية والفنية لتحقيق الرضا التام لعملائنا.",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 28,
+        "key": "hero_cta_en",
+        "value": "Free Consultation",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 29,
+        "key": "hero_cta_ar",
+        "value": "استشارة مجانية",
+        "group": "hero",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 30,
+        "key": "footer_tagline_en",
+        "value": "Eslam Abdulghani Designs company is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process.",
+        "group": "footer",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 31,
+        "key": "footer_tagline_ar",
+        "value": "شركة إسلام عبد الغني ديزاينز رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء.",
+        "group": "footer",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 32,
+        "key": "copyright_en",
+        "value": "All Rights reserved to Eslam Abdulghani Designs",
+        "group": "footer",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 33,
+        "key": "copyright_ar",
+        "value": "جميع الحقوق محفوظة لشركة إسلام عبد الغني ديزاينز",
+        "group": "footer",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 34,
+        "key": "logo",
+        "value": "/images/defaults/hero_fallback.jpg",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 35,
+        "key": "favicon",
+        "value": "/images/defaults/about_fallback.jpg",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 36,
+        "key": "site_name",
+        "value": "إن ديزاين",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      },
+      {
+        "id": 37,
+        "key": "footer_text",
+        "value": "All Rights reserved to Indesign",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 38,
+        "key": "phone_1",
+        "value": "+965 5505 3010",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 39,
+        "key": "phone_2",
+        "value": "+20 11163166804",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      },
+      {
+        "id": 40,
+        "key": "email_main",
+        "value": "info@indesign-co.com",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      },
+      {
+        "id": 41,
+        "key": "email_inquiries",
+        "value": null,
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      },
+      {
+        "id": 42,
+        "key": "address_en",
+        "value": "Oula Tower, 3 Khalid Ibn Al Waleed St, Kuwait City",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 43,
+        "key": "address_ar",
+        "value": "برج أولى، شارع خالد بن الوليد 3، مدينة الكويت",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 44,
+        "key": "facebook",
+        "value": "https://www.facebook.com/Indesign_co-107586265299910/",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 45,
+        "key": "instagram",
+        "value": "https://www.instagram.com/indesign_co/",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 46,
+        "key": "linkedin",
+        "value": null,
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      },
+      {
+        "id": 47,
+        "key": "whatsapp",
+        "value": "https://wa.link/c9xdr3",
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:48:24"
+      },
+      {
+        "id": 48,
+        "key": "youtube",
+        "value": null,
+        "group": "general",
+        "type": "text",
+        "created_at": "2026-07-05 16:39:26",
+        "updated_at": "2026-07-05 16:39:26"
+      }
+    ],
+    "sections": [
+      {
+        "id": 1,
+        "page_id": 1,
+        "key": "hero",
+        "content": "{\"title_en\":\"Solutions to Transform Your Space\",\"title_ar\":\"\\u062d\\u0644\\u0648\\u0644 \\u0644\\u062a\\u062d\\u0648\\u064a\\u0644 \\u0645\\u0633\\u0627\\u062d\\u062a\\u0643\",\"subtitle_en\":\"Art and Science in Perfect Balance.\",\"subtitle_ar\":\"\\u0627\\u0644\\u0641\\u0646 \\u0648\\u0627\\u0644\\u0639\\u0644\\u0645 \\u0641\\u064a \\u062a\\u0648\\u0627\\u0632\\u0646 \\u0645\\u062b\\u0627\\u0644\\u064a.\",\"cta_en\":\"Free Consultation\",\"cta_ar\":\"\\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629\"}",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 2,
+        "page_id": 1,
+        "key": "about_intro",
+        "content": "{\"label_en\":\"About Our Company\",\"label_ar\":\"\\u0639\\u0646 \\u0634\\u0631\\u0643\\u062a\\u0646\\u0627\",\"text_en\":\"Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\\n\\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.\",\"text_ar\":\"\\u062a\\u0623\\u0633\\u0633\\u062a \\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0639\\u0627\\u0645 1983 \\u0643\\u0645\\u0635\\u0646\\u0639 \\u0644\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629\\u060c \\u0648\\u0646\\u0645\\u062a \\u0644\\u062a\\u0635\\u0628\\u062d \\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u0643\\u0627\\u0645\\u0644\\u0629 \\u0644\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a. \\u0628\\u062f\\u0623\\u0646\\u0627 \\u0639\\u0645\\u0644\\u064a\\u0627\\u062a\\u0646\\u0627 \\u0641\\u064a \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0639\\u0627\\u0645 2018 \\u0648\\u062a\\u0648\\u0633\\u0639\\u0646\\u0627 \\u0625\\u0644\\u0649 \\u0645\\u0635\\u0631 \\u0639\\u0627\\u0645 2020.\\n\\n\\u0646\\u0642\\u062f\\u0645 \\u062d\\u0644\\u0648\\u0644 \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0625\\u0628\\u062f\\u0627\\u0639\\u064a\\u0629 \\u0628\\u0623\\u0639\\u0644\\u0649 \\u0645\\u0639\\u0627\\u064a\\u064a\\u0631 \\u0627\\u0644\\u0623\\u0645\\u0627\\u0646\\u0629 \\u0648\\u0627\\u0644\\u0643\\u0641\\u0627\\u0621\\u0629. \\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u0627\\u0644\\u0627\\u0633\\u062a\\u062f\\u0627\\u0645\\u0629 \\u0648\\u062c\\u0648\\u062f\\u0629 \\u0627\\u0644\\u062d\\u0631\\u0641\\u064a\\u0629 \\u064a\\u0636\\u0645\\u0646 \\u062a\\u062c\\u0627\\u0648\\u0632 \\u062a\\u0648\\u0642\\u0639\\u0627\\u062a \\u0639\\u0645\\u0644\\u0627\\u0626\\u0646\\u0627 \\u0648\\u062a\\u0631\\u0643 \\u0623\\u062b\\u0631 \\u062f\\u0627\\u0626\\u0645 \\u0641\\u064a \\u0627\\u0644\\u0645\\u062c\\u062a\\u0645\\u0639\\u0627\\u062a.\",\"cta_en\":\"Free Consultation\",\"cta_ar\":\"\\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629\"}",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 3,
+        "page_id": 1,
+        "key": "services_overview",
+        "content": "{\"title_en\":\"Our Services\",\"title_ar\":\"\\u062e\\u062f\\u0645\\u0627\\u062a\\u0646\\u0627\",\"subtitle_en\":\"A company specialized in the field of exterior, interior and landscaping design\",\"subtitle_ar\":\"\\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u062e\\u0635\\u0635\\u0629 \\u0641\\u064a \\u0645\\u062c\\u0627\\u0644 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062e\\u0627\\u0631\\u062c\\u064a \\u0648\\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0648\\u062a\\u0646\\u0633\\u064a\\u0642 \\u0627\\u0644\\u0645\\u0646\\u0627\\u0638\\u0631 \\u0627\\u0644\\u0637\\u0628\\u064a\\u0639\\u064a\\u0629\"}",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 4,
+        "page_id": 1,
+        "key": "projects_grid",
+        "content": "{\"title_en\":\"Featured Work\",\"title_ar\":\"\\u0623\\u0639\\u0645\\u0627\\u0644\\u0646\\u0627 \\u0627\\u0644\\u0645\\u0645\\u064a\\u0632\\u0629\",\"subtitle_en\":\"Each project reflects our commitment to excellence and our passion for transforming spaces.\",\"subtitle_ar\":\"\\u0643\\u0644 \\u0645\\u0634\\u0631\\u0648\\u0639 \\u064a\\u0639\\u0643\\u0633 \\u0627\\u0644\\u062a\\u0632\\u0627\\u0645\\u0646\\u0627 \\u0628\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0648\\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u062a\\u062d\\u0648\\u064a\\u0644 \\u0627\\u0644\\u0645\\u0633\\u0627\\u062d\\u0627\\u062a.\"}",
+        "order": 4,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 5,
+        "page_id": 1,
+        "key": "cta_consultation",
+        "content": "{\"title_en\":\"Do you have a vision for your project, but are you unsure about the planning implications or how the project will run?\",\"title_ar\":\"\\u0647\\u0644 \\u0644\\u062f\\u064a\\u0643 \\u0631\\u0624\\u064a\\u0629 \\u0644\\u0645\\u0634\\u0631\\u0648\\u0639\\u0643\\u060c \\u0644\\u0643\\u0646\\u0643 \\u063a\\u064a\\u0631 \\u0645\\u062a\\u0623\\u0643\\u062f \\u0645\\u0646 \\u062a\\u062f\\u0627\\u0639\\u064a\\u0627\\u062a \\u0627\\u0644\\u062a\\u062e\\u0637\\u064a\\u0637 \\u0623\\u0648 \\u0643\\u064a\\u0641\\u064a\\u0629 \\u062a\\u0646\\u0641\\u064a\\u0630 \\u0627\\u0644\\u0645\\u0634\\u0631\\u0648\\u0639\\u061f\",\"body_en\":\"Call us or fill the form to request a 30-minute consultation.\",\"body_ar\":\"\\u0627\\u062a\\u0635\\u0644 \\u0628\\u0646\\u0627 \\u0623\\u0648 \\u0627\\u0645\\u0644\\u0623 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c \\u0644\\u0637\\u0644\\u0628 \\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062f\\u062a\\u0647\\u0627 30 \\u062f\\u0642\\u064a\\u0642\\u0629.\",\"cta_en\":\"Give Us a Call\",\"cta_ar\":\"\\u062a\\u0648\\u0627\\u0635\\u0644 \\u0645\\u0639\\u0646\\u0627\"}",
+        "order": 5,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 6,
+        "page_id": 1,
+        "key": "contact_section",
+        "content": "{\"title_en\":\"Contact Us\",\"title_ar\":\"\\u0627\\u062a\\u0635\\u0644 \\u0628\\u0646\\u0627\",\"body_en\":\"Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements.\",\"body_ar\":\"\\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0631\\u0627\\u0626\\u062f\\u0629 \\u0641\\u064a \\u062a\\u0642\\u062f\\u064a\\u0645 \\u062e\\u062f\\u0645\\u0627\\u062a \\u0627\\u0644\\u062a\\u0634\\u064a\\u064a\\u062f \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0644\\u0639\\u0645\\u0644\\u0627\\u0626\\u0647\\u0627 \\u0645\\u0646 \\u062e\\u0644\\u0627\\u0644 \\u0627\\u0644\\u0634\\u0631\\u0627\\u0643\\u0629 \\u0645\\u0639\\u0647\\u0645 \\u0637\\u0648\\u0627\\u0644 \\u0639\\u0645\\u0644\\u064a\\u0629 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0628\\u0646\\u0627\\u0621\\u060c \\u0645\\u0639 \\u0628\\u0630\\u0644 \\u062c\\u0647\\u062f \\u0625\\u0636\\u0627\\u0641\\u064a \\u0644\\u0641\\u0647\\u0645 \\u0627\\u062d\\u062a\\u064a\\u0627\\u062c\\u0627\\u062a\\u0647\\u0645 \\u0627\\u0644\\u0641\\u0631\\u064a\\u062f\\u0629.\"}",
+        "order": 6,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 7,
+        "page_id": 2,
+        "key": "hero",
+        "content": "{\"title_en\":\"About Eslam Abdulghani Designs\",\"title_ar\":\"\\u0639\\u0646 \\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632\",\"subtitle_en\":\"Leading the way in creative design and construction excellence since 1983.\",\"subtitle_ar\":\"\\u0631\\u064a\\u0627\\u062f\\u0629 \\u0627\\u0644\\u0637\\u0631\\u064a\\u0642 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0628\\u062f\\u0627\\u0639 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0626\\u064a \\u0645\\u0646\\u0630 \\u0639\\u0627\\u0645 1983.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431451442_249354111594226_167009839475597367_n.jpg\"}",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 8,
+        "page_id": 2,
+        "key": "story",
+        "content": "{\"title_en\":\"Our Legacy\",\"title_ar\":\"\\u0625\\u0631\\u062b\\u0646\\u0627\",\"body_en\":\"Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\\n\\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.\",\"body_ar\":\"\\u062a\\u0623\\u0633\\u0633\\u062a \\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0639\\u0627\\u0645 1983 \\u0643\\u0645\\u0635\\u0646\\u0639 \\u0644\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629\\u060c \\u0648\\u0646\\u0645\\u062a \\u0644\\u062a\\u0635\\u0628\\u062d \\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u0643\\u0627\\u0645\\u0644\\u0629 \\u0644\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a. \\u0628\\u062f\\u0623\\u0646\\u0627 \\u0639\\u0645\\u0644\\u064a\\u0627\\u062a\\u0646\\u0627 \\u0641\\u064a \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0639\\u0627\\u0645 2018 \\u0648\\u062a\\u0648\\u0633\\u0639\\u0646\\u0627 \\u0625\\u0644\\u0649 \\u0645\\u0635\\u0631 \\u0639\\u0627\\u0645 2020.\\n\\n\\u0646\\u0642\\u062f\\u0645 \\u062d\\u0644\\u0648\\u0644 \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0625\\u0628\\u062f\\u0627\\u0639\\u064a\\u0629 \\u0628\\u0623\\u0639\\u0644\\u0649 \\u0645\\u0639\\u0627\\u064a\\u064a\\u0631 \\u0627\\u0644\\u0623\\u0645\\u0627\\u0646\\u0629 \\u0648\\u0627\\u0644\\u0643\\u0641\\u0627\\u0621\\u0629. \\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u0627\\u0644\\u0627\\u0633\\u062a\\u062f\\u0627\\u0645\\u0629 \\u0648\\u062c\\u0648\\u062f\\u0629 \\u0627\\u0644\\u062d\\u0631\\u0641\\u064a\\u0629 \\u064a\\u0636\\u0645\\u0646 \\u062a\\u062c\\u0627\\u0648\\u0632 \\u062a\\u0648\\u0642\\u0639\\u0627\\u062a \\u0639\\u0645\\u0644\\u0627\\u0626\\u0646\\u0627 \\u0648\\u062a\\u0631\\u0643 \\u0623\\u062b\\u0631 \\u062f\\u0627\\u0626\\u0645 \\u0641\\u064a \\u0627\\u0644\\u0645\\u062c\\u062a\\u0645\\u0639\\u0627\\u062a.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431521273_249354248260879_9084258774243773194_n.jpg\"}",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 9,
+        "page_id": 2,
+        "key": "mission",
+        "content": "{\"title_en\":\"Our Mission\",\"title_ar\":\"\\u0645\\u0647\\u0645\\u062a\\u0646\\u0627\",\"body_en\":\"Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.\",\"body_ar\":\"\\u0625\\u0633\\u0644\\u0627\\u0645 \\u0639\\u0628\\u062f \\u0627\\u0644\\u063a\\u0646\\u064a \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\\u0632 \\u0631\\u0627\\u0626\\u062f\\u0629 \\u0641\\u064a \\u062a\\u0642\\u062f\\u064a\\u0645 \\u062e\\u062f\\u0645\\u0627\\u062a \\u0627\\u0644\\u062a\\u0634\\u064a\\u064a\\u062f \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0644\\u0639\\u0645\\u0644\\u0627\\u0626\\u0647\\u0627 \\u0645\\u0646 \\u062e\\u0644\\u0627\\u0644 \\u0627\\u0644\\u0634\\u0631\\u0627\\u0643\\u0629 \\u0645\\u0639\\u0647\\u0645 \\u0637\\u0648\\u0627\\u0644 \\u0639\\u0645\\u0644\\u064a\\u0629 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0628\\u0646\\u0627\\u0621\\u060c \\u0645\\u0639 \\u0628\\u0630\\u0644 \\u062c\\u0647\\u062f \\u0625\\u0636\\u0627\\u0641\\u064a \\u0644\\u0641\\u0647\\u0645 \\u0627\\u062d\\u062a\\u064a\\u0627\\u062c\\u0627\\u062a\\u0647\\u0645 \\u0627\\u0644\\u0641\\u0631\\u064a\\u062f\\u0629. \\u0627\\u0644\\u062a\\u0632\\u0627\\u0645\\u0646\\u0627 \\u0628\\u0627\\u0644\\u062c\\u0648\\u062f\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0644\\u0627 \\u0645\\u062b\\u064a\\u0644 \\u0644\\u0647.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431064703_249353734927597_2057987504516509134_n.jpg\"}",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 10,
+        "page_id": 2,
+        "key": "expertise",
+        "content": "{\"title_en\":\"Our Expertise\",\"title_ar\":\"\\u062e\\u0628\\u0631\\u0627\\u062a\\u0646\\u0627\",\"body_en\":\"We specialize in construction, interior design, finishes, furnishing, house design, landscape, timber and architectural design.\",\"body_ar\":\"\\u0646\\u062a\\u062e\\u0635\\u0635 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a\\u060c \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a\\u060c \\u0627\\u0644\\u062a\\u0634\\u0637\\u064a\\u0628\\u0627\\u062a\\u060c \\u0627\\u0644\\u0623\\u062b\\u0627\\u062b\\u060c \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0646\\u0627\\u0632\\u0644\\u060c \\u062a\\u0646\\u0633\\u064a\\u0642 \\u0627\\u0644\\u0645\\u0648\\u0627\\u0642\\u0639\\u060c \\u0648\\u0627\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0639\\u0645\\u0627\\u0631\\u064a.\",\"image\":\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431069338_249354318260872_9127296206807023491_n.jpg\"}",
+        "order": 4,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 11,
+        "page_id": 3,
+        "key": "hero",
+        "content": "{\"title_en\":\"Our Services\",\"title_ar\":\"\\u062e\\u062f\\u0645\\u0627\\u062a\\u0646\\u0627\",\"subtitle_en\":\"A company specialized in the field of exterior, interior and landscaping design\",\"subtitle_ar\":\"\\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u062e\\u0635\\u0635\\u0629 \\u0641\\u064a \\u0645\\u062c\\u0627\\u0644 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062e\\u0627\\u0631\\u062c\\u064a \\u0648\\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0648\\u062a\\u0646\\u0633\\u064a\\u0642 \\u0627\\u0644\\u0645\\u0646\\u0627\\u0638\\u0631 \\u0627\\u0644\\u0637\\u0628\\u064a\\u0639\\u064a\\u0629\"}",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 12,
+        "page_id": 3,
+        "key": "services_grid",
+        "content": "{\"title_en\":\"What We Offer\",\"title_ar\":\"\\u0645\\u0627 \\u0646\\u0642\\u062f\\u0645\\u0647\"}",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 13,
+        "page_id": 3,
+        "key": "cta",
+        "content": "{\"title_en\":\"Ready to Start Your Project?\",\"title_ar\":\"\\u0647\\u0644 \\u0623\\u0646\\u062a \\u0645\\u0633\\u062a\\u0639\\u062f \\u0644\\u0628\\u062f\\u0621 \\u0645\\u0634\\u0631\\u0648\\u0639\\u0643\\u061f\",\"body_en\":\"Contact us for a free 30-minute consultation and let us help you transform your space.\",\"body_ar\":\"\\u062a\\u0648\\u0627\\u0635\\u0644 \\u0645\\u0639\\u0646\\u0627 \\u0644\\u0644\\u062d\\u0635\\u0648\\u0644 \\u0639\\u0644\\u0649 \\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629 \\u0645\\u062f\\u062a\\u0647\\u0627 30 \\u062f\\u0642\\u064a\\u0642\\u0629 \\u0648\\u062f\\u0639\\u0646\\u0627 \\u0646\\u0633\\u0627\\u0639\\u062f\\u0643 \\u0641\\u064a \\u062a\\u062d\\u0648\\u064a\\u0644 \\u0645\\u0633\\u0627\\u062d\\u062a\\u0643.\",\"cta_en\":\"Get Free Consultation\",\"cta_ar\":\"\\u0627\\u062d\\u0635\\u0644 \\u0639\\u0644\\u0649 \\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629\"}",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 14,
+        "page_id": 4,
+        "key": "hero",
+        "content": "{\"title_en\":\"Our Projects\",\"title_ar\":\"\\u0645\\u0634\\u0627\\u0631\\u064a\\u0639\\u0646\\u0627\",\"subtitle_en\":\"Explore our portfolio of completed design and construction projects across Kuwait and Egypt.\",\"subtitle_ar\":\"\\u0627\\u0633\\u062a\\u0643\\u0634\\u0641 \\u0645\\u062d\\u0641\\u0638\\u0629 \\u0645\\u0634\\u0627\\u0631\\u064a\\u0639\\u0646\\u0627 \\u0627\\u0644\\u0645\\u0646\\u062c\\u0632\\u0629 \\u0641\\u064a \\u0645\\u062c\\u0627\\u0644 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a \\u0641\\u064a \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0648\\u0645\\u0635\\u0631.\"}",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 15,
+        "page_id": 4,
+        "key": "projects_grid",
+        "content": "{\"title_en\":\"Featured Work\",\"title_ar\":\"\\u0623\\u0639\\u0645\\u0627\\u0644\\u0646\\u0627 \\u0627\\u0644\\u0645\\u0645\\u064a\\u0632\\u0629\",\"subtitle_en\":\"Each project reflects our commitment to excellence and our passion for transforming spaces.\",\"subtitle_ar\":\"\\u0643\\u0644 \\u0645\\u0634\\u0631\\u0648\\u0639 \\u064a\\u0639\\u0643\\u0633 \\u0627\\u0644\\u062a\\u0632\\u0627\\u0645\\u0646\\u0627 \\u0628\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0648\\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u062a\\u062d\\u0648\\u064a\\u0644 \\u0627\\u0644\\u0645\\u0633\\u0627\\u062d\\u0627\\u062a.\"}",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 16,
+        "page_id": 5,
+        "key": "hero",
+        "content": "{\"title_en\":\"Contact Us\",\"title_ar\":\"\\u0627\\u062a\\u0635\\u0644 \\u0628\\u0646\\u0627\",\"subtitle_en\":\"Get in touch with our team for a free consultation\",\"subtitle_ar\":\"\\u062a\\u0648\\u0627\\u0635\\u0644 \\u0645\\u0639 \\u0641\\u0631\\u064a\\u0642\\u0646\\u0627 \\u0644\\u0644\\u062d\\u0635\\u0648\\u0644 \\u0639\\u0644\\u0649 \\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629\"}",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 17,
+        "page_id": 5,
+        "key": "contact_form",
+        "content": "{\"heading_en\":\"Send Us a Message\",\"heading_ar\":\"\\u0623\\u0631\\u0633\\u0644 \\u0644\\u0646\\u0627 \\u0631\\u0633\\u0627\\u0644\\u0629\",\"description_en\":\"Fill out the form below and our team will respond within 24 hours.\",\"description_ar\":\"\\u0623\\u0643\\u0645\\u0644 \\u0627\\u0644\\u0646\\u0645\\u0648\\u0630\\u062c \\u0623\\u062f\\u0646\\u0627\\u0647 \\u0648\\u0633\\u064a\\u0631\\u062f \\u0641\\u0631\\u064a\\u0642\\u0646\\u0627 \\u0641\\u064a \\u063a\\u0636\\u0648\\u0646 24 \\u0633\\u0627\\u0639\\u0629.\"}",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-07-05 16:22:21"
+      },
+      {
+        "id": 18,
+        "page_id": 5,
+        "key": "offices",
+        "content": "{\"title_en\":\"Our Offices\",\"title_ar\":\"\\u0645\\u0643\\u0627\\u062a\\u0628\\u0646\\u0627\",\"kuwait_en\":\"Oula Tower, 3 Khalid Ibn Al Waleed St, Kuwait City\",\"kuwait_ar\":\"\\u0628\\u0631\\u062c \\u0623\\u0648\\u0644\\u0649\\u060c \\u0634\\u0627\\u0631\\u0639 \\u062e\\u0627\\u0644\\u062f \\u0628\\u0646 \\u0627\\u0644\\u0648\\u0644\\u064a\\u062f 3\\u060c \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a\",\"egypt_en\":\"Beverly Hills \\u2013 The Polygon Business Park, El Sheikh Zayed, Egypt\",\"egypt_ar\":\"\\u0628\\u064a\\u0641\\u0631\\u0644\\u064a \\u0647\\u064a\\u0644\\u0632 \\u2013 \\u0645\\u062c\\u0645\\u0639 \\u0628\\u0648\\u0644\\u062c\\u0648\\u0646 \\u0644\\u0644\\u0623\\u0639\\u0645\\u0627\\u0644\\u060c \\u0627\\u0644\\u0634\\u064a\\u062e \\u0632\\u0627\\u064a\\u062f\\u060c \\u0645\\u0635\\u0631\",\"phone_kw\":\"+965 5505 3010\",\"phone_eg\":\"+20 100 559 8277\",\"email\":\"info@eslamabdulghanidesigns.com\"}",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      }
+    ],
+    "pages": [
+      {
+        "id": 1,
+        "slug": "home",
+        "title_en": "Home",
+        "title_ar": "الرئيسية",
+        "meta_title": "Home – Eslam Abdulghani Designs | Design & Built",
+        "meta_description": "Eslam Abdulghani Designs is a full-service design and construction company specializing in administrative, commercial, residential, and exterior design in Kuwait and Egypt.",
+        "og_image": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 2,
+        "slug": "about",
+        "title_en": "About Us",
+        "title_ar": "من نحن",
+        "meta_title": "About Us – Eslam Abdulghani Designs | Design & Built",
+        "meta_description": "Founded in 1983, Eslam Abdulghani Designs has grown from a carpentry business into a full-service design and construction company operating in Kuwait and Egypt.",
+        "og_image": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 3,
+        "slug": "services",
+        "title_en": "Our Services",
+        "title_ar": "خدماتنا",
+        "meta_title": "Services – Eslam Abdulghani Designs | Design & Built",
+        "meta_description": "Explore Eslam Abdulghani Designs's comprehensive design services: Administrative, Commercial, Residential, and Exterior design solutions.",
+        "og_image": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 4,
+        "slug": "projects",
+        "title_en": "Projects",
+        "title_ar": "مشاريعنا",
+        "meta_title": "Projects – Eslam Abdulghani Designs | Design & Built",
+        "meta_description": "Browse Eslam Abdulghani Designs's portfolio of completed projects including salons, hospitals, farms, and residential developments in Kuwait and Egypt.",
+        "og_image": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 5,
+        "slug": "contact",
+        "title_en": "Contact Us",
+        "title_ar": "اتصل بنا",
+        "meta_title": "Contact Us – Eslam Abdulghani Designs | Design & Built",
+        "meta_description": "Get in touch with Eslam Abdulghani Designs for a free consultation. We have offices in Kuwait City and El Sheikh Zayed, Egypt.",
+        "og_image": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      }
+    ],
+    "admins": [
+      {
+        "id": 1,
+        "name": "Eslam Abdulghani Designs Admin",
+        "email": "admin@eslamabdulghanidesigns.com",
+        "password": "$2y$12$EpHP/PcndE8aIhw6X2MsAO3rWSmgp6NrKMvZYU9xw9MDMrvwRBzJ2",
+        "remember_token": null,
+        "email_verified_at": null,
+        "created_at": "2026-07-05 16:22:21",
+        "updated_at": "2026-08-08 08:17:03"
+      }
+    ],
+    "services": [
+      {
+        "id": 1,
+        "title_en": "Administrative",
+        "title_ar": "إداري",
+        "description_en": "Elevating Administrative Spaces with Innovative Design Solutions. We specialize in creating efficient, sustainable, and aesthetically pleasing environments tailored to administrative buildings’ unique needs. The significance of effective administrative design lies in its ability to signify organizational advancement and bolster client trust.",
+        "description_ar": "الارتقاء بالمساحات الإدارية من خلال حلول التصميم المبتكرة. نحن متخصصون في إنشاء بيئات فعالة ومستدامة وجميلة ومصممة خصيصًا لتلبية الاحتياجات الفريدة للمباني الإدارية. تكمن أهمية التصميم الإداري الفعال في قدرته على الإشارة إلى التقدم التنظيمي وتعزيز ثقة العملاء.",
+        "icon": "https://indesign-co.com/wp-content/uploads/elementor/thumbs/001-01-qoz8m7bq30sumoc0m0686c97vqcnhwhli2zhfg9kw4.png",
+        "image": "https://indesign-co.com/wp-content/uploads/2024/06/SLS02666-scaled.jpg",
+        "order": 1,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/3-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/4-scaled.jpg\"]"
+      },
+      {
+        "id": 2,
+        "title_en": "Commercial Design",
+        "title_ar": "التصميم التجاري",
+        "description_en": "Commercial design is essential to the success of any company.",
+        "description_ar": "التصميم التجاري أمر أساسي لنجاح أي شركة.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2859/2859816.png",
+        "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200",
+        "order": 2,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 3,
+        "title_en": "Residential Design",
+        "title_ar": "التصميم السكني",
+        "description_en": "Beautiful, functional residential spaces that reflect your style.",
+        "description_ar": "مساحات سكنية جميلة وعملية تعكس أسلوبك.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2544/2544087.png",
+        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        "order": 3,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 4,
+        "title_en": "Exterior Design",
+        "title_ar": "التصميم الخارجي",
+        "description_en": "Exterior design is crucial for making a strong first impression.",
+        "description_ar": "التصميم الخارجي أمر بالغ الأهمية لترك انطباع أول قوي.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/3259/3259166.png",
+        "image": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=1200",
+        "order": 4,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 5,
+        "title_en": "Hospitality Design",
+        "title_ar": "تصميم الضيافة",
+        "description_en": "Creating memorable experiences for guests through luxury and functionality.",
+        "description_ar": "خلق تجارب لا تُنسى للضيوف من خلال الفخامة والوظيفية.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2313/2313962.png",
+        "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
+        "order": 5,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 6,
+        "title_en": "Landscape Design",
+        "title_ar": "تصميم المناظر الطبيعية",
+        "description_en": "Outdoor spaces that harmonize with nature and architecture.",
+        "description_ar": "مساحات خارجية تتناغم مع الطبيعة والعمارة.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2544/2544087.png",
+        "image": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=1200",
+        "order": 6,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 7,
+        "title_en": "Retail Design",
+        "title_ar": "تصميم التجزئة",
+        "description_en": "Retail environments that showcase products and foster brand loyalty.",
+        "description_ar": "بيئات تجزئة تعرض المنتجات وتعزز الولاء للعلامة التجارية.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2859/2859816.png",
+        "image": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=1200",
+        "order": 7,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      },
+      {
+        "id": 8,
+        "title_en": "Industrial Design",
+        "title_ar": "التصميم الصناعي",
+        "description_en": "Functional industrial spaces that optimize workflow and safety.",
+        "description_ar": "مساحات صناعية وظيفية تعمل على تحسين سير العمل والسلامة.",
+        "icon": "https://cdn-icons-png.flaticon.com/512/2622/2622814.png",
+        "image": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200",
+        "order": 8,
+        "is_active": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03",
+        "gallery": null
+      }
+    ],
+    "projects": [
+      {
+        "id": 1,
+        "title_en": "La Vida Salon",
+        "title_ar": "صالون لاڤيدا",
+        "category": "commercial",
+        "description_en": "A luxury salon featuring a modern interior with premium finishes, elegant mirror walls, and sophisticated lighting — where style meets comfort.",
+        "description_ar": "صالون فاخر يتميز بتصميم داخلي عصري مع لمسات نهائية راقية ومرايا أنيقة وإضاءة متطورة — حيث تلتقي الأناقة بالراحة.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/06/IMG_1064-scaled.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431521273_249354248260879_9084258774243773194_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431069338_249354318260872_9127296206807023491_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431064703_249353734927597_2057987504516509134_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/SLS02143-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02666-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02698-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02492-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02274-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02271-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02161-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02157-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02155-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02151-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02128-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02122-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02118-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02109-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02106-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/06\\/SLS02096-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05362-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05331-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05328-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05307-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05294-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05286-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05239-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05184-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05178-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05156-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05155-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05135-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05130-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05124-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05117-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05097-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05095-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05094-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05083-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05076-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05050-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05049-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05040-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05033-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05029-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05025-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05021-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC05002-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04991-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04990-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04980-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04977-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04974-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04961-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DSC04930-scaled.jpg\"]",
+        "is_featured": 1,
+        "is_active": 1,
+        "order": 1,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 2,
+        "title_en": "Al Abdali Farm",
+        "title_ar": "مزرعة أل عبدلي",
+        "category": "exterior",
+        "description_en": "A sprawling farm estate transformed with contemporary architectural design and curated exterior landscaping, harmonising nature with modern living.",
+        "description_ar": "مزرعة واسعة تحوّلت بتصميم معماري عصري وتنسيق حدائق خارجي يجمع بين الطبيعة والحياة الحديثة.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/07/DJI_0692-1-scaled.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4687-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4690-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4700-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4701-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4702-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4703-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4704-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4709-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4710-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4714-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4715-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4716-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4717-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4718-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0681-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0682-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0683-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/DJI_0684-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4761-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4790-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4807-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4772-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4774-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4776-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4777-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4778-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4789-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4793-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4800-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4803-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1X5A4806-scaled.jpg\"]",
+        "is_featured": 1,
+        "is_active": 1,
+        "order": 2,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 3,
+        "title_en": "Al Seef Hospital",
+        "title_ar": "مستشفى السيف",
+        "category": "administrative",
+        "description_en": "A state-of-the-art hospital interior prioritising patient wellbeing, with welcoming reception areas and calming waiting spaces designed to reduce anxiety.",
+        "description_ar": "تصميم داخلي متطور لمستشفى يضع راحة المريض أولاً، مع مناطق استقبال ترحيبية وقاعات انتظار مريحة.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/07/IMGL9030-scaled.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/431063630_249353781594259_5689123842104526545_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-4-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-5-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/reception-final-8-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/2-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/3-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/4-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/6-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/7-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/8-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/9-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/10-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f6-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f7-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/f8-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/121-scaled.jpg\"]",
+        "is_featured": 1,
+        "is_active": 1,
+        "order": 3,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 4,
+        "title_en": "Alhadi Hospital",
+        "title_ar": "مستشفى هادي",
+        "category": "administrative",
+        "description_en": "A comprehensive healthcare interior fit-out combining clinical precision with a warm, humanised environment to enhance the experience of patients and staff.",
+        "description_ar": "تجهيز داخلي شامل لمنشأة صحية يجمع بين الدقة السريرية وبيئة دافئة إنسانية تُحسّن تجربة المرضى والطاقم الطبي.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/07/IMG_0021-1-scaled.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430277216_1352287925461347_1482441092481871420_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430187672_1163210438027805_4478764908786592930_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/430179274_769656151421679_8402067980927927391_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/429570926_316724571386081_5150029571726570143_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/410395563_1051760962692460_1337822609701656133_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/410255682_738169971494585_4293157350355911939_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409995927_1372748510299834_5922128585773870750_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409770019_797370845486775_2885072288991995327_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409514150_346654444648260_7924834200601429968_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409457672_1121905602508203_6425203796692482657_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409219001_869605344810146_6016965710121084028_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409186189_3592189707735519_623123727450809135_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409182981_261238606645794_8017927131335275523_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/409079728_841744651291193_6891918843774932265_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/1.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/3.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/5-1.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/7.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/9.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f5-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/07\\/f8-scaled.jpg\"]",
+        "is_featured": 0,
+        "is_active": 1,
+        "order": 4,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 5,
+        "title_en": "International Hospital",
+        "title_ar": "المستشفى الدولي",
+        "category": "administrative",
+        "description_en": "An internationally-inspired hospital design upholding the highest global standards of medical facility aesthetics, comfort, and functional workflow.",
+        "description_ar": "تصميم مستشفى دولي يرتقي بأعلى المعايير العالمية لجماليات المنشآت الطبية، الراحة، والكفاءة التشغيلية.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/07/1X5A0045-scaled.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392930496_1291836064824358_4658950987903062964_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392928961_839797971151476_1861535071263112828_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392831420_1079854069712318_7985987945997610485_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/392799060_1379846469408289_7819370333900157346_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391472076_285503621110982_2906889662971802851_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391437502_863705191645618_9068991527210653072_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391427395_1004895070621491_49609551471208718_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/391408060_2023948158004469_9027478810253374342_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/10\\/386898039_3357245487900018_4018734360447413512_n.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo1-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/photo2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/1-2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/2-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/2-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/4-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/5-1-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/6-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/7-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/8-scaled.jpg\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2024\\/04\\/9-scaled.jpg\"]",
+        "is_featured": 0,
+        "is_active": 1,
+        "order": 5,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      },
+      {
+        "id": 6,
+        "title_en": "Mountain View",
+        "title_ar": "ماونتن فيو",
+        "category": "residential",
+        "description_en": "A premium residential project capturing panoramic views through thoughtful space planning, refined materials, and seamless indoor-outdoor living.",
+        "description_ar": "مشروع سكني راقٍ يجسّد الإطلالات البانورامية من خلال تخطيط فضائي مدروس ومواد راقية وتكامل سلس بين الداخل والخارج.",
+        "cover_image": "https://indesign-co.com/wp-content/uploads/2024/06/2-1.jpg",
+        "gallery": "[\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/14.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/13.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/12.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/10.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/9.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/8.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/7.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/6.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/5.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/4.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/3.png\",\"https:\\/\\/indesign-co.com\\/wp-content\\/uploads\\/2023\\/10\\/2.png\"]",
+        "is_featured": 0,
+        "is_active": 1,
+        "order": 6,
+        "created_at": "2026-08-08 08:17:03",
+        "updated_at": "2026-08-08 08:17:03"
+      }
+    ]
+  },
+  "seeders": {
+    "AdminSeeder.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "DatabaseSeeder.php": {
+      "matches_count": 1,
+      "matches": [
+        "indesign"
+      ]
+    },
+    "PageSeeder.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "PagesSeeder.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "ProjectSeeder.php": {
+      "matches_count": 1,
+      "matches": [
+        "indesign"
+      ]
+    },
+    "SectionSeeder.php": {
+      "matches_count": 4,
+      "matches": [
+        "indesign",
+        "indesign",
+        "indesign",
+        "indesign"
+      ]
+    },
+    "ServiceSeeder.php": {
+      "matches_count": 6,
+      "matches": [
+        "indesign",
+        "indesign",
+        "indesign",
+        "indesign",
+        "indesign",
+        "indesign"
+      ]
+    },
+    "SettingSeeder.php": {
+      "matches_count": 3,
+      "matches": [
+        "INdesign",
+        "Indesign",
+        "indesign"
+      ]
+    }
+  },
+  "controllers": {
+    "Controller.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\AuthController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\CodeInjectionController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\ContactController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\DashboardController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\MediaController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\PageController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\ProjectController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\SectionController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\ServiceController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Admin\\SettingController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\CodeInjectionController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\ContactController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\PageController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\ProjectController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\ServiceController.php": {
+      "matches_count": 0,
+      "matches": []
+    },
+    "Api\\SettingController.php": {
+      "matches_count": 0,
+      "matches": []
+    }
+  }
+}

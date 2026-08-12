@@ -11,7 +11,7 @@ class ProjectSeeder extends Seeder
     {
         Project::truncate();
 
-        $base = 'https://indesign-co.com/wp-content/uploads/';
+        $base = 'https://eslamabdulghanidesigns.com/wp-content/uploads/';
 
         $projects = [
             // ─────────────────────────────────────────────

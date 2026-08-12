@@ -1,0 +1,41 @@
+Photography sourced from Unsplash (https://unsplash.com/license).
+Replace these with the studio's own project photography when available —
+real work always outperforms stock for a design practice.
+
+hero-1-villa         https://images.unsplash.com/photo-1777896193454-8b4863264f0b
+hero-2-studio        https://images.unsplash.com/photo-1784012980517-005c26585344
+hero-3-suite         https://images.unsplash.com/photo-1758448511255-ac2a24a135d7
+about-studio         https://images.unsplash.com/photo-1603901622056-0a5bee231395
+svc-administrative   https://images.unsplash.com/photo-1765371513492-264506c3ad09
+svc-commercial       https://images.unsplash.com/photo-1603673319826-2f109cbf42aa
+svc-residential      https://images.unsplash.com/photo-1765371512336-99c2b1c6975f
+svc-exterior         https://images.unsplash.com/photo-1773229323015-2dcf5be73dc6
+svc-hospitality      https://images.unsplash.com/photo-1758448755969-8791367cf5c5
+svc-landscape        https://images.unsplash.com/photo-1734079692147-c6fc9438a2d0
+svc-retail           https://images.unsplash.com/photo-1718985342149-7178154e0aee
+svc-industrial       https://images.unsplash.com/photo-1783990349147-906f62b882c1
+
+commercial-1         https://images.unsplash.com/photo-1667746213225-431db3ed8d13
+administrative-2     https://images.unsplash.com/photo-1631193816258-28b44b21e78b
+administrative-3     https://images.unsplash.com/photo-1765371515218-0a4c992ba8e2
+residential-2        https://images.unsplash.com/photo-1772112334845-86016056137b
+exterior-2           https://images.unsplash.com/photo-1759211661729-14b48853bb0a
+retail-1             https://images.unsplash.com/photo-1630905119003-329447458f85
+industrial-1         https://images.unsplash.com/photo-1776090188651-a1ec2cf2bdb0
+about-story          https://images.unsplash.com/photo-1497219055242-93359eeed651
+about-mission        https://images.unsplash.com/photo-1774423864869-702b21c2490a
+banner-services      https://images.unsplash.com/photo-1643267514395-b36b3f7e8281
+banner-contact       https://images.unsplash.com/photo-1596022326953-84f20bfebb77
+exterior-1           https://images.unsplash.com/photo-1775333953541-ec73ee25502f
+landscape-1          https://images.unsplash.com/photo-1758194403945-4263592f8b98
+commercial-2         https://images.unsplash.com/photo-1572611932849-7f0f116fb2f1
+residential-1        https://images.unsplash.com/photo-1757924461488-ef9ad0670978
+administrative-1     https://images.unsplash.com/photo-1765371512971-9d4da531d004
+hospitality-1        https://images.unsplash.com/photo-1777180249046-abf7d640e0d9
+about-expertise      https://images.unsplash.com/photo-1741524915875-b382e15c55de
+banner-projects      https://images.unsplash.com/photo-1737622088506-594d4a35a760
+hospitality-2        https://images.unsplash.com/photo-1758448755981-954afbf60ff7
+banner-about         https://images.unsplash.com/photo-1634134509057-69e69bc12154
+detail-story         https://images.unsplash.com/photo-1761544775537-c024e7707477
+detail-mission       https://images.unsplash.com/photo-1693594560385-0b10636f5b39
+detail-expertise     https://images.unsplash.com/photo-1721244653652-268631ec049a

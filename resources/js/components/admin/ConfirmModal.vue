@@ -1,21 +1,21 @@
 <template>
   <Transition name="fade">
-    <div v-if="isOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-sm">
-      <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-[2.5rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+    <div v-if="isOpen" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-[#111111]/40 backdrop-blur-sm">
+      <div class="w-full max-w-md bg-[#FFFFFF] border border-[#E0DACE] rounded-[2.5rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
         <div class="p-10 space-y-8 text-center">
           <div class="w-20 h-20 mx-auto bg-red-500/10 text-red-500 rounded-3xl flex items-center justify-center">
              <AlertTriangle class="w-10 h-10" />
           </div>
           
           <div class="space-y-4">
-            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">{{ title }}</h3>
-            <p class="text-sm text-slate-400 leading-relaxed">{{ message }}</p>
+            <h3 class="text-2xl font-black text-[#111111] uppercase tracking-tighter">{{ title }}</h3>
+            <p class="text-sm text-[#555555] leading-relaxed">{{ message }}</p>
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <button 
               @click="handleCancel"
-              class="px-8 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-800 rounded-2xl hover:bg-slate-700 transition-colors"
+              class="px-8 py-4 text-[10px] font-bold text-[#555555] uppercase tracking-widest bg-[#F0ECE1] border border-[#E0DACE] rounded-2xl hover:bg-[#E0DACE] hover:text-[#111111] transition-colors"
             >
               Cancel
             </button>

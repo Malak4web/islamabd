@@ -26,13 +26,21 @@ class AppServiceProvider extends ServiceProvider
             } catch (\Exception $e) {
                 // Database not migrated or missing
             }
-            if (!$favicon) {
-                $favicon = 'https://indesign-co.com/wp-content/uploads/2023/07/cropped-Fav-32x32.png';
+            if (!$favicon || str_contains($favicon, 'indesign')) {
+                $favicon = '/images/defaults/about_fallback.jpg';
             }
             if ($favicon && !str_starts_with($favicon, 'http')) {
-                $favicon = asset('storage/' . ltrim($favicon, '/'));
+                $path = ltrim($favicon, '/');
+                if (str_starts_with($path, 'images/')) {
+                    $favicon = asset($path);
+                } elseif (str_starts_with($path, 'storage/')) {
+                    $favicon = asset($path);
+                } else {
+                    $favicon = asset('storage/' . $path);
+                }
             }
             $view->with('favicon', $favicon);
         });
     }
 }
+

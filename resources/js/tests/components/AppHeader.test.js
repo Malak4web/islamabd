@@ -31,7 +31,7 @@ describe('AppHeader.vue', () => {
             }
         })
         
-        expect(wrapper.text()).toContain('INDESIGN')
+        expect(wrapper.text()).toContain('ESLAM ABDULGHANI DESIGNS')
         // Check for desktop nav links (Home, About, etc. are translated)
         // Since we use NavLinks component, let's just check if it exists
         expect(wrapper.findComponent({ name: 'NavLinks' }).exists()).toBe(true)

@@ -16,5 +16,14 @@ export default defineConfig({
       '/storage': 'http://127.0.0.1:8000',
     }
   },
-  test: { environment:'jsdom', globals:true, setupFiles:'resources/js/tests/setup.js' },
+  test: { 
+    environment:'jsdom', 
+    globals:true, 
+    setupFiles:'resources/js/tests/setup.js',
+    poolOptions: {
+      forks: {
+        singleFork: true
+      }
+    }
+  },
 })

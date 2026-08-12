@@ -1,63 +1,81 @@
 <template>
-    <router-link 
-        :to="{ name: 'project.detail', params: { id: project.id }}"
-        class="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-[#111] border border-[#222] hover:border-[#d4af37]/50 transition-all duration-700"
-    >
-        <!-- Image -->
-        <img 
-            v-if="project.cover_image" 
-            :src="project.cover_image" 
-            :alt="project.title"
-            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-        >
-        <div v-else class="w-full h-full flex items-center justify-center text-[#222]">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-        </div>
+  <RouterLink
+    :to="{ name: 'project.detail', params: { id: project.id } }"
+    class="press group block focus-visible:outline-offset-4"
+  >
+    <!-- The photograph rides forward off the caption on hover and drifts against
+         the scroll inside its own frame, so the arch behaves like an opening
+         with a room behind it rather than a picture lying on the page. On a
+         phone the tilt never engages and the drift is the whole effect — which
+         is the right split, since a finger is already covering the card it
+         would have been rotating. -->
+    <figure v-depth v-tilt class="set-plate">
+      <div
+        v-reveal:wipe
+        class="arch tilt-lift relative overflow-hidden bg-canvas-inset [--arch-rise:22%]"
+      >
+        <AppImage
+          :src="project.cover_image"
+          :fallback-src="cover.src"
+          :fallback-srcset="cover.srcset"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          :alt="project.title"
+          :placeholder-size="56"
+          img-class="plate-img aspect-[4/5] w-full object-cover"
+        />
+        <span class="sheen" aria-hidden="true"></span>
+      </div>
+    </figure>
 
-        <!-- Badges -->
-        <div class="absolute top-6 left-6 flex gap-2 z-20">
-            <span class="px-3 py-1 bg-[#d4af37] text-[#0a0a0a] text-[10px] font-black uppercase tracking-widest rounded-full">
-                {{ project.category }}
-            </span>
-            <span v-if="project.is_featured" class="px-3 py-1 bg-white text-[#0a0a0a] text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                {{ $t('projects.featured') }}
-            </span>
-        </div>
+    <!-- The caption sits below the photograph rather than floating on it.
+         Text over an arbitrary image can never guarantee contrast, and the old
+         overlay also hid the "view project" affordance until hover — which on
+         a touch device means it never appeared at all. -->
+    <div class="flex items-baseline justify-between gap-4 border-t border-line pt-4">
+      <div class="min-w-0">
+        <h3 class="truncate text-subhead font-medium text-ink transition-colors duration-base group-hover:text-gold-deep">
+          {{ project.title }}
+        </h3>
+        <p class="mt-1 flex items-center gap-2 text-label text-ink-subtle">
+          <!-- Featured used to be a chip pinned to the image's top corner. The
+               arch cuts those corners away, and a chip on a photograph could
+               never guarantee its own contrast anyway; it is a marker in the
+               caption now. -->
+          <span
+            v-if="project.is_featured"
+            class="block h-1.5 w-1.5 flex-none bg-gold"
+            :title="$t('projects.featured')"
+            aria-hidden="true"
+          ></span>
+          <span v-if="project.is_featured" class="sr-only">{{ $t('projects.featured') }}</span>
+          <span v-if="project.category" class="truncate capitalize">{{ project.category }}</span>
+        </p>
+      </div>
 
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-
-        <!-- Content -->
-        <div class="absolute bottom-0 left-0 w-full p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <h3 class="text-[1.75rem] leading-[2] font-black text-white mb-2 tracking-tighter">
-                {{ project.title }}
-            </h3>
-            <div class="flex items-center gap-2 text-[#d4af37] text-sm font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                {{ $t('projects.view_all') }}
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="isAr ? 'M7 16l-4-4m0 0l4-4m-4 4h18' : 'M17 8l4 4m0 0l-4 4m4-4H3'" />
-                </svg>
-            </div>
-        </div>
-    </router-link>
+      <EaiIcon
+        name="arrow-right"
+        :size="18"
+        flip
+        class="mt-1 flex-none text-ink-subtle transition-all duration-base ease-out-quart group-hover:translate-x-1 group-hover:text-gold-deep rtl:group-hover:-translate-x-1"
+      />
+    </div>
+  </RouterLink>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { useLocaleStore } from '@/stores/localeStore'
+import EaiIcon from '@/components/icons/EaiIcon.vue'
+import AppImage from './AppImage.vue'
+import { projectImage } from '@/lib/media'
 
-const localeStore = useLocaleStore()
-const isAr = computed(() => localeStore.isArabic)
-
-defineProps({
-    project: {
-        type: Object,
-        required: true
-    }
+const props = defineProps({
+  project: { type: Object, required: true },
 })
+
+/**
+ * Category-matched local cover, used when the record has no image or its remote
+ * one fails. Every seeded cover currently points at a WordPress domain that no
+ * longer resolves, so in practice this is what the grid shows today.
+ */
+const cover = computed(() => projectImage(props.project))
 </script>

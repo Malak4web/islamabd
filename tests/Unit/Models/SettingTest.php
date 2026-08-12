@@ -19,7 +19,7 @@ class SettingTest extends TestCase
 
     public function test_setting_key_must_be_unique()
     {
-        Setting::create(['key' => 'site_name', 'value' => 'InDesign']);
+        Setting::create(['key' => 'site_name', 'value' => 'Eslam Abdulghani Designs']);
         
         $this->expectException(QueryException::class);
         Setting::create(['key' => 'site_name', 'value' => 'Duplicate']);

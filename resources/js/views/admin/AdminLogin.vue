@@ -1,44 +1,47 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center bg-[#0a0a0a] font-['Outfit']">
-        <div class="w-full max-w-md p-8 bg-[#141414] border border-[#2a2a2a] rounded-2xl shadow-2xl">
+    <div class="min-h-screen flex items-center justify-center bg-[#F7F5F0] font-['Outfit']">
+        <div class="w-full max-w-md p-8 bg-[#FFFFFF] border border-[#E0DACE] rounded-2xl shadow-xl">
             <div class="text-center mb-10">
-                <div class="inline-flex p-3 rounded-xl bg-gradient-to-tr from-[#d4af37] to-[#f3e5ab] mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#0a0a0a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div v-if="settingStore.settings.logo" class="flex justify-center mb-4">
+                    <img :src="settingStore.settings.logo" alt="Eslam Abdulghani Designs Logo" class="h-16 w-auto object-contain" />
+                </div>
+                <div v-else class="inline-flex p-3 rounded-xl bg-[#C5A880] mb-4 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                 </div>
-                <h1 class="text-3xl font-bold text-white mb-2">InDesign Dashboard</h1>
-                <p class="text-[#888]">Secure Administrative Access</p>
+                <h1 class="text-3xl font-bold text-[#111111] mb-2 uppercase tracking-tight">Eslam Abdulghani Designs</h1>
+                <p class="text-[#555555] text-xs font-bold uppercase tracking-widest">Secure Administrative Access</p>
             </div>
 
             <form @submit.prevent="handleLogin" class="space-y-6">
                 <div>
-                    <label for="admin-email" class="block text-sm font-medium text-[#ccc] mb-2">Email Address</label>
+                    <label for="admin-email" class="block text-xs font-bold uppercase tracking-widest text-[#222222] mb-2">Email Address</label>
                     <input 
                         id="admin-email"
                         v-model="form.email"
                         type="email" 
                         required
-                        class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all"
-                        placeholder="admin@indesign-co.com"
+                        class="w-full px-4 py-3 bg-[#F7F5F0] border border-[#E0DACE] rounded-xl text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:border-transparent transition-all"
+                        placeholder="admin@eslamabdulghanidesigns.com"
                     >
                 </div>
 
                 <div>
-                    <label for="admin-password" class="block text-sm font-medium text-[#ccc] mb-2">Password</label>
+                    <label for="admin-password" class="block text-xs font-bold uppercase tracking-widest text-[#222222] mb-2">Password</label>
                     <div class="relative">
                         <input 
                             id="admin-password"
                             v-model="form.password"
                             :type="showPassword ? 'text' : 'password'" 
                             required
-                            class="w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:border-transparent transition-all"
+                            class="w-full px-4 py-3 bg-[#F7F5F0] border border-[#E0DACE] rounded-xl text-[#111111] focus:outline-none focus:ring-2 focus:ring-[#C5A880] focus:border-transparent transition-all"
                             placeholder="••••••••"
                         >
                         <button 
                             type="button"
                             @click="showPassword = !showPassword"
-                            class="absolute right-3 top-1/2 -translate-y-1/2 text-[#555] hover:text-[#888] transition-colors"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#111111] transition-colors"
                         >
                             <svg v-if="showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -52,7 +55,7 @@
                     </div>
                 </div>
 
-                <div v-if="auth.error" class="p-3 rounded-lg bg-red-900/20 border border-red-900/50 text-red-400 text-sm" data-error>
+                <div v-if="auth.error" class="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-bold" data-error>
                     {{ auth.error }}
                 </div>
 
@@ -60,7 +63,7 @@
                     id="admin-login-submit"
                     type="submit"
                     :disabled="auth.isLoading"
-                    class="w-full py-4 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-[#0a0a0a] font-bold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                    class="w-full py-4 bg-[#C5A880] text-white font-bold rounded-xl hover:bg-[#111111] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-md uppercase tracking-widest text-xs"
                 >
                     <svg v-if="auth.isLoading" class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -74,11 +77,19 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
+import { useSettingStore } from '@/stores/settingStore'
 
 const auth = useAuthStore()
+const settingStore = useSettingStore()
 const showPassword = ref(false)
+
+onMounted(() => {
+    if (!settingStore.settings.logo) {
+        settingStore.fetchSettings()
+    }
+})
 
 const form = reactive({
     email: '',

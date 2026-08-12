@@ -1,6 +1,11 @@
 <template>
-  <div v-if="pageStore.isLoading" class="flex items-center justify-center min-h-screen bg-black">
-    <div class="w-16 h-16 border-4 border-[#d4af37]/20 border-t-[#d4af37] rounded-full animate-spin"></div>
+  <div v-if="pageStore.isLoading" class="flex min-h-[62svh] items-center justify-center bg-canvas">
+    <span class="sr-only">{{ $t('common.loading') }}</span>
+    <div
+      class="h-10 w-10 animate-spin rounded-pill border-2 border-line border-t-gold-deep"
+      role="status"
+      aria-live="polite"
+    ></div>
   </div>
 
   <main v-else class="relative">
@@ -20,12 +25,18 @@
         
         <!-- CTA Banner -->
         <CtaBanner v-if="section.key === 'cta_consultation'" :content="section.content" />
+
+        <!-- The walk. Not a CMS section — it is the site's own argument, made in
+             the studio's photography, and it lands directly after the studio has
+             introduced itself so it reads as proof rather than as a showreel. -->
+        <VillaWalk v-if="section.key === walkAnchor" />
     </div>
 
     <!-- Fallback if no sections are in DB for home -->
     <template v-if="!pageStore.currentPage?.sections?.length">
         <HeroSlider />
         <AboutSnippet />
+        <VillaWalk />
         <ServicesPreview />
         <ProjectsPreview />
         <CtaBanner />
@@ -36,6 +47,7 @@
 <script setup>
 import { onMounted, computed } from 'vue'
 import { usePageStore } from '@/stores/pageStore'
+import { useLocaleStore } from '@/stores/localeStore'
 import { useSeo } from '@/composables/useSeo'
 import { storeToRefs } from 'pinia'
 
@@ -44,9 +56,23 @@ import AboutSnippet from '@/components/public/AboutSnippet.vue'
 import ServicesPreview from '@/components/public/ServicesPreview.vue'
 import ProjectsPreview from '@/components/public/ProjectsPreview.vue'
 import CtaBanner from '@/components/public/CtaBanner.vue'
+import VillaWalk from '@/components/public/VillaWalk.vue'
 
 const pageStore = usePageStore()
+const localeStore = useLocaleStore()
 const { currentPage } = storeToRefs(pageStore)
+
+/**
+ * Which CMS section the walk follows. It belongs after the studio's own
+ * introduction; a page whose sections were reordered so that block no longer
+ * exists gets it straight after the hero instead, rather than losing it.
+ */
+const walkAnchor = computed(() => {
+    const keys = (pageStore.currentPage?.sections ?? []).map((s) => s.key)
+    if (keys.includes('about_intro')) return 'about_intro'
+    if (keys.includes('hero')) return 'hero'
+    return null
+})
 
 // SEO implementation
 useSeo(currentPage)
@@ -55,30 +81,32 @@ onMounted(async () => {
     await pageStore.fetchPage('home')
 })
 
+/**
+ * Slides authored in the CMS. Returns null when the page has no hero content,
+ * which tells HeroSlider to fall back to its own locally-hosted set — the old
+ * behaviour was to hand it three hardcoded Unsplash URLs, so a fresh install
+ * hotlinked three 2000px photos on the critical path.
+ */
 const heroSlides = computed(() => {
     const section = pageStore.currentPage?.sections?.find(s => s.key === 'hero')
-    if (!section) return [
-        { 
-            image: '/images/defaults/hero_fallback.jpg',
-            title_top: 'Innovative',
-            title_bottom: 'Architecture',
-            subtitle: 'Crafting Excellence',
-            description: 'We transform visions into timeless structures, blending luxury with functional brilliance.'
-        }
-    ]
+    if (!section) return null
 
-    const c = section.content
-    const isAr = localStorage.getItem('locale') === 'ar'
-    
-    return [
-        {
-            image: c.image || '/images/defaults/hero_fallback.jpg',
-            title_top: isAr ? (c.title_ar_top || c.title_ar) : (c.title_en_top || c.title_en),
-            title_bottom: isAr ? (c.title_ar_bottom || '') : (c.title_en_bottom || ''),
-            subtitle: isAr ? c.subtitle_ar : c.subtitle_en,
-            description: isAr ? c.description_ar : c.description_en,
-            cta_primary: isAr ? c.cta_ar : c.cta_en
-        }
-    ]
+    const c = section.content || {}
+    const isAr = localeStore.isArabic
+
+    const pick = (slide) => ({
+        image: slide.image || null,
+        title_top: isAr ? (slide.title_ar_top || slide.title_ar) : (slide.title_en_top || slide.title_en),
+        title_bottom: isAr ? (slide.title_ar_bottom || '') : (slide.title_en_bottom || ''),
+        subtitle: isAr ? slide.subtitle_ar : slide.subtitle_en,
+        description: isAr ? slide.description_ar : slide.description_en,
+        cta_primary: isAr ? slide.cta_ar : slide.cta_en,
+    })
+
+    if (Array.isArray(c.slides) && c.slides.length > 0) return c.slides.map(pick)
+
+    // A single-slide hero authored on the section itself.
+    const single = pick(c)
+    return single.title_top || single.image ? [single] : null
 })
 </script>

@@ -22,7 +22,7 @@ describe('AppFooter.vue', () => {
         const store = useSettingStore()
         store.settings = {
             phone_main: '+123456789',
-            email_main: 'info@indesign.com',
+            email_main: 'info@eslamabdulghanidesigns.com',
             facebook: 'fb.com'
         }
         
@@ -36,6 +36,6 @@ describe('AppFooter.vue', () => {
         })
         
         expect(wrapper.text()).toContain('+123456789')
-        expect(wrapper.text()).toContain('info@indesign.com')
+        expect(wrapper.text()).toContain('info@eslamabdulghanidesigns.com')
     })
 })

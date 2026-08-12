@@ -1,65 +1,148 @@
 <template>
-  <section class="relative py-48 overflow-hidden bg-black flex items-center justify-center">
-    <!-- Background with Ken Burns animation -->
-    <div 
-      class="absolute inset-0 bg-center bg-cover scale-110 animate-ken-burns opacity-60" 
-      :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2000)' }"
-    ></div>
-    <div class="absolute inset-0 bg-black/40"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0a0a0a]"></div>
-    
-    <div class="container px-6 mx-auto relative z-10">
-      <div class="flex flex-col items-center text-center gap-12 mb-32">
-        <div class="space-y-6 max-w-4xl">
-           <span class="text-sm md:text-base font-black tracking-[0.6em] text-[#d4af37] uppercase block animate-fade-in-up">
-                {{ isAr ? (content?.title_ar || $t('services.title')) : (content?.title_en || $t('services.title')) }}
-           </span>
-           <h2 class="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter leading-tight animate-fade-in-up delay-100">
-              {{ isAr ? (content?.subtitle_ar || $t('services.subtitle')) : (content?.subtitle_en || $t('services.subtitle')) }}
-           </h2>
-           <!-- Decorative Line -->
-           <div class="w-24 h-[2px] bg-[#d4af37] mx-auto mt-12 animate-scale-x"></div>
+  <section class="bg-canvas-raised py-20 sm:py-28 lg:py-32">
+    <!-- Section head ------------------------------------------------------
+         The heading was carrying the twelve-word descriptor at display size
+         while the section's actual name — "Our Services" — sat underneath as a
+         paragraph. A sentence is not a heading. The name leads now, the
+         descriptor is the lede, and the eight lines are set out as an index
+         beside them: a reader learns what this practice covers before a single
+         card has loaded. -->
+    <div class="container mx-auto px-6 sm:px-8">
+      <div class="grid gap-10 border-b border-line pb-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-6">
+          <span v-reveal:rule class="block h-px w-14 bg-gold" aria-hidden="true"></span>
+          <h2 v-reveal class="mt-7 text-title font-light text-ink">{{ heading }}</h2>
+          <p v-if="lede" v-reveal="{ delay: 90 }" class="mt-5 max-w-prose text-lede text-ink-muted">
+            {{ lede }}
+          </p>
+
+          <RouterLink
+            v-reveal="{ delay: 150 }"
+            to="/services"
+            class="group mt-9 inline-flex items-center gap-3 text-label font-semibold text-ink transition-colors duration-base hover:text-gold-deep"
+          >
+            {{ $t('services.view_all') }}
+            <EaiIcon
+              name="arrow-right"
+              :size="16"
+              flip
+              class="transition-transform duration-base ease-out-quart group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
+            />
+          </RouterLink>
         </div>
-        
-        <RouterLink to="/services" class="group flex items-center gap-6 text-[11px] font-black tracking-[0.5em] text-[#d4af37] uppercase transition-all duration-500 hover:text-white">
-          {{ $t('services.view_all') }}
-          <span class="w-16 h-[1px] bg-[#d4af37] transition-all duration-500 group-hover:w-24 group-hover:bg-white"></span>
-        </RouterLink>
+
+        <!-- The index. Two columns of drawn marks against their line names,
+             each rule striking through on hover — a contents page, which is
+             what a practice's service list actually is. -->
+        <ul class="grid gap-x-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
+          <li
+            v-for="(line, i) in LINES"
+            :key="line"
+            v-reveal="{ delay: 60 + i * 55 }"
+            class="border-t border-line"
+          >
+            <RouterLink
+              :to="{ path: '/services', hash: `#${line}` }"
+              class="group flex items-center gap-4 py-4 focus-visible:outline-offset-4"
+            >
+              <EaiIcon
+                :name="line"
+                :size="24"
+                draw
+                class="flex-none text-gold-deep transition-colors duration-base group-hover:text-ink"
+              />
+              <span class="min-w-0 flex-1 truncate text-label font-medium text-ink-muted transition-colors duration-base group-hover:text-ink">
+                {{ $t(`services.lines.${line}`) }}
+              </span>
+              <EaiIcon
+                name="arrow-right"
+                :size="14"
+                flip
+                class="flex-none text-line-strong opacity-0 transition-all duration-base ease-out-quart group-hover:translate-x-1 group-hover:text-gold-deep group-hover:opacity-100 rtl:group-hover:-translate-x-1"
+              />
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- The drafting strip. Perpetual, one direction, full bleed — the one
+         place on the page where the practice's marks are simply always moving. -->
+    <MarkTicker class="mt-14 sm:mt-16" />
+
+    <!-- Grid -------------------------------------------------------------- -->
+    <div class="container mx-auto px-6 sm:px-8">
+      <!-- A rail on a phone, a grid from `sm` — see ProjectsPreview. Six cards
+           in a column is six screens; six in a rail is one gesture. -->
+      <div
+        v-if="serviceStore.isLoading"
+        class="rail-sm rail-bleed mt-10 gap-5 pb-2 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-3"
+      >
+        <div v-for="i in 3" :key="i" class="w-[80%] animate-pulse sm:w-auto">
+          <div class="arch aspect-[4/5] w-full bg-canvas-inset [--arch-rise:22%]"></div>
+          <div class="mt-6 h-4 w-2/3 bg-canvas-inset"></div>
+          <div class="mt-3 h-3 w-full bg-canvas-inset"></div>
+        </div>
       </div>
 
-      <div v-if="serviceStore.isLoading" class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-         <div v-for="i in 3" :key="i" class="h-[400px] rounded-3xl bg-white/5 animate-pulse"></div>
-      </div>
-      
-      <div v-else class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-        <ServiceCard 
-          v-for="service in serviceStore.services.slice(0, 6)" 
-          :key="service.id" 
+      <div
+        v-else-if="services.length"
+        class="rail-sm rail-bleed mt-10 gap-5 pb-2 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-3"
+      >
+        <ServiceCard
+          v-for="service in services"
+          :key="service.id"
           :service="service"
+          class="w-[80%] sm:w-auto"
         />
       </div>
+
+      <p v-else class="mt-14 text-ink-subtle">{{ $t('services.none_yet') }}</p>
     </div>
   </section>
 </template>
 
 <script setup>
 import { onMounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useServiceStore } from '@/stores/serviceStore'
 import { useLocaleStore } from '@/stores/localeStore'
 import ServiceCard from './ServiceCard.vue'
+import MarkTicker from './MarkTicker.vue'
+import EaiIcon from '@/components/icons/EaiIcon.vue'
 
 const props = defineProps({
-    content: {
-        type: Object,
-        default: () => ({})
-    }
+  content: { type: Object, default: () => ({}) },
 })
 
+const { t } = useI18n()
 const serviceStore = useServiceStore()
-const store = useLocaleStore()
-const isAr = computed(() => store.isArabic)
+const localeStore = useLocaleStore()
+const isAr = computed(() => localeStore.isArabic)
+
+const pick = (en, ar, key) =>
+  computed(() => (isAr.value ? props.content?.[ar] : props.content?.[en]) || t(key))
+
+// `title` is the section's name ("Our Services") and `subtitle` is the twelve-
+// word descriptor. They were rendered the other way round, which set a sentence
+// at display size and demoted the name to body copy.
+const heading = pick('title_en', 'title_ar', 'services.title')
+const lede = pick('subtitle_en', 'subtitle_ar', 'services.subtitle')
+
+const LINES = [
+  'administrative',
+  'commercial',
+  'residential',
+  'exterior',
+  'hospitality',
+  'landscape',
+  'retail',
+  'industrial',
+]
+
+const services = computed(() => serviceStore.services.slice(0, 6))
 
 onMounted(() => {
-    serviceStore.fetchServices()
+  if (!serviceStore.services.length) serviceStore.fetchServices()
 })
 </script>

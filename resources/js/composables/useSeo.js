@@ -8,7 +8,7 @@ export function useSeo(page) {
         if (!page.value) return
 
         // Set Title
-        const title = page.value.meta_title || page.value.title || 'InDesign'
+        const title = page.value.meta_title || page.value.title || 'Eslam Abdulghani Designs'
         document.title = title
 
         // Set Meta Tags

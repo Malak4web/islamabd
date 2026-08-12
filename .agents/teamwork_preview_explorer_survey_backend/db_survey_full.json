@@ -1,0 +1,442 @@
+[
+    {
+        "table": "admins",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "name",
+        "matched_target": "InDesign",
+        "full_value": "InDesign Admin"
+    },
+    {
+        "table": "admins",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "email",
+        "matched_target": "InDesign",
+        "full_value": "admin@indesign-co.com"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "meta_title",
+        "matched_target": "InDesign",
+        "full_value": "Home – InDesign | Design & Built"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "meta_description",
+        "matched_target": "InDesign",
+        "full_value": "InDesign is a full-service design and construction company specializing in administrative, commercial, residential, and exterior design in Kuwait and Egypt."
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "meta_title",
+        "matched_target": "InDesign",
+        "full_value": "About Us – InDesign | Design & Built"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "meta_description",
+        "matched_target": "InDesign",
+        "full_value": "Founded in 1983, InDesign has grown from a carpentry business into a full-service design and construction company operating in Kuwait and Egypt."
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 3,
+        "column": "meta_title",
+        "matched_target": "InDesign",
+        "full_value": "Services – InDesign | Design & Built"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 3,
+        "column": "meta_description",
+        "matched_target": "InDesign",
+        "full_value": "Explore InDesign's comprehensive design services: Administrative, Commercial, Residential, and Exterior design solutions."
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 4,
+        "column": "meta_title",
+        "matched_target": "InDesign",
+        "full_value": "Projects – InDesign | Design & Built"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 4,
+        "column": "meta_description",
+        "matched_target": "InDesign",
+        "full_value": "Browse InDesign's portfolio of completed projects including salons, hospitals, farms, and residential developments in Kuwait and Egypt."
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 5,
+        "column": "meta_title",
+        "matched_target": "InDesign",
+        "full_value": "Contact Us – InDesign | Design & Built"
+    },
+    {
+        "table": "pages",
+        "primary_key_name": "id",
+        "primary_key_val": 5,
+        "column": "meta_description",
+        "matched_target": "InDesign",
+        "full_value": "Get in touch with InDesign for a free consultation. We have offices in Kuwait City and El Sheikh Zayed, Egypt."
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/06\/IMG_1064-scaled.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431521273_249354248260879_9084258774243773194_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431069338_249354318260872_9127296206807023491_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431064703_249353734927597_2057987504516509134_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/SLS02143-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02666-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02698-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02492-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02274-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02271-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02161-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02157-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02155-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02151-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02128-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02122-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02118-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02109-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02106-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/SLS02096-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05362-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05331-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05328-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05307-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05294-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05286-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05239-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05184-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05178-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05156-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05155-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05135-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05130-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05124-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05117-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05097-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05095-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05094-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05083-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05076-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05050-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05049-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05040-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05033-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05029-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05025-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05021-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC05002-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04991-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04990-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04980-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04977-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04974-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04961-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DSC04930-scaled.jpg\"]"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/07\/DJI_0692-1-scaled.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4687-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4690-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4700-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4701-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4702-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4703-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4704-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4709-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4710-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4714-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4715-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4716-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4717-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4718-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DJI_0681-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DJI_0682-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DJI_0683-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/DJI_0684-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4761-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4790-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4807-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4772-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4774-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4776-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4777-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4778-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4789-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4793-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4800-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4803-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1X5A4806-scaled.jpg\"]"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 3,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/07\/IMGL9030-scaled.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 3,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431063630_249353781594259_5689123842104526545_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-4-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-5-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-6-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-7-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/reception-final-8-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/1-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/2-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/3-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/4-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/5-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/6-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/7-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/8-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/9-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/10-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/f1-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/f5-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/f6-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/f7-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/f8-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/121-scaled.jpg\"]"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 4,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/07\/IMG_0021-1-scaled.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 4,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/430277216_1352287925461347_1482441092481871420_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/430187672_1163210438027805_4478764908786592930_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/430179274_769656151421679_8402067980927927391_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/429570926_316724571386081_5150029571726570143_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/410395563_1051760962692460_1337822609701656133_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/410255682_738169971494585_4293157350355911939_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409995927_1372748510299834_5922128585773870750_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409770019_797370845486775_2885072288991995327_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409514150_346654444648260_7924834200601429968_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409457672_1121905602508203_6425203796692482657_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409219001_869605344810146_6016965710121084028_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409186189_3592189707735519_623123727450809135_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409182981_261238606645794_8017927131335275523_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/409079728_841744651291193_6891918843774932265_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/1.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/3.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/5-1.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/7.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/9.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/f1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/f5-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/f6-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/f7-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/07\\\/f8-scaled.jpg\"]"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 5,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/07\/1X5A0045-scaled.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 5,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/392930496_1291836064824358_4658950987903062964_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/392928961_839797971151476_1861535071263112828_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/392831420_1079854069712318_7985987945997610485_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/392799060_1379846469408289_7819370333900157346_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/391472076_285503621110982_2906889662971802851_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/391437502_863705191645618_9068991527210653072_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/391427395_1004895070621491_49609551471208718_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/391408060_2023948158004469_9027478810253374342_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/386898039_3357245487900018_4018734360447413512_n.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/photo1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/photo1-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/photo1-2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/photo2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/1-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/1-2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/2-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/4-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/5-1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/6-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/7-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/8-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/04\\\/9-scaled.jpg\"]"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 6,
+        "column": "cover_image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/06\/2-1.jpg"
+    },
+    {
+        "table": "projects",
+        "primary_key_name": "id",
+        "primary_key_val": 6,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/14.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/13.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/12.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/10.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/9.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/8.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/7.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/6.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/5.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/4.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/3.png\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2023\\\/10\\\/2.png\"]"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"label_en\":\"About Our Company\",\"label_ar\":\"\\u0639\\u0646 \\u0634\\u0631\\u0643\\u062a\\u0646\\u0627\",\"text_en\":\"Founded in 1983 as a carpentry business, Indesign has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\\n\\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.\",\"text_ar\":\"\\u062a\\u0623\\u0633\\u0633\\u062a \\u0625\\u0646 \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646 \\u0639\\u0627\\u0645 1983 \\u0643\\u0645\\u0635\\u0646\\u0639 \\u0644\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629\\u060c \\u0648\\u0646\\u0645\\u062a \\u0644\\u062a\\u0635\\u0628\\u062d \\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u0643\\u0627\\u0645\\u0644\\u0629 \\u0644\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a. \\u0628\\u062f\\u0623\\u0646\\u0627 \\u0639\\u0645\\u0644\\u064a\\u0627\\u062a\\u0646\\u0627 \\u0641\\u064a \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0639\\u0627\\u0645 2018 \\u0648\\u062a\\u0648\\u0633\\u0639\\u0646\\u0627 \\u0625\\u0644\\u0649 \\u0645\\u0635\\u0631 \\u0639\\u0627\\u0645 2020.\\n\\n\\u0646\\u0642\\u062f\\u0645 \\u062d\\u0644\\u0648\\u0644 \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0625\\u0628\\u062f\\u0627\\u0639\\u064a\\u0629 \\u0628\\u0623\\u0639\\u0644\\u0649 \\u0645\\u0639\\u0627\\u064a\\u064a\\u0631 \\u0627\\u0644\\u0623\\u0645\\u0627\\u0646\\u0629 \\u0648\\u0627\\u0644\\u0643\\u0641\\u0627\\u0621\\u0629. \\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u0627\\u0644\\u0627\\u0633\\u062a\\u062f\\u0627\\u0645\\u0629 \\u0648\\u062c\\u0648\\u062f\\u0629 \\u0627\\u0644\\u062d\\u0631\\u0641\\u064a\\u0629 \\u064a\\u0636\\u0645\\u0646 \\u062a\\u062c\\u0627\\u0648\\u0632 \\u062a\\u0648\\u0642\\u0639\\u0627\\u062a \\u0639\\u0645\\u0644\\u0627\\u0626\\u0646\\u0627 \\u0648\\u062a\\u0631\\u0643 \\u0623\\u062b\\u0631 \\u062f\\u0627\\u0626\\u0645 \\u0641\\u064a \\u0627\\u0644\\u0645\\u062c\\u062a\\u0645\\u0639\\u0627\\u062a.\",\"cta_en\":\"Free Consultation\",\"cta_ar\":\"\\u0627\\u0633\\u062a\\u0634\\u0627\\u0631\\u0629 \\u0645\\u062c\\u0627\\u0646\\u064a\\u0629\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 6,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"Contact Us\",\"title_ar\":\"\\u0627\\u062a\\u0635\\u0644 \\u0628\\u0646\\u0627\",\"body_en\":\"InDesign is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements.\",\"body_ar\":\"\\u0625\\u0646 \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646 \\u0631\\u0627\\u0626\\u062f\\u0629 \\u0641\\u064a \\u062a\\u0642\\u062f\\u064a\\u0645 \\u062e\\u062f\\u0645\\u0627\\u062a \\u0627\\u0644\\u062a\\u0634\\u064a\\u064a\\u062f \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0644\\u0639\\u0645\\u0644\\u0627\\u0626\\u0647\\u0627 \\u0645\\u0646 \\u062e\\u0644\\u0627\\u0644 \\u0627\\u0644\\u0634\\u0631\\u0627\\u0643\\u0629 \\u0645\\u0639\\u0647\\u0645 \\u0637\\u0648\\u0627\\u0644 \\u0639\\u0645\\u0644\\u064a\\u0629 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0628\\u0646\\u0627\\u0621\\u060c \\u0645\\u0639 \\u0628\\u0630\\u0644 \\u062c\\u0647\\u062f \\u0625\\u0636\\u0627\\u0641\\u064a \\u0644\\u0641\\u0647\\u0645 \\u0627\\u062d\\u062a\\u064a\\u0627\\u062c\\u0627\\u062a\\u0647\\u0645 \\u0627\\u0644\\u0641\\u0631\\u064a\\u062f\\u0629.\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 7,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"About InDesign\",\"title_ar\":\"\\u0639\\u0646 \\u0625\\u0646 \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646\",\"subtitle_en\":\"Leading the way in creative design and construction excellence since 1983.\",\"subtitle_ar\":\"\\u0631\\u064a\\u0627\\u062f\\u0629 \\u0627\\u0644\\u0637\\u0631\\u064a\\u0642 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0628\\u062f\\u0627\\u0639 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0626\\u064a \\u0645\\u0646\\u0630 \\u0639\\u0627\\u0645 1983.\",\"image\":\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431451442_249354111594226_167009839475597367_n.jpg\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 8,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"Our Legacy\",\"title_ar\":\"\\u0625\\u0631\\u062b\\u0646\\u0627\",\"body_en\":\"Founded in 1983 as a carpentry business, Indesign has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\\n\\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.\",\"body_ar\":\"\\u062a\\u0623\\u0633\\u0633\\u062a \\u0625\\u0646 \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646 \\u0639\\u0627\\u0645 1983 \\u0643\\u0645\\u0635\\u0646\\u0639 \\u0644\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629\\u060c \\u0648\\u0646\\u0645\\u062a \\u0644\\u062a\\u0635\\u0628\\u062d \\u0634\\u0631\\u0643\\u0629 \\u0645\\u062a\\u0643\\u0627\\u0645\\u0644\\u0629 \\u0644\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a. \\u0628\\u062f\\u0623\\u0646\\u0627 \\u0639\\u0645\\u0644\\u064a\\u0627\\u062a\\u0646\\u0627 \\u0641\\u064a \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a \\u0639\\u0627\\u0645 2018 \\u0648\\u062a\\u0648\\u0633\\u0639\\u0646\\u0627 \\u0625\\u0644\\u0649 \\u0645\\u0635\\u0631 \\u0639\\u0627\\u0645 2020.\\n\\n\\u0646\\u0642\\u062f\\u0645 \\u062d\\u0644\\u0648\\u0644 \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0625\\u0628\\u062f\\u0627\\u0639\\u064a\\u0629 \\u0628\\u0623\\u0639\\u0644\\u0649 \\u0645\\u0639\\u0627\\u064a\\u064a\\u0631 \\u0627\\u0644\\u0623\\u0645\\u0627\\u0646\\u0629 \\u0648\\u0627\\u0644\\u0643\\u0641\\u0627\\u0621\\u0629. \\u0634\\u063a\\u0641\\u0646\\u0627 \\u0628\\u0627\\u0644\\u0627\\u0633\\u062a\\u062f\\u0627\\u0645\\u0629 \\u0648\\u062c\\u0648\\u062f\\u0629 \\u0627\\u0644\\u062d\\u0631\\u0641\\u064a\\u0629 \\u064a\\u0636\\u0645\\u0646 \\u062a\\u062c\\u0627\\u0648\\u0632 \\u062a\\u0648\\u0642\\u0639\\u0627\\u062a \\u0639\\u0645\\u0644\\u0627\\u0626\\u0646\\u0627 \\u0648\\u062a\\u0631\\u0643 \\u0623\\u062b\\u0631 \\u062f\\u0627\\u0626\\u0645 \\u0641\\u064a \\u0627\\u0644\\u0645\\u062c\\u062a\\u0645\\u0639\\u0627\\u062a.\",\"image\":\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431521273_249354248260879_9084258774243773194_n.jpg\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 9,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"Our Mission\",\"title_ar\":\"\\u0645\\u0647\\u0645\\u062a\\u0646\\u0627\",\"body_en\":\"Indesign is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.\",\"body_ar\":\"\\u0625\\u0646 \\u062f\\u064a\\u0632\\u0627\\u064a\\u0646 \\u0631\\u0627\\u0626\\u062f\\u0629 \\u0641\\u064a \\u062a\\u0642\\u062f\\u064a\\u0645 \\u062e\\u062f\\u0645\\u0627\\u062a \\u0627\\u0644\\u062a\\u0634\\u064a\\u064a\\u062f \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a \\u0644\\u0639\\u0645\\u0644\\u0627\\u0626\\u0647\\u0627 \\u0645\\u0646 \\u062e\\u0644\\u0627\\u0644 \\u0627\\u0644\\u0634\\u0631\\u0627\\u0643\\u0629 \\u0645\\u0639\\u0647\\u0645 \\u0637\\u0648\\u0627\\u0644 \\u0639\\u0645\\u0644\\u064a\\u0629 \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0648\\u0627\\u0644\\u0628\\u0646\\u0627\\u0621\\u060c \\u0645\\u0639 \\u0628\\u0630\\u0644 \\u062c\\u0647\\u062f \\u0625\\u0636\\u0627\\u0641\\u064a \\u0644\\u0641\\u0647\\u0645 \\u0627\\u062d\\u062a\\u064a\\u0627\\u062c\\u0627\\u062a\\u0647\\u0645 \\u0627\\u0644\\u0641\\u0631\\u064a\\u062f\\u0629. \\u0627\\u0644\\u062a\\u0632\\u0627\\u0645\\u0646\\u0627 \\u0628\\u0627\\u0644\\u062c\\u0648\\u062f\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0645\\u064a\\u0632 \\u0644\\u0627 \\u0645\\u062b\\u064a\\u0644 \\u0644\\u0647.\",\"image\":\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431064703_249353734927597_2057987504516509134_n.jpg\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 10,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"Our Expertise\",\"title_ar\":\"\\u062e\\u0628\\u0631\\u0627\\u062a\\u0646\\u0627\",\"body_en\":\"We specialize in construction, interior design, finishes, furnishing, house design, landscape, timber and architectural design.\",\"body_ar\":\"\\u0646\\u062a\\u062e\\u0635\\u0635 \\u0641\\u064a \\u0627\\u0644\\u0625\\u0646\\u0634\\u0627\\u0621\\u0627\\u062a\\u060c \\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u062f\\u0627\\u062e\\u0644\\u064a\\u060c \\u0627\\u0644\\u062a\\u0634\\u0637\\u064a\\u0628\\u0627\\u062a\\u060c \\u0627\\u0644\\u0623\\u062b\\u0627\\u062b\\u060c \\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0646\\u0627\\u0632\\u0644\\u060c \\u062a\\u0646\\u0633\\u064a\\u0642 \\u0627\\u0644\\u0645\\u0648\\u0627\\u0642\\u0639\\u060c \\u0648\\u0627\\u0644\\u0646\\u062c\\u0627\\u0631\\u0629 \\u0648\\u0627\\u0644\\u062a\\u0635\\u0645\\u064a\\u0645 \\u0627\\u0644\\u0645\\u0639\\u0645\\u0627\\u0631\\u064a.\",\"image\":\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/10\\\/431069338_249354318260872_9127296206807023491_n.jpg\"}"
+    },
+    {
+        "table": "sections",
+        "primary_key_name": "id",
+        "primary_key_val": 18,
+        "column": "content",
+        "matched_target": "InDesign",
+        "full_value": "{\"title_en\":\"Our Offices\",\"title_ar\":\"\\u0645\\u0643\\u0627\\u062a\\u0628\\u0646\\u0627\",\"kuwait_en\":\"Oula Tower, 3 Khalid Ibn Al Waleed St, Kuwait City\",\"kuwait_ar\":\"\\u0628\\u0631\\u062c \\u0623\\u0648\\u0644\\u0649\\u060c \\u0634\\u0627\\u0631\\u0639 \\u062e\\u0627\\u0644\\u062f \\u0628\\u0646 \\u0627\\u0644\\u0648\\u0644\\u064a\\u062f 3\\u060c \\u0645\\u062f\\u064a\\u0646\\u0629 \\u0627\\u0644\\u0643\\u0648\\u064a\\u062a\",\"egypt_en\":\"Beverly Hills \\u2013 The Polygon Business Park, El Sheikh Zayed, Egypt\",\"egypt_ar\":\"\\u0628\\u064a\\u0641\\u0631\\u0644\\u064a \\u0647\\u064a\\u0644\\u0632 \\u2013 \\u0645\\u062c\\u0645\\u0639 \\u0628\\u0648\\u0644\\u062c\\u0648\\u0646 \\u0644\\u0644\\u0623\\u0639\\u0645\\u0627\\u0644\\u060c \\u0627\\u0644\\u0634\\u064a\\u062e \\u0632\\u0627\\u064a\\u062f\\u060c \\u0645\\u0635\\u0631\",\"phone_kw\":\"+965 5505 3010\",\"phone_eg\":\"+20 100 559 8277\",\"email\":\"info@indesign-co.com\"}"
+    },
+    {
+        "table": "services",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "icon",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/elementor\/thumbs\/001-01-qoz8m7bq30sumoc0m0686c97vqcnhwhli2zhfg9kw4.png"
+    },
+    {
+        "table": "services",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "image",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/indesign-co.com\/wp-content\/uploads\/2024\/06\/SLS02666-scaled.jpg"
+    },
+    {
+        "table": "services",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "gallery",
+        "matched_target": "InDesign",
+        "full_value": "[\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/1-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/2-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/3-scaled.jpg\",\"https:\\\/\\\/indesign-co.com\\\/wp-content\\\/uploads\\\/2024\\\/06\\\/4-scaled.jpg\"]"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 1,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "InDesign"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 2,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "إن ديزاين"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 5,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "Founded in 1983 as a carpentry business, Indesign has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 6,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "تأسست شركة إن ديزاين عام 1983 كمصنع للنجارة، ثم تطورت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 7,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "info@indesign-co.com"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 16,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/www.google.com\/maps\/place\/INdesign+general+contracting%26real+estate\/@30.0487358,30.9769539,15z"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 17,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/www.facebook.com\/Indesign_co-107586265299910\/"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 18,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/www.instagram.com\/indesign_co\/"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 20,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "InDesign – Create Designs Inspire"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 21,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "إن ديزاين – نصمم لنلهم"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 22,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "InDesign is a leader in providing interior fit-out and design services, specializing in administrative, commercial, residential, and exterior design across Kuwait and Egypt."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 23,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "إن ديزاين رائدة في خدمات التشييد والتصميم الداخلي، متخصصة في التصميم الإداري والتجاري والسكني والخارجي في الكويت ومصر."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 30,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "Indesign company is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 31,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "شركة إن ديزاين رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء."
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 32,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "All Rights reserved to Indesign"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 33,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "جميع الحقوق محفوظة لشركة إن ديزاين"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 36,
+        "column": "value",
+        "matched_target": "إن ديزاين",
+        "full_value": "إن ديزاين"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 37,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "All Rights reserved to Indesign"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 40,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "info@indesign-co.com"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 44,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/www.facebook.com\/Indesign_co-107586265299910\/"
+    },
+    {
+        "table": "settings",
+        "primary_key_name": "id",
+        "primary_key_val": 45,
+        "column": "value",
+        "matched_target": "InDesign",
+        "full_value": "https:\/\/www.instagram.com\/indesign_co\/"
+    }
+]

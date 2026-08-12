@@ -17,7 +17,7 @@ describe('ContactView.vue', () => {
         store.settings = {
             address: '123 Design St',
             phone_main: '+123456789',
-            email_main: 'info@indesign.com'
+            email_main: 'info@eslamabdulghanidesigns.com'
         }
         
         const pageStore = usePageStore()
@@ -32,7 +32,7 @@ describe('ContactView.vue', () => {
         
         expect(wrapper.text()).toContain('123 Design St')
         expect(wrapper.text()).toContain('+123456789')
-        expect(wrapper.text()).toContain('info@indesign.com')
+        expect(wrapper.text()).toContain('info@eslamabdulghanidesigns.com')
     })
 
     it('renders contact form component', async () => {

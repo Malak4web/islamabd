@@ -3,17 +3,17 @@
     <!-- Header & Filter Area -->
     <div class="flex items-end justify-between">
       <div class="space-y-1">
-        <h1 class="text-4xl font-black text-white uppercase tracking-tighter">{{ $t('admin.inbox') }}</h1>
-        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{{ $t('admin.contacts_manage') }}</p>
+        <h1 class="text-4xl font-black text-[#111111] uppercase tracking-tighter">{{ $t('admin.inbox') }}</h1>
+        <p class="text-[10px] font-bold text-[#555555] uppercase tracking-[0.2em]">{{ $t('admin.contacts_manage') }}</p>
       </div>
       
-      <div class="flex gap-2 bg-slate-900 p-1 rounded-2xl border border-slate-800">
+      <div class="flex gap-2 bg-[#F0ECE1] p-1 rounded-2xl border border-[#E0DACE]">
         <button 
           v-for="status in ['all', 'new', 'read', 'replied']" 
           :key="status"
           @click="setFilter(status === 'all' ? '' : status)"
           class="px-6 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all relative"
-          :class="currentFilter === (status === 'all' ? '' : status) ? 'bg-amber-500 text-slate-950 shadow-lg' : 'text-slate-500 hover:text-white'"
+          :class="currentFilter === (status === 'all' ? '' : status) ? 'bg-[#C5A880] text-white shadow-xs' : 'text-[#555555] hover:text-[#111111]'"
         >
           {{ status === 'all' ? $t('admin.filter_all') : (status === 'new' ? $t('admin.status_new') : (status === 'read' ? $t('admin.status_read') : $t('admin.status_replied'))) }}
         </button>
@@ -22,16 +22,16 @@
 
     <!-- Bulk Actions (Float) -->
     <Transition name="slide-up">
-      <div v-if="selectedIds.length > 0" class="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 px-8 py-4 bg-slate-900 border border-slate-700 rounded-full shadow-2xl flex items-center gap-8 animate-in slide-in-from-bottom-4 duration-300">
+      <div v-if="selectedIds.length > 0" class="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 px-8 py-4 bg-[#FFFFFF] border border-[#E0DACE] rounded-full shadow-2xl flex items-center gap-8 animate-in slide-in-from-bottom-4 duration-300">
         <div class="flex items-center gap-3">
-           <div class="w-8 h-8 bg-amber-500 text-slate-950 rounded-full flex items-center justify-center font-black text-xs">
+           <div class="w-8 h-8 bg-[#C5A880] text-white rounded-full flex items-center justify-center font-black text-xs">
               {{ selectedIds.length }}
            </div>
-           <span class="text-[10px] font-bold text-white uppercase tracking-widest">{{ $t('admin.selected_inquiries') }}</span>
+           <span class="text-[10px] font-bold text-[#111111] uppercase tracking-widest">{{ $t('admin.selected_inquiries') }}</span>
         </div>
-        <div class="h-6 w-px bg-slate-800"></div>
+        <div class="h-6 w-px bg-[#E0DACE]"></div>
         <div class="flex items-center gap-4">
-           <button @click="bulkDelete" class="flex items-center gap-2 text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-white transition-colors">
+           <button @click="bulkDelete" class="flex items-center gap-2 text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-red-600 transition-colors">
               <Trash2 class="w-4 h-4" /> {{ $t('admin.delete_permanently') }}
            </button>
         </div>
@@ -39,10 +39,10 @@
     </Transition>
 
     <!-- Contacts Table -->
-    <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
-      <div class="grid grid-cols-12 gap-4 p-8 border-b border-slate-800 text-[10px] font-black text-slate-500 uppercase tracking-widest bg-slate-950/30 text-start">
+    <div class="bg-[#FFFFFF] border border-[#E0DACE] rounded-[2.5rem] overflow-hidden shadow-md">
+      <div class="grid grid-cols-12 gap-4 p-8 border-b border-[#E0DACE] text-[10px] font-black text-[#555555] uppercase tracking-widest bg-[#F7F5F0] text-start">
         <div class="col-span-1 flex justify-center">
-          <input type="checkbox" :checked="isAllSelected" @change="toggleSelectAll" class="w-5 h-5 bg-slate-950 border-slate-800 rounded-lg accent-amber-500 cursor-pointer">
+          <input type="checkbox" :checked="isAllSelected" @change="toggleSelectAll" class="w-5 h-5 bg-[#F7F5F0] border-[#E0DACE] rounded-lg accent-[#C5A880] cursor-pointer">
         </div>
         <div class="col-span-4 text-start">{{ $t('admin.sender_overview') }}</div>
         <div class="col-span-3 text-center">{{ $t('admin.inquiry_subject') }}</div>
@@ -51,37 +51,37 @@
       </div>
 
       <div v-if="store.isLoading" class="p-40 text-center space-y-4">
-        <div class="w-16 h-16 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mx-auto"></div>
-        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">{{ $t('admin.syncing_inbox') }}</p>
+        <div class="w-16 h-16 border-4 border-[#C5A880]/20 border-t-[#C5A880] rounded-full animate-spin mx-auto"></div>
+        <p class="text-[10px] font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.syncing_inbox') }}</p>
       </div>
 
       <div v-else-if="store.contacts.length === 0" class="p-40 text-center space-y-4">
-         <div class="w-20 h-20 mx-auto bg-slate-950 rounded-3xl flex items-center justify-center text-slate-800 border border-slate-800">
+         <div class="w-20 h-20 mx-auto bg-[#F0ECE1] rounded-3xl flex items-center justify-center text-[#555555] border border-[#E0DACE]">
             <Mail class="w-10 h-10" />
          </div>
-         <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.4em]">{{ $t('admin.inbox_clear') }}</p>
+         <p class="text-[10px] font-bold text-[#555555] uppercase tracking-[0.4em]">{{ $t('admin.inbox_clear') }}</p>
       </div>
 
-      <div v-else class="divide-y divide-slate-800/50">
+      <div v-else class="divide-y divide-[#E0DACE]">
         <div 
           v-for="contact in store.contacts" 
           :key="contact.id" 
-          class="grid grid-cols-12 gap-4 p-8 items-center group hover:bg-white/[0.02] transition-colors"
-          :class="{'bg-amber-500/[0.02]': contact.status === 'new'}"
+          class="grid grid-cols-12 gap-4 p-8 items-center group hover:bg-[#F0ECE1]/50 transition-colors"
+          :class="{'bg-[#C5A880]/10': contact.status === 'new'}"
         >
           <div class="col-span-1 flex justify-center">
-            <input type="checkbox" :value="contact.id" v-model="selectedIds" class="w-5 h-5 bg-slate-950 border-slate-800 rounded-lg accent-amber-500 cursor-pointer">
+            <input type="checkbox" :value="contact.id" v-model="selectedIds" class="w-5 h-5 bg-[#F7F5F0] border-[#E0DACE] rounded-lg accent-[#C5A880] cursor-pointer">
           </div>
           
           <div class="col-span-4 cursor-pointer space-y-1 text-start" @click="viewContact(contact)">
-            <h3 class="text-base font-bold transition-colors group-hover:text-amber-500 truncate uppercase tracking-tight" :class="contact.status === 'new' ? 'text-white' : 'text-slate-500'">
+            <h3 class="text-base font-bold transition-colors group-hover:text-[#C5A880] truncate uppercase tracking-tight" :class="contact.status === 'new' ? 'text-[#111111]' : 'text-[#555555]'">
               {{ contact.name }}
             </h3>
-            <p class="text-[10px] font-bold text-slate-600 tracking-widest">{{ contact.phone }}</p>
+            <p class="text-[10px] font-bold text-[#555555] tracking-widest">{{ contact.phone }}</p>
           </div>
           
           <div class="col-span-3 text-center">
-             <span class="px-3 py-1 bg-slate-950 text-[10px] font-bold text-slate-500 rounded-lg border border-slate-800 uppercase tracking-widest group-hover:text-amber-500 group-hover:border-amber-500/20 transition-all">
+             <span class="px-3 py-1 bg-[#F7F5F0] text-[10px] font-bold text-[#555555] rounded-lg border border-[#E0DACE] uppercase tracking-widest group-hover:text-[#C5A880] group-hover:border-[#C5A880]/30 transition-all">
                 {{ contact.service || $t('admin.general_inquiry') }}
              </span>
           </div>
@@ -90,21 +90,21 @@
             <span 
               class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter border transition-all"
               :class="{
-                'border-red-500/20 bg-red-500/10 text-red-500 shadow-lg shadow-red-500/5': contact.status === 'new',
-                'border-slate-800 bg-slate-800/50 text-slate-500': contact.status === 'read',
-                'border-emerald-500/20 bg-emerald-500/10 text-emerald-500 shadow-lg shadow-emerald-500/5': contact.status === 'replied'
+                'border-red-500/20 bg-red-500/10 text-red-500 shadow-sm': contact.status === 'new',
+                'border-[#E0DACE] bg-[#F0ECE1] text-[#555555]': contact.status === 'read',
+                'border-emerald-500/20 bg-emerald-500/10 text-emerald-600 shadow-sm': contact.status === 'replied'
               }"
             >
-              <div class="w-1.5 h-1.5 rounded-full" :class="contact.status === 'new' ? 'bg-red-500 animate-pulse' : (contact.status === 'read' ? 'bg-slate-700' : 'bg-emerald-500')"></div>
+              <div class="w-1.5 h-1.5 rounded-full" :class="contact.status === 'new' ? 'bg-red-500 animate-pulse' : (contact.status === 'read' ? 'bg-[#555555]' : 'bg-emerald-500')"></div>
               {{ contact.status === 'new' ? $t('admin.status_new') : (contact.status === 'read' ? $t('admin.status_read') : $t('admin.status_replied')) }}
             </span>
           </div>
           
           <div class="col-span-2 text-end flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all">
-            <button @click.stop="viewContact(contact)" class="w-10 h-10 flex items-center justify-center bg-slate-950 text-slate-500 hover:text-amber-500 hover:border-amber-500/30 border border-slate-800 rounded-xl transition-all">
+            <button @click.stop="viewContact(contact)" class="w-10 h-10 flex items-center justify-center bg-[#F7F5F0] text-[#555555] hover:text-[#C5A880] hover:border-[#C5A880]/30 border border-[#E0DACE] rounded-xl transition-all">
               <Eye class="w-4 h-4" />
             </button>
-            <button @click.stop="openDeleteConfirm(contact)" class="w-10 h-10 flex items-center justify-center bg-slate-950 text-slate-500 hover:text-red-500 hover:border-red-500/30 border border-slate-800 rounded-xl transition-all">
+            <button @click.stop="openDeleteConfirm(contact)" class="w-10 h-10 flex items-center justify-center bg-[#F7F5F0] text-[#555555] hover:text-red-500 hover:border-red-500/30 border border-[#E0DACE] rounded-xl transition-all">
               <Trash2 class="w-4 h-4" />
             </button>
           </div>
@@ -112,24 +112,24 @@
       </div>
 
       <!-- Pagination -->
-      <div v-if="store.pagination.last_page > 1" class="p-8 border-t border-slate-800 bg-slate-950/30 flex justify-between items-center">
+      <div v-if="store.pagination.last_page > 1" class="p-8 border-t border-[#E0DACE] bg-[#F7F5F0] flex justify-between items-center">
         <button 
           :disabled="store.pagination.current_page === 1"
           @click="fetchPage(store.pagination.current_page - 1)"
-          class="px-8 py-3 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl border border-slate-800 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-white"
+          class="px-8 py-3 bg-[#F0ECE1] text-[#111111] text-[10px] font-black uppercase tracking-widest rounded-xl border border-[#E0DACE] hover:bg-[#C5A880] hover:text-white transition-all disabled:opacity-30 disabled:hover:bg-[#F0ECE1] disabled:hover:text-[#111111]"
         >
           {{ $t('admin.previous') }}
         </button>
         <div class="flex items-center gap-4">
-           <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">{{ $t('admin.archive_perspective') }}</span>
-           <div class="px-4 py-2 bg-slate-900 rounded-lg text-xs font-bold text-amber-500 border border-slate-800">
+           <span class="text-[10px] font-black text-[#555555] uppercase tracking-widest">{{ $t('admin.archive_perspective') }}</span>
+           <div class="px-4 py-2 bg-[#F0ECE1] rounded-lg text-xs font-bold text-[#C5A880] border border-[#E0DACE]">
               {{ store.pagination.current_page }} / {{ store.pagination.last_page }}
            </div>
         </div>
         <button 
           :disabled="store.pagination.current_page === store.pagination.last_page"
           @click="fetchPage(store.pagination.current_page + 1)"
-          class="px-8 py-3 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-xl border border-slate-800 hover:bg-white hover:text-slate-950 transition-all disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-white"
+          class="px-8 py-3 bg-[#F0ECE1] text-[#111111] text-[10px] font-black uppercase tracking-widest rounded-xl border border-[#E0DACE] hover:bg-[#C5A880] hover:text-white transition-all disabled:opacity-30 disabled:hover:bg-[#F0ECE1] disabled:hover:text-[#111111]"
         >
           {{ $t('admin.next') }}
         </button>

@@ -4,14 +4,14 @@
       <div 
         v-for="toast in toasts" 
         :key="toast.id"
-        class="pointer-events-auto flex items-center gap-4 px-6 py-4 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl min-w-[320px] max-w-md animate-in slide-in-from-right-10 duration-300"
+        class="pointer-events-auto flex items-center gap-4 px-6 py-4 bg-[#FFFFFF] border border-[#E0DACE] rounded-2xl shadow-xl min-w-[320px] max-w-md animate-in slide-in-from-right-10 duration-300"
       >
         <div 
           class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
           :class="{
-            'bg-emerald-500/10 text-emerald-500': toast.type === 'success',
-            'bg-red-500/10 text-red-500': toast.type === 'error',
-            'bg-blue-500/10 text-blue-500': toast.type === 'info'
+            'bg-emerald-500/10 text-emerald-600': toast.type === 'success',
+            'bg-red-500/10 text-red-600': toast.type === 'error',
+            'bg-blue-500/10 text-blue-600': toast.type === 'info'
           }"
         >
           <CheckCircle v-if="toast.type === 'success'" class="w-5 h-5" />
@@ -20,13 +20,13 @@
         </div>
         
         <div class="flex-1 space-y-0.5">
-          <p class="text-[10px] font-black uppercase tracking-widest text-slate-500">
+          <p class="text-[10px] font-black uppercase tracking-widest text-[#555555]">
             {{ toast.type }}
           </p>
-          <p class="text-xs font-bold text-white">{{ toast.message }}</p>
+          <p class="text-xs font-bold text-[#111111]">{{ toast.message }}</p>
         </div>
 
-        <button @click="removeToast(toast.id)" class="text-slate-700 hover:text-white transition-colors">
+        <button @click="removeToast(toast.id)" class="text-[#555555] hover:text-[#111111] transition-colors">
           <X class="w-4 h-4" />
         </button>
       </div>

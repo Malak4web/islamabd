@@ -19,7 +19,7 @@ class SettingPublicTest extends TestCase
 
         Setting::factory()->create([
             'key' => 'site_name',
-            'value' => 'InDesign'
+            'value' => 'Eslam Abdulghani Designs'
         ]);
 
         $response = $this->getJson('/api/v1/settings');
@@ -27,7 +27,7 @@ class SettingPublicTest extends TestCase
         $response->assertOk()
             ->assertJsonStructure(['data'])
             ->assertJsonPath('data.phone_1', '+971 4 123 4567')
-            ->assertJsonPath('data.site_name', 'InDesign');
+            ->assertJsonPath('data.site_name', 'Eslam Abdulghani Designs');
     }
 
     public function test_settings_response_is_flat_key_value_object()

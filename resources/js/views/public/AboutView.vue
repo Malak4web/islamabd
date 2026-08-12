@@ -1,135 +1,217 @@
 <template>
-  <div v-if="pageStore.isLoading" class="flex items-center justify-center min-h-screen bg-black">
-    <div class="w-16 h-16 border-4 border-[#d4af37]/20 border-t-[#d4af37] rounded-full animate-spin"></div>
+  <div v-if="pageStore.isLoading" class="flex min-h-[62svh] items-center justify-center bg-canvas">
+    <span class="sr-only">{{ $t('common.loading') }}</span>
+    <div
+      class="h-10 w-10 animate-spin rounded-pill border-2 border-line border-t-gold-deep"
+      role="status"
+    ></div>
   </div>
 
-  <main v-else class="bg-[#0a0a0a]">
-    <!-- Page Header -->
-    <section class="relative py-48 md:py-64 overflow-hidden bg-black flex items-center justify-center">
-      <!-- Background with Ken Burns animation -->
-      <div 
-        class="absolute inset-0 bg-center bg-cover scale-110 animate-ken-burns opacity-40" 
-        :style="{ 
-          backgroundImage: `url(${pageStore.currentPage?.sections?.find(s => s.key === 'hero')?.content.image || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000'})`
-        }"
-      ></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#0a0a0a]"></div>
-      
-      <div class="relative container px-6 mx-auto text-center z-10">
-        <span class="text-sm md:text-base font-black tracking-[0.6em] text-[#d4af37] uppercase mb-8 block animate-fade-in-up">
-            {{ isAr ? (heroSection?.content.subtitle_ar || $t('about.legacy')) : (heroSection?.content.subtitle_en || $t('about.legacy')) }}
+  <main v-else class="bg-canvas">
+    <!-- The old header set the studio's name in animated gradient-clipped text
+         over a Ken Burns background. Gradient text is decorative at the cost of
+         legibility, and it was applied to the single most important string on
+         the page. -->
+    <PageHeader
+      :title="headerTitle"
+      :lede="headerLede"
+      :image="banner"
+      :image-alt="banner.alt[isAr ? 'ar' : 'en']"
+    >
+      <template #title>
+        {{ headerTitle }}
+        <!-- Only when the CMS title does not already carry the name. It reads
+             "About Eslam Abdulghani Designs" by default, and appending the
+             studio name to that printed it twice. -->
+        <span v-if="!titleNamesStudio" class="mt-2 block font-medium text-ink">
+          Eslam Abdulghani Designs
         </span>
-        <h1 class="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter leading-tight animate-fade-in-up delay-100">
-           {{ isAr ? (heroSection?.content.title_ar || $t('about.title')) : (heroSection?.content.title_en || $t('about.title')) }} 
-           <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-white to-[#d4af37] bg-[length:200%_auto] animate-gradient-text mt-4">InDesign</span>
-        </h1>
-        
-        <!-- Architectural Decorative Line -->
-        <div class="w-24 h-[2px] bg-[#d4af37] mx-auto mt-12 animate-scale-x"></div>
-      </div>
-    </section>
+      </template>
+    </PageHeader>
 
-    <!-- Sections from DB -->
-    <div v-for="(section, index) in pageStore.currentPage?.sections?.filter(s => s.key !== 'hero')" :key="section.id">
-        <!-- Alternating Content Sections (Story, Mission) -->
-        <section v-if="section.key === 'story' || section.key === 'mission'" class="py-20 md:py-40 overflow-hidden" :class="index % 2 === 0 ? 'bg-[#0a0a0a]' : 'bg-[#0f0f0f]'">
-          <div class="container px-6 mx-auto">
-            <div class="grid grid-cols-1 gap-12 md:gap-24 lg:grid-cols-2 items-center" :class="{ 'lg:flex-row-reverse': index % 2 !== 0 }">
-              <div class="space-y-8 md:space-y-10" :class="index % 2 !== 0 ? 'lg:order-2' : ''">
-                <div class="space-y-4">
-                   <h3 class="text-xs font-bold tracking-[0.5em] text-[#d4af37] uppercase">{{ $t(`about.${section.key}`) }}</h3>
-                   <h2 class="text-[1.75rem] leading-[2] font-black text-white uppercase tracking-tighter">
-                      {{ isAr ? section.content.title_ar : section.content.title_en }}
-                   </h2>
-                </div>
-                <div class="w-24 h-1.5 bg-gradient-to-r from-[#d4af37] to-transparent rounded-full"></div>
-                <p class="text-base sm:text-xl text-gray-400 leading-relaxed font-light whitespace-pre-line">
-                   {{ isAr ? section.content.body_ar : section.content.body_en }}
-                </p>
-                <div v-if="isAr ? section.content.cta_ar : section.content.cta_en" class="pt-6">
-                   <RouterLink to="/contact" class="inline-flex items-center gap-4 text-xs font-bold tracking-[0.3em] text-white uppercase group">
-                      {{ isAr ? section.content.cta_ar : section.content.cta_en }}
-                      <span class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover:bg-[#d4af37] group-hover:border-[#d4af37] group-hover:translate-x-2">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="isAr ? 'M19 12H5m0 0l7 7m-7-7l7-7' : 'M17 8l4 4m0 0l-4 4m4-4H3'" />
-                         </svg>
-                      </span>
-                   </RouterLink>
-                </div>
-              </div>
-              <div class="relative group" :class="index % 2 !== 0 ? 'lg:order-1' : ''">
-                  <div class="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] aspect-square lg:aspect-[4/5] shadow-2xl">
-                     <img :src="section.content.image || 'https://images.unsplash.com/photo-1503387762-592dea58ef21?auto=format&fit=crop&q=80&w=1200'" :alt="section.content.title_en" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110" />
-                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                  </div>
-                  <!-- Decorative Elements -->
-                  <div class="absolute -top-6 -left-6 sm:-top-10 sm:-left-10 w-20 sm:w-40 h-20 sm:h-40 border-l-2 border-t-2 border-[#d4af37]/30 rounded-tl-[2rem] sm:rounded-tl-[3rem] -z-10"></div>
-                  <div class="absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-10 w-20 sm:w-40 h-20 sm:h-40 border-r-2 border-b-2 border-[#d4af37]/30 rounded-br-[2rem] sm:rounded-br-[3rem] -z-10"></div>
-              </div>
+    <!-- Sections from the CMS -->
+    <div v-for="(section, index) in contentSections" :key="section.id">
+      <!-- Story / Mission: alternating image and copy -->
+      <section
+        v-if="section.key === 'story' || section.key === 'mission'"
+        class="py-16 sm:py-24 lg:py-32"
+        :class="index % 2 === 0 ? 'bg-canvas' : 'bg-canvas-raised'"
+      >
+        <div class="container mx-auto px-6 sm:px-8">
+          <!-- `items-stretch`, not `items-center`: it is what lets the figure
+               take its height from the paragraph beside it. -->
+          <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div
+              class="lg:flex lg:flex-col lg:justify-center"
+              :class="index % 2 !== 0 ? 'lg:order-2' : ''"
+            >
+              <span v-reveal:rule class="block h-px w-14 bg-gold" aria-hidden="true"></span>
+              <p v-reveal class="mt-6 text-label font-semibold text-gold-deep">
+                {{ $t(`about.${section.key}`) }}
+              </p>
+              <h2 v-reveal="{ delay: 60 }" class="mt-3 text-heading font-light text-ink">
+                {{ localised(section.content, 'title') }}
+              </h2>
+              <p v-reveal="{ delay: 120 }" class="mt-6 max-w-prose whitespace-pre-line text-lede text-ink-muted">
+                {{ localised(section.content, 'body') }}
+              </p>
+
+              <RouterLink
+                v-if="localised(section.content, 'cta')"
+                to="/contact"
+                class="group mt-8 inline-flex items-center gap-3 text-label font-semibold text-ink transition-colors duration-base hover:text-gold-deep"
+              >
+                {{ localised(section.content, 'cta') }}
+                <EaiIcon
+                  name="arrow-right"
+                  :size="16"
+                  flip
+                  class="transition-transform duration-base ease-out-quart group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
+                />
+              </RouterLink>
+            </div>
+
+            <!-- Each section gets its own pair. Every one of these used to
+                 resolve to the same fallback at the same fixed ratio, so the
+                 page showed one frame three times and none of them matched the
+                 paragraph beside it. -->
+            <div class="flex items-center justify-center" :class="index % 2 !== 0 ? 'lg:order-1' : ''">
+              <AboutFigure
+                :image="sectionImage(section.key)"
+                :cms-image="section.content.image"
+                :main-alt-override="localised(section.content, 'title')"
+                :arabic="isAr"
+              />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Expertise Grid Section -->
-        <section v-if="section.key === 'expertise'" class="py-20 md:py-40 bg-black relative overflow-hidden">
-           <div class="absolute top-0 right-0 w-1/2 h-full bg-[#d4af37]/5 blur-[120px] rounded-full translate-x-1/2"></div>
-           <div class="container px-6 mx-auto relative z-10">
-              <div class="max-w-3xl mb-16 md:mb-24">
-                 <h3 class="text-xs font-bold tracking-[0.5em] text-[#d4af37] uppercase mb-6">{{ $t('about.capabilities') }}</h3>
-                 <h2 class="text-[1.75rem] leading-[2] font-black text-white uppercase tracking-tighter">
-                    {{ isAr ? section.content.title_ar : section.content.title_en }}
-                 </h2>
-              </div>
-              
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                 <div class="lg:col-span-7">
-                    <p class="text-2xl md:text-3xl text-gray-300 font-light leading-relaxed mb-16">
-                       {{ isAr ? section.content.body_ar : section.content.body_en }}
-                    </p>
-                    <div class="grid grid-cols-2 gap-10">
-                       <div v-for="skill in ['construction', 'interior', 'landscape', 'architectural']" :key="skill" class="space-y-4">
-                          <div class="w-12 h-1 border-t-2 border-[#d4af37]"></div>
-                          <h4 class="text-[1.75rem] leading-[2] font-bold text-white uppercase tracking-widest">{{ $t(`about.${skill}`) }}</h4>
-                       </div>
-                    </div>
-                 </div>
-                 <div class="lg:col-span-5">
-                    <div class="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-2xl group">
-                       <img :src="section.content.image" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
-                       <div class="absolute inset-0 bg-[#d4af37]/20 mix-blend-overlay"></div>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </section>
+      <!-- Expertise -->
+      <section v-else-if="section.key === 'expertise'" class="border-t border-line py-16 sm:py-24 lg:py-32">
+        <div class="container mx-auto px-6 sm:px-8">
+          <div class="max-w-3xl">
+            <span v-reveal:rule class="block h-px w-14 bg-gold" aria-hidden="true"></span>
+            <p v-reveal class="mt-6 text-label font-semibold text-gold-deep">{{ $t('about.capabilities') }}</p>
+            <h2 v-reveal="{ delay: 60 }" class="mt-3 text-heading font-light text-ink">
+              {{ localised(section.content, 'title') }}
+            </h2>
+          </div>
+
+          <div class="mt-12 grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div class="lg:col-span-7">
+              <p class="max-w-prose text-lede text-ink-muted">
+                {{ localised(section.content, 'body') }}
+              </p>
+
+              <!-- The four capability marks draw themselves in sequence: these
+                   are architectural drawings, so they arrive the way a drawing
+                   does. Staggered by position, not all at once. -->
+              <ul class="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+                <li
+                  v-for="(skill, i) in SKILLS"
+                  :key="skill.key"
+                  v-reveal="{ delay: i * 110 }"
+                  class="border-t border-line pt-5"
+                >
+                  <EaiIcon :name="skill.icon" :size="26" draw class="text-gold-deep" />
+                  <h3 class="mt-4 text-subhead font-medium text-ink">
+                    {{ $t(`about.${skill.key}`) }}
+                  </h3>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Was greyscaled, then tinted with a gold `mix-blend-overlay`
+                 layer. Two filters fighting each other over a photograph the
+                 studio chose deliberately. -->
+            <div class="lg:col-span-5">
+              <AboutFigure
+                :image="sectionImage('expertise')"
+                :cms-image="section.content.image"
+                :main-alt-override="localised(section.content, 'title')"
+                :arabic="isAr"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <!-- Fallback if no sections in DB -->
-    <template v-if="!pageStore.currentPage?.sections?.length">
-        <section class="py-32 text-center">
-            <p class="text-gray-500 uppercase tracking-widest">{{ $t('about.coming_soon') }}</p>
-        </section>
-    </template>
+    <section v-if="!contentSections.length" class="py-24 text-center">
+      <p class="text-ink-subtle">{{ $t('about.coming_soon') }}</p>
+    </section>
+
+    <MarkTicker />
+
+    <CtaBanner />
   </main>
 </template>
 
 <script setup>
 import { onMounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { usePageStore } from '@/stores/pageStore'
 import { useLocaleStore } from '@/stores/localeStore'
 import { useSeo } from '@/composables/useSeo'
 import { storeToRefs } from 'pinia'
 
+import PageHeader from '@/components/public/PageHeader.vue'
+import MarkTicker from '@/components/public/MarkTicker.vue'
+import CtaBanner from '@/components/public/CtaBanner.vue'
+import AboutFigure from '@/components/public/AboutFigure.vue'
+import EaiIcon from '@/components/icons/EaiIcon.vue'
+import { ABOUT_SECTION_IMAGES, PAGE_BANNERS } from '@/lib/media'
+
+const { t } = useI18n()
 const pageStore = usePageStore()
 const localeStore = useLocaleStore()
 const { currentPage } = storeToRefs(pageStore)
 
 const isAr = computed(() => localeStore.isArabic)
-const heroSection = computed(() => pageStore.currentPage?.sections?.find(s => s.key === 'hero'))
+
+const banner = PAGE_BANNERS.about
+
+/** Picks `<field>_ar` or `<field>_en` off a CMS content blob. */
+const localised = (content, field) =>
+  (isAr.value ? content?.[`${field}_ar`] : content?.[`${field}_en`]) || ''
+
+const SKILLS = [
+  { key: 'construction', icon: 'industrial' },
+  { key: 'interior', icon: 'residential' },
+  { key: 'landscape', icon: 'landscape' },
+  { key: 'architectural', icon: 'exterior' },
+]
+
+const heroSection = computed(() =>
+  pageStore.currentPage?.sections?.find((s) => s.key === 'hero')
+)
+
+const contentSections = computed(
+  () => pageStore.currentPage?.sections?.filter((s) => s.key !== 'hero') ?? []
+)
+
+const headerTitle = computed(() => localised(heroSection.value?.content, 'title') || t('about.title'))
+const headerLede = computed(
+  () => localised(heroSection.value?.content, 'subtitle') || t('about.legacy')
+)
+
+const titleNamesStudio = computed(() =>
+  /abdulghani|عبد ?الغني/i.test(headerTitle.value)
+)
+
+/**
+ * The `{ main, detail }` pair for a section. Locally hosted, so a section with
+ * no image never reaches for a third-party URL and no two sections show the
+ * same frame. Unknown keys fall back to `story` rather than rendering an empty
+ * well.
+ */
+const sectionImage = (key) => ABOUT_SECTION_IMAGES[key] ?? ABOUT_SECTION_IMAGES.story
 
 useSeo(currentPage)
 
 onMounted(() => {
-    pageStore.fetchPage('about')
+  pageStore.fetchPage('about')
 })
 </script>

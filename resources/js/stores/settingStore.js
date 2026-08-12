@@ -16,6 +16,8 @@ export const useSettingStore = defineStore('setting', () => {
         try {
             const { data } = await api.get('/v1/settings')
             settings.value = data.data
+        } catch (err) {
+            // Handle error silently
         } finally {
             isLoading.value = false
         }

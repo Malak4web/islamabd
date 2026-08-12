@@ -117,6 +117,10 @@ export const useProjectStore = defineStore('project', () => {
         featuredProjects,
         pagination,
         loading,
+        // Alias, for the same reason as in serviceStore: consumers wrote
+        // `projectStore.isLoading` and got `undefined`, so the skeleton state
+        // was dead code on both the public grid and the admin table.
+        isLoading: loading,
         currentProject,
         fetchProjects,
         fetchProject,

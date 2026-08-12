@@ -14,9 +14,10 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         Admin::updateOrCreate(
-            ['email' => 'admin@indesign-co.com'],
+            ['id' => 1],
             [
-                'name' => 'InDesign Admin',
+                'name' => 'Eslam Abdulghani Designs Admin',
+                'email' => 'admin@eslamabdulghanidesigns.com',
                 'password' => Hash::make('password'),
             ]
         );
