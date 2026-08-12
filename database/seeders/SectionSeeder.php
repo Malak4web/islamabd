@@ -22,8 +22,8 @@ class SectionSeeder extends Seeder
                         'title_ar'    => 'حلول لتحويل مساحتك',
                         'subtitle_en' => 'Art and Science in Perfect Balance.',
                         'subtitle_ar' => 'الفن والعلم في توازن مثالي.',
-                        'cta_en'      => 'Free Consultation',
-                        'cta_ar'      => 'استشارة مجانية',
+                        'cta_en'      => 'Get Started',
+                        'cta_ar'      => 'ابدأ الآن',
                     ],
                 ],
                 [
@@ -34,8 +34,8 @@ class SectionSeeder extends Seeder
                         'label_ar'   => 'عن شركتنا',
                         'text_en'    => "Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
                         'text_ar'    => "تأسست إسلام عبد الغني ديزاينز عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
-                        'cta_en'     => 'Free Consultation',
-                        'cta_ar'     => 'استشارة مجانية',
+                        'cta_en'     => 'Get Started',
+                        'cta_ar'     => 'ابدأ الآن',
                     ],
                 ],
                 [
@@ -176,10 +176,10 @@ class SectionSeeder extends Seeder
                     'content' => [
                         'title_en' => 'Ready to Start Your Project?',
                         'title_ar' => 'هل أنت مستعد لبدء مشروعك؟',
-                        'body_en'  => 'Contact us for a free 30-minute consultation and let us help you transform your space.',
-                        'body_ar'  => 'تواصل معنا للحصول على استشارة مجانية مدتها 30 دقيقة ودعنا نساعدك في تحويل مساحتك.',
-                        'cta_en'   => 'Get Free Consultation',
-                        'cta_ar'   => 'احصل على استشارة مجانية',
+                        'body_en'  => 'Contact us for a consultation and let us help you transform your space.',
+                        'body_ar'  => 'تواصل معنا للحصول على استشارة ودعنا نساعدك في تحويل مساحتك.',
+                        'cta_en'   => 'Get Started',
+                        'cta_ar'   => 'ابدأ الآن',
                     ],
                 ],
             ];

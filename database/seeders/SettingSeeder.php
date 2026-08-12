@@ -63,8 +63,8 @@ class SettingSeeder extends Seeder
             ['key' => 'hero_title_ar',       'value' => 'حلول لتحويل مساحتك',               'group' => 'hero'],
             ['key' => 'hero_subtitle_en',    'value' => 'By balancing the art and science of designing an interior space, we deliver the perfect combination of technical and artistic aspects to provide our clients with extreme satisfaction.', 'group' => 'hero'],
             ['key' => 'hero_subtitle_ar',    'value' => 'من خلال الموازنة بين فن وعلم تصميم المساحات الداخلية، نقدم المزيج المثالي من الجوانب التقنية والفنية لتحقيق الرضا التام لعملائنا.', 'group' => 'hero'],
-            ['key' => 'hero_cta_en',         'value' => 'Free Consultation',                 'group' => 'hero'],
-            ['key' => 'hero_cta_ar',         'value' => 'استشارة مجانية',                   'group' => 'hero'],
+            ['key' => 'hero_cta_en',         'value' => 'Get Started',                       'group' => 'hero'],
+            ['key' => 'hero_cta_ar',         'value' => 'ابدأ الآن',                         'group' => 'hero'],
 
             // Footer
             ['key' => 'footer_tagline_en',   'value' => 'Eslam Abdulghani Designs company is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process.', 'group' => 'footer'],
