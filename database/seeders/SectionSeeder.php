@@ -102,7 +102,7 @@ class SectionSeeder extends Seeder
                         'title_ar'    => 'عن إسلام عبد الغني ديزاينز',
                         'subtitle_en' => 'Leading the way in creative design and construction excellence since 1983.',
                         'subtitle_ar' => 'ريادة الطريق في الإبداع والتميز الإنشائي منذ عام 1983.',
-                        'image'       => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431451442_249354111594226_167009839475597367_n.jpg',
+                        'image'       => '/images/defaults/about_fallback.jpg',
                     ],
                 ],
                 [
@@ -113,7 +113,7 @@ class SectionSeeder extends Seeder
                         'title_ar' => 'إرثنا',
                         'body_en'  => "Founded in 1983 as a carpentry business, Eslam Abdulghani Designs has grown into a full-service design and construction company. We began operations in Kuwait City in 2018 and expanded to Egypt in 2020.\n\nWe provide creative design solutions with the highest standards of honesty and competence. Our passion for sustainability and quality craftsmanship ensures we exceed customer expectations and make a lasting impact on communities.",
                         'body_ar'  => "تأسست إسلام عبد الغني ديزاينز عام 1983 كمصنع للنجارة، ونمت لتصبح شركة متكاملة للتصميم والإنشاءات. بدأنا عملياتنا في مدينة الكويت عام 2018 وتوسعنا إلى مصر عام 2020.\n\nنقدم حلول تصميم إبداعية بأعلى معايير الأمانة والكفاءة. شغفنا بالاستدامة وجودة الحرفية يضمن تجاوز توقعات عملائنا وترك أثر دائم في المجتمعات.",
-                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431521273_249354248260879_9084258774243773194_n.jpg',
+                        'image'    => '/images/defaults/about_fallback.jpg',
                     ],
                 ],
                 [
@@ -124,7 +124,7 @@ class SectionSeeder extends Seeder
                         'title_ar' => 'مهمتنا',
                         'body_en'  => 'Eslam Abdulghani Designs is a leader in providing interior fit-out and design services to its clientele by partnering with them throughout the designing and construction process; while going the extra mile to genuinely understand their unique needs and requirements. Our commitment to quality and excellence is second to none.',
                         'body_ar'  => 'إسلام عبد الغني ديزاينز رائدة في تقديم خدمات التشييد والتصميم الداخلي لعملائها من خلال الشراكة معهم طوال عملية التصميم والبناء، مع بذل جهد إضافي لفهم احتياجاتهم الفريدة. التزامنا بالجودة والتميز لا مثيل له.',
-                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431064703_249353734927597_2057987504516509134_n.jpg',
+                        'image'    => '/images/defaults/about_fallback.jpg',
                     ],
                 ],
                 [
@@ -135,7 +135,7 @@ class SectionSeeder extends Seeder
                         'title_ar' => 'خبراتنا',
                         'body_en'  => 'We specialize in construction, interior design, finishes, furnishing, house design, landscape, timber and architectural design.',
                         'body_ar'  => 'نتخصص في الإنشاءات، التصميم الداخلي، التشطيبات، الأثاث، تصميم المنازل، تنسيق المواقع، والنجارة والتصميم المعماري.',
-                        'image'    => 'https://eslamabdulghanidesigns.com/wp-content/uploads/2024/10/431069338_249354318260872_9127296206807023491_n.jpg',
+                        'image'    => '/images/defaults/about_fallback.jpg',
                     ],
                 ],
             ];

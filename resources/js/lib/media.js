@@ -64,8 +64,8 @@ export const ABOUT_IMAGE = {
   base: '/images/about/about-studio',
   widths: ABOUT_WIDTHS,
   alt: {
-    en: 'Drafting pens, a scale rule and a rolled tape laid across a printed floor plan.',
-    ar: 'أقلام رسم هندسي ومسطرة مقياس وشريط قياس ملفوف فوق مخطط أرضي مطبوع.',
+    en: 'An architect working at a wooden desk surrounded by architectural models, material swatches, and design moodboards.',
+    ar: 'مهندس معماري يعمل على مكتب خشبي محاط بالمجسمات المعمارية وعينات الخامات ولوحات التصميم.',
   },
 }
 
