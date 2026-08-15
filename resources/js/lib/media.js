@@ -61,11 +61,97 @@ export const HERO_SLIDES = [
 ]
 
 export const ABOUT_IMAGE = {
-  base: '/images/about/about-studio',
-  widths: ABOUT_WIDTHS,
+  src: '/images/eslam/eslam_studio_blueprint_desk.jpg',
   alt: {
-    en: 'An architect working at a wooden desk surrounded by architectural models, material swatches, and design moodboards.',
-    ar: 'مهندس معماري يعمل على مكتب خشبي محاط بالمجسمات المعمارية وعينات الخامات ولوحات التصميم.',
+    en: 'Eng. Eslam Abdulghani reviewing architectural blueprints and material samples in the design studio.',
+    ar: 'المهندس إسلام عبد الغني يراجع المخططات المعمارية وعينات الخامات في استوديو التصميم.',
+  },
+}
+
+export const ESLAM_BRAND_IMAGES = {
+  executiveSeated: {
+    src: '/images/eslam/eslam_executive_seated.jpg',
+    alt: {
+      en: 'Eng. Eslam Abdulghani, Founder & Design Principal in executive office setting.',
+      ar: 'المهندس إسلام عبد الغني، المؤسس ورئيس قطاع التصميم في المكتب التنفيذي.',
+    },
+  },
+  executiveSmiling: {
+    src: '/images/eslam/eslam_executive_smiling.jpg',
+    alt: {
+      en: 'Eng. Eslam Abdulghani standing in executive suit.',
+      ar: 'المهندس إسلام عبد الغني بالزي الرسمي التنفيذي.',
+    },
+  },
+  executiveProfile: {
+    src: '/images/eslam/eslam_executive_profile.jpg',
+    alt: {
+      en: 'Eng. Eslam Abdulghani portrait looking forward.',
+      ar: 'بورتريه تنفيذي للمهندس إسلام عبد الغني.',
+    },
+  },
+  studioMeasuring: {
+    src: '/images/eslam/eslam_studio_measuring_banner.jpg',
+    alt: {
+      en: 'Eng. Eslam measuring architectural blueprints with precision.',
+      ar: 'المهندس إسلام يقيس المخططات المعمارية بكل دقة.',
+    },
+  },
+  studioDesk: {
+    src: '/images/eslam/eslam_studio_blueprint_desk.jpg',
+    alt: {
+      en: 'Eng. Eslam studying floor plans on design desk.',
+      ar: 'المهندس إسلام يدرس المخططات على مكتب التصميم.',
+    },
+  },
+  studioMaterials: {
+    src: '/images/eslam/eslam_studio_materials.jpg',
+    alt: {
+      en: 'Eng. Eslam selecting premium material swatches and moodboards.',
+      ar: 'المهندس إسلام يختار لوحات عينات الخامات الفاخرة.',
+    },
+  },
+  consultationPresenting: {
+    src: '/images/eslam/eslam_consultation_presenting.jpg',
+    alt: {
+      en: 'Eng. Eslam presenting design proposals to client.',
+      ar: 'المهندس إسلام يقدم مقترحات التصميم في جلسة استشارية.',
+    },
+  },
+  consultationMeeting: {
+    src: '/images/eslam/eslam_consultation_meeting.jpg',
+    alt: {
+      en: 'Eng. Eslam consulting with clients over architectural plans.',
+      ar: 'المهندس إسلام يناقش التفاصيل المعمارية مع العملاء.',
+    },
+  },
+  consultationMoodboard: {
+    src: '/images/eslam/eslam_consultation_moodboard.jpg',
+    alt: {
+      en: 'Eng. Eslam demonstrating material concept board.',
+      ar: 'المهندس إسلام يستعرض مفهوم لوحة المواد والخامات.',
+    },
+  },
+  tech3dTablet: {
+    src: '/images/eslam/eslam_tech_3d_tablet.jpg',
+    alt: {
+      en: 'Eng. Eslam presenting 3D architectural villa rendering on digital tablet.',
+      ar: 'المهندس إسلام يعرض منظورا معمارياً ثلاثي الأبعاد لفيلّا عبر اللوح الرقمي.',
+    },
+  },
+  siteVisit: {
+    src: '/images/eslam/eslam_site_visit.jpg',
+    alt: {
+      en: 'Eng. Eslam inspecting active construction site with engineering team.',
+      ar: 'المهندس إسلام يشرف ميدانياً على موقع البناء مع فريق المهندسين.',
+    },
+  },
+  draftingTable: {
+    src: '/images/eslam/eslam_drafting_table.jpg',
+    alt: {
+      en: 'Eng. Eslam drafting detailed drawings at architectural drawing board.',
+      ar: 'المهندس إسلام يرسم التفاصيل المعمارية على طاولة الرسم.',
+    },
   },
 }
 

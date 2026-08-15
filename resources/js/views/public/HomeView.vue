@@ -17,6 +17,9 @@
         <!-- About Snippet -->
         <AboutSnippet v-if="section.key === 'about_intro'" :content="section.content" />
         
+        <!-- Founder Branding Showcase -->
+        <FounderBrandingSection v-if="section.key === 'about_intro'" />
+        
         <!-- Services Preview -->
         <ServicesPreview v-if="section.key === 'services_overview'" :content="section.content" />
         
@@ -36,6 +39,7 @@
     <template v-if="!pageStore.currentPage?.sections?.length">
         <HeroSlider />
         <AboutSnippet />
+        <FounderBrandingSection />
         <VillaWalk />
         <ServicesPreview />
         <ProjectsPreview />
@@ -53,6 +57,7 @@ import { storeToRefs } from 'pinia'
 
 import HeroSlider from '@/components/public/HeroSlider.vue'
 import AboutSnippet from '@/components/public/AboutSnippet.vue'
+import FounderBrandingSection from '@/components/public/FounderBrandingSection.vue'
 import ServicesPreview from '@/components/public/ServicesPreview.vue'
 import ProjectsPreview from '@/components/public/ProjectsPreview.vue'
 import CtaBanner from '@/components/public/CtaBanner.vue'

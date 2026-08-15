@@ -71,6 +71,36 @@
       "architects": "Expert Architects"
     }
   },
+  "branding": {
+    "section_badge": "Architectural Branding & Leadership",
+    "founder_title": "Eng. Eslam Abdulghani",
+    "founder_role": "Founder & Principal Architect",
+    "founder_quote": "“Luxury architectural design is not merely drawing lines; it is translating lifestyles and spatial engineering to fuse timeless elegance with uncompromising utility.”",
+    "philosophy_title": "Our Personal Branding Philosophy",
+    "philosophy_desc": "Eng. Eslam Abdulghani leads an integrated practice of architectural consulting, interior design, and turnkey construction built upon 4 core pillars of excellence.",
+    "pillars": {
+      "leadership": {
+        "title": "Executive Vision & Leadership",
+        "subtitle": "Strategic direction ensuring uncompromising luxury standards and architectural distinction.",
+        "tag": "Executive Vision"
+      },
+      "craftsmanship": {
+        "title": "Studio Craftsmanship & Material Selection",
+        "subtitle": "Obsessive detail-orientation, hand-selected luxury marbles, wood veneers, and bespoke joinery.",
+        "tag": "Master Craftsmanship"
+      },
+      "consultation": {
+        "title": "Client Co-Creation & Consultation",
+        "subtitle": "Interactive strategy sessions turning complex client aspirations into tailored spatial solutions.",
+        "tag": "Tailored Solutions"
+      },
+      "precision": {
+        "title": "3D Innovation & Site Execution",
+        "subtitle": "Fusing cutting-edge 3D BIM visualization with rigorous on-site construction oversight.",
+        "tag": "Site Mastery"
+      }
+    }
+  },
   "services": {
     "title": "Our Services",
     "subtitle": "Bespoke solutions for Every Dimension",

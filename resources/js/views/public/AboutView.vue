@@ -139,9 +139,8 @@
       </section>
     </div>
 
-    <section v-if="!contentSections.length" class="py-24 text-center">
-      <p class="text-ink-subtle">{{ $t('about.coming_soon') }}</p>
-    </section>
+    <!-- Founder Branding Showcase Section -->
+    <FounderBrandingSection />
 
     <MarkTicker />
 
@@ -158,6 +157,7 @@ import { useSeo } from '@/composables/useSeo'
 import { storeToRefs } from 'pinia'
 
 import PageHeader from '@/components/public/PageHeader.vue'
+import FounderBrandingSection from '@/components/public/FounderBrandingSection.vue'
 import MarkTicker from '@/components/public/MarkTicker.vue'
 import CtaBanner from '@/components/public/CtaBanner.vue'
 import AboutFigure from '@/components/public/AboutFigure.vue'

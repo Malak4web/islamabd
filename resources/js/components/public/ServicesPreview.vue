@@ -7,19 +7,19 @@
          descriptor is the lede, and the eight lines are set out as an index
          beside them: a reader learns what this practice covers before a single
          card has loaded. -->
-    <div class="container mx-auto px-6 sm:px-8">
-      <div class="grid gap-10 border-b border-line pb-12 lg:grid-cols-12 lg:gap-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 sm:gap-10 border-b border-line pb-10 sm:pb-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-6">
-          <span v-reveal:rule class="block h-px w-14 bg-gold" aria-hidden="true"></span>
-          <h2 v-reveal class="mt-7 text-title font-light text-ink">{{ heading }}</h2>
-          <p v-if="lede" v-reveal="{ delay: 90 }" class="mt-5 max-w-prose text-lede text-ink-muted">
+          <span v-reveal:rule class="block h-px w-12 sm:w-14 bg-gold" aria-hidden="true"></span>
+          <h2 v-reveal class="mt-5 sm:mt-7 text-xl sm:text-2xl lg:text-title font-light text-ink">{{ heading }}</h2>
+          <p v-if="lede" v-reveal="{ delay: 90 }" class="mt-4 sm:mt-5 max-w-prose text-sm sm:text-base lg:text-lede text-ink-muted">
             {{ lede }}
           </p>
 
           <RouterLink
             v-reveal="{ delay: 150 }"
             to="/services"
-            class="group mt-9 inline-flex items-center gap-3 text-label font-semibold text-ink transition-colors duration-base hover:text-gold-deep"
+            class="group mt-7 sm:mt-9 inline-flex items-center gap-2 sm:gap-3 text-xs sm:text-label font-semibold text-ink transition-colors duration-base hover:text-gold-deep"
           >
             {{ $t('services.view_all') }}
             <EaiIcon
@@ -31,34 +31,34 @@
           </RouterLink>
         </div>
 
-        <!-- The index. Two columns of drawn marks against their line names,
-             each rule striking through on hover — a contents page, which is
-             what a practice's service list actually is. -->
-        <ul class="grid gap-x-10 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
+        <!-- Service lines index — 2-col grid on all screens, compact cards on mobile -->
+        <ul class="grid grid-cols-2 gap-2 sm:gap-x-8 sm:gap-y-0 lg:col-span-6 lg:col-start-7">
           <li
             v-for="(line, i) in LINES"
             :key="line"
             v-reveal="{ delay: 60 + i * 55 }"
-            class="border-t border-line"
+            class="sm:border-t sm:border-line"
           >
             <RouterLink
               :to="{ path: '/services', hash: `#${line}` }"
-              class="group flex items-center gap-4 py-4 focus-visible:outline-offset-4"
+              class="group flex items-center gap-3 sm:gap-4 rounded-xl sm:rounded-none border border-line sm:border-0 bg-canvas sm:bg-transparent p-3 sm:py-4 sm:px-0 transition-all duration-200 active:scale-[0.97] sm:active:scale-100 focus-visible:outline-offset-4 hover:border-gold/40 sm:hover:border-transparent"
             >
-              <EaiIcon
-                :name="line"
-                :size="24"
-                draw
-                class="flex-none text-gold-deep transition-colors duration-base group-hover:text-ink"
-              />
-              <span class="min-w-0 flex-1 truncate text-label font-medium text-ink-muted transition-colors duration-base group-hover:text-ink">
+              <span class="flex h-10 w-10 sm:h-auto sm:w-auto items-center justify-center rounded-lg sm:rounded-none bg-canvas-raised sm:bg-transparent flex-shrink-0">
+                <EaiIcon
+                  :name="line"
+                  :size="22"
+                  draw
+                  class="text-gold-deep transition-colors duration-base group-hover:text-ink"
+                />
+              </span>
+              <span class="min-w-0 flex-1 truncate text-xs sm:text-label font-medium text-ink-muted transition-colors duration-base group-hover:text-ink">
                 {{ $t(`services.lines.${line}`) }}
               </span>
               <EaiIcon
                 name="arrow-right"
-                :size="14"
+                :size="12"
                 flip
-                class="flex-none text-line-strong opacity-0 transition-all duration-base ease-out-quart group-hover:translate-x-1 group-hover:text-gold-deep group-hover:opacity-100 rtl:group-hover:-translate-x-1"
+                class="flex-none text-line-strong opacity-0 transition-all duration-base ease-out-quart group-hover:translate-x-1 group-hover:text-gold-deep group-hover:opacity-100 rtl:group-hover:-translate-x-1 sm:block hidden"
               />
             </RouterLink>
           </li>
