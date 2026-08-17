@@ -22,8 +22,8 @@
       
       <!-- Footer -->
       <footer class="p-8 text-center border-t border-[#E0DACE]">
-        <p class="text-[10px] font-bold tracking-[0.3em] text-[#555555] uppercase">
-          &copy; {{ new Date().getFullYear() }} ESLAM ABDULGHANI DESIGNS Control Panel. All Rights Reserved.
+        <p class="text-[10px] font-bold tracking-[0.2em] text-[#555555] uppercase">
+          &copy; {{ new Date().getFullYear() }} ESLAM ABDULGHANI DESIGNS Control Panel. All Rights Reserved. • Developed by <a href="https://zadians.com/" target="_blank" rel="noopener noreferrer" class="text-gold-deep hover:underline">Zadians</a>
         </p>
       </footer>
     </div>

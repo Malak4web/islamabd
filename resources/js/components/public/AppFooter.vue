@@ -104,9 +104,21 @@
       </div>
 
       <div class="mt-10 flex flex-col items-start justify-between gap-4 border-t border-line pt-7 sm:mt-16 md:mt-20 md:flex-row md:items-center md:pt-8">
-        <p class="text-label text-ink-subtle">
-          &copy; {{ year }} ESLAM ABDULGHANI DESIGNS. {{ $t('footer.rights') }}
-        </p>
+        <div class="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3 text-label text-ink-subtle">
+          <p>
+            &copy; {{ year }} ESLAM ABDULGHANI DESIGNS. {{ $t('footer.rights') }}
+          </p>
+          <span class="hidden text-line-strong sm:inline" aria-hidden="true">•</span>
+          <p class="text-ink-muted">
+            {{ $t('footer.developed_by') }}
+            <a
+              href="https://zadians.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-gold-deep transition-colors duration-fast hover:text-ink hover:underline"
+            >{{ $t('footer.developer_name') }}</a>
+          </p>
+        </div>
 
         <button
           type="button"

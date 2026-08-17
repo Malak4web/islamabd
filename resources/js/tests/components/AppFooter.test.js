@@ -37,5 +37,8 @@ describe('AppFooter.vue', () => {
         
         expect(wrapper.text()).toContain('+123456789')
         expect(wrapper.text()).toContain('info@eslamabdulghanidesigns.com')
+        
+        const zadiansLink = wrapper.find('a[href="https://zadians.com/"]')
+        expect(zadiansLink.exists()).toBe(true)
     })
 })
