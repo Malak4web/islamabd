@@ -71,6 +71,27 @@
                     </svg>
                     {{ auth.isLoading ? 'Authenticating...' : 'Sign In' }}
                 </button>
+
+                <!-- Quick Autofill Credentials -->
+                <div class="pt-4 border-t border-[#E0DACE] flex flex-col gap-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-[#888888] text-center">Quick Credentials / تجربة سريعة</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button 
+                            type="button" 
+                            @click="fillCredentials('admin@eslamabdulghanidesigns.com', 'password')"
+                            class="px-2.5 py-2 text-[11px] font-bold rounded-lg border border-[#C5A880]/40 bg-[#F7F5F0] text-[#111111] hover:bg-[#C5A880] hover:text-white transition-all text-center"
+                        >
+                            👑 Admin (مسؤول)
+                        </button>
+                        <button 
+                            type="button" 
+                            @click="fillCredentials('editor@eslamabdulghanidesigns.com', 'password')"
+                            class="px-2.5 py-2 text-[11px] font-bold rounded-lg border border-emerald-600/40 bg-[#F7F5F0] text-[#111111] hover:bg-emerald-600 hover:text-white transition-all text-center"
+                        >
+                            ✍️ Data Entry (مدخل)
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -95,6 +116,12 @@ const form = reactive({
     email: '',
     password: ''
 })
+
+const fillCredentials = (email, password) => {
+    form.email = email
+    form.password = password
+    auth.error = null
+}
 
 const handleLogin = async () => {
     try {

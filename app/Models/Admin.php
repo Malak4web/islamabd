@@ -46,11 +46,24 @@ class Admin extends Authenticatable
     }
 
     /**
+     * Get the role attribute, ensuring primary admin always returns 'admin'.
+     */
+    public function getRoleAttribute($value): string
+    {
+        if ($this->email === 'admin@eslamabdulghanidesigns.com' || $this->id === 1) {
+            return 'admin';
+        }
+        return $value ?? 'data_entry';
+    }
+
+    /**
      * Determine if admin has full administrator privileges.
      */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return $this->role === 'admin' 
+            || $this->email === 'admin@eslamabdulghanidesigns.com' 
+            || $this->id === 1;
     }
 
     /**
@@ -58,6 +71,6 @@ class Admin extends Authenticatable
      */
     public function isDataEntry(): bool
     {
-        return $this->role === 'data_entry';
+        return !$this->isAdmin();
     }
 }

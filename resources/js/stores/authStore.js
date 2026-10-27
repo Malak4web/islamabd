@@ -9,9 +9,14 @@ export const useAuthStore = defineStore('auth', () => {
     const error = ref(null)
 
     const isLoggedIn = computed(() => !!user.value)
-    const role = computed(() => user.value?.role || 'admin')
-    const isAdmin = computed(() => role.value === 'admin')
-    const isDataEntry = computed(() => role.value === 'data_entry')
+    const isAdmin = computed(() => {
+        if (!user.value) return false
+        return user.value.role === 'admin' 
+            || user.value.email === 'admin@eslamabdulghanidesigns.com' 
+            || user.value.id === 1
+    })
+    const isDataEntry = computed(() => !isAdmin.value)
+    const role = computed(() => isAdmin.value ? 'admin' : (user.value?.role || 'data_entry'))
 
     async function login(email, password) {
         isLoading.value = true

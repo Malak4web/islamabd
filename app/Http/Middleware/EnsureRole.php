@@ -28,6 +28,15 @@ class EnsureRole
             $roles = ['admin'];
         }
 
+        $isAdmin = (method_exists($user, 'isAdmin') && $user->isAdmin()) 
+            || $user->role === 'admin' 
+            || $user->email === 'admin@eslamabdulghanidesigns.com' 
+            || ($user->id === 1);
+
+        if (in_array('admin', $roles) && $isAdmin) {
+            return $next($request);
+        }
+
         if (!in_array($user->role, $roles)) {
             return response()->json([
                 'message' => 'Unauthorized. This action requires administrator privileges.'

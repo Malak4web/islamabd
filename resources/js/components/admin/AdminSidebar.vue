@@ -49,14 +49,14 @@
       <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F7F5F0] border border-[#E0DACE]">
         <div 
           class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0"
-          :class="(auth.user?.role || auth.role) === 'admin' ? 'bg-[#C5A880] text-white' : 'bg-emerald-600 text-white'"
+          :class="isCurrentUserAdmin ? 'bg-[#C5A880] text-white' : 'bg-emerald-600 text-white'"
         >
            {{ auth.user?.name?.charAt(0) || 'A' }}
         </div>
         <div v-if="!isCollapsed" class="flex flex-col min-w-0">
           <span class="text-xs font-bold text-[#111111] truncate">{{ auth.user?.name }}</span>
-          <span class="text-[9px] font-black uppercase tracking-wider" :class="(auth.user?.role || auth.role) === 'admin' ? 'text-[#C5A880]' : 'text-emerald-600'">
-            {{ (auth.user?.role || auth.role) === 'admin' ? ($t('admin.role_admin') || 'Administrator') : ($t('admin.role_data_entry') || 'Data Entry') }}
+          <span class="text-[9px] font-black uppercase tracking-wider" :class="isCurrentUserAdmin ? 'text-[#C5A880]' : 'text-emerald-600'">
+            {{ isCurrentUserAdmin ? ($t('admin.role_admin') || 'Administrator') : ($t('admin.role_data_entry') || 'Data Entry') }}
           </span>
           <button @click="handleLogout" class="text-[10px] font-bold text-[#555555] hover:text-red-500 text-left rtl:text-right uppercase tracking-tighter mt-0.5">
             {{ $t('admin.logout') }}
@@ -125,10 +125,15 @@ const navItems = [
   { name: 'Settings', key: 'settings', path: '/admin/settings', routeName: 'admin.settings', icon: Settings, adminOnly: true }
 ]
 
+const isCurrentUserAdmin = computed(() => {
+  const u = auth.user
+  if (!u) return false
+  return u.role === 'admin' || u.email === 'admin@eslamabdulghanidesigns.com' || u.id === 1 || Boolean(auth.isAdmin)
+})
+
 const visibleNavItems = computed(() => {
-  const currentRole = auth.user?.role || auth.role || 'admin'
   return navItems.filter(item => {
-    if (item.adminOnly && currentRole !== 'admin') {
+    if (item.adminOnly && !isCurrentUserAdmin.value) {
       return false
     }
     return true

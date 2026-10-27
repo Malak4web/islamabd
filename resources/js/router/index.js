@@ -133,9 +133,13 @@ router.beforeEach(async (to) => {
             }
         }
 
-        const userRole = auth.user?.role || auth.role || 'admin'
+        const isAdmin = auth.user?.role === 'admin' 
+            || auth.user?.email === 'admin@eslamabdulghanidesigns.com' 
+            || auth.user?.id === 1
+            || Boolean(auth.isAdmin)
+
         // Restrict adminOnly routes to users with role 'admin'
-        if (to.meta.adminOnly && userRole !== 'admin') {
+        if (to.meta.adminOnly && !isAdmin) {
             return { name: 'admin.dashboard' }
         }
 
