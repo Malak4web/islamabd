@@ -49,14 +49,14 @@
       <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F7F5F0] border border-[#E0DACE]">
         <div 
           class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0"
-          :class="auth.role === 'admin' ? 'bg-[#C5A880] text-white' : 'bg-emerald-600 text-white'"
+          :class="(auth.user?.role || auth.role) === 'admin' ? 'bg-[#C5A880] text-white' : 'bg-emerald-600 text-white'"
         >
            {{ auth.user?.name?.charAt(0) || 'A' }}
         </div>
         <div v-if="!isCollapsed" class="flex flex-col min-w-0">
           <span class="text-xs font-bold text-[#111111] truncate">{{ auth.user?.name }}</span>
-          <span class="text-[9px] font-black uppercase tracking-wider" :class="auth.role === 'admin' ? 'text-[#C5A880]' : 'text-emerald-600'">
-            {{ auth.role === 'admin' ? ($t('admin.role_admin') || 'Administrator') : ($t('admin.role_data_entry') || 'Data Entry') }}
+          <span class="text-[9px] font-black uppercase tracking-wider" :class="(auth.user?.role || auth.role) === 'admin' ? 'text-[#C5A880]' : 'text-emerald-600'">
+            {{ (auth.user?.role || auth.role) === 'admin' ? ($t('admin.role_admin') || 'Administrator') : ($t('admin.role_data_entry') || 'Data Entry') }}
           </span>
           <button @click="handleLogout" class="text-[10px] font-bold text-[#555555] hover:text-red-500 text-left rtl:text-right uppercase tracking-tighter mt-0.5">
             {{ $t('admin.logout') }}
@@ -126,8 +126,9 @@ const navItems = [
 ]
 
 const visibleNavItems = computed(() => {
+  const currentRole = auth.user?.role || auth.role || 'admin'
   return navItems.filter(item => {
-    if (item.adminOnly && auth.role !== 'admin') {
+    if (item.adminOnly && currentRole !== 'admin') {
       return false
     }
     return true
@@ -140,6 +141,11 @@ const handleLogout = async () => {
 }
 
 onMounted(async () => {
+   try {
+       await auth.fetchUser(true)
+   } catch (e) {
+       // Not logged in or error
+   }
    if (!settingStore.settings.logo) {
        settingStore.fetchSettings()
    }

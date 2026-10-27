@@ -45,8 +45,8 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    async function fetchUser() {
-        if (user.value) return user.value
+    async function fetchUser(force = false) {
+        if (user.value && !force && user.value.role) return user.value
         
         try {
             const response = await api.get('/admin/user')

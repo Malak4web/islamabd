@@ -122,9 +122,9 @@ router.beforeEach(async (to) => {
 
     // Protected routes
     if (to.meta.requiresAuth || to.matched.some(record => record.meta.requiresAuth)) {
-        if (!auth.isLoggedIn) {
+        if (!auth.isLoggedIn || !auth.user?.role) {
             try {
-                await auth.fetchUser()
+                await auth.fetchUser(true)
             } catch (err) {
                 return { 
                     name: 'admin.login', 
@@ -133,8 +133,9 @@ router.beforeEach(async (to) => {
             }
         }
 
+        const userRole = auth.user?.role || auth.role || 'admin'
         // Restrict adminOnly routes to users with role 'admin'
-        if (to.meta.adminOnly && auth.role !== 'admin') {
+        if (to.meta.adminOnly && userRole !== 'admin') {
             return { name: 'admin.dashboard' }
         }
 

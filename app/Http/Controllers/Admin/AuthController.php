@@ -14,7 +14,10 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        // Log out any previous session to ensure clean switch between admin and data entry
+        Auth::guard('web')->logout();
+
+        if (!Auth::guard('web')->attempt($request->only('email', 'password'))) {
             return response()->json([
                 'message' => 'Invalid credentials.'
             ], 401);
@@ -24,8 +27,10 @@ class AuthController extends Controller
             $request->session()->regenerate();
         }
 
+        $user = Auth::guard('web')->user();
+
         return response()->json([
-            'data' => $request->user(),
+            'data' => $user,
             'message' => 'Logged in successfully.'
         ]);
     }
@@ -52,8 +57,10 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
+        $user = Auth::guard('web')->user() ?? $request->user();
+
         return response()->json([
-            'data' => $request->user()
+            'data' => $user
         ]);
     }
 }
