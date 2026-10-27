@@ -32,7 +32,7 @@ class ProjectController extends Controller
         return response()->json([
             'data' => $projects->map(function($p) use ($locale) {
                 $cover = $p->cover_image;
-                if ($cover && !str_starts_with($cover, 'http')) {
+                if ($cover && !str_starts_with($cover, 'http') && !str_starts_with($cover, '/')) {
                     $cover = Storage::disk('public')->url($cover);
                 }
                 return [
@@ -63,12 +63,12 @@ class ProjectController extends Controller
         $project = Project::active()->findOrFail($id);
 
         $cover = $project->cover_image;
-        if ($cover && !str_starts_with($cover, 'http')) {
+        if ($cover && !str_starts_with($cover, 'http') && !str_starts_with($cover, '/')) {
             $cover = Storage::disk('public')->url($cover);
         }
 
         $gallery = collect($project->gallery)->map(function ($img) {
-            if ($img && !str_starts_with($img, 'http')) {
+            if ($img && !str_starts_with($img, 'http') && !str_starts_with($img, '/')) {
                 return Storage::disk('public')->url($img);
             }
             return $img;

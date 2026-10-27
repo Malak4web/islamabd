@@ -87,13 +87,31 @@ export const useProjectStore = defineStore('project', () => {
 
     async function reorderProjects(ids) {
         await api.patch('/admin/projects/reorder', { order: ids })
+        const map = new Map(projects.value.map(p => [p.id, p]))
+        const ordered = []
+        ids.forEach((id, index) => {
+            const p = map.get(id)
+            if (p) {
+                p.order = index + 1
+                ordered.push(p)
+                map.delete(id)
+            }
+        })
+        // append any remaining
+        map.forEach(p => ordered.push(p))
+        projects.value = ordered
     }
 
     async function uploadCover(id, file) {
         const formData = new FormData()
         formData.append('file', file)
         const { data } = await api.post(`/admin/projects/${id}/cover`, formData)
-        return data.data.url
+        const url = data.data.url || data.data.cover_image
+        const index = projects.value.findIndex(p => p.id === id)
+        if (index !== -1 && url) {
+            projects.value[index].cover_image = url
+        }
+        return url
     }
 
     async function uploadGallery(id, files) {
@@ -102,14 +120,24 @@ export const useProjectStore = defineStore('project', () => {
             formData.append('images[]', files[i])
         }
         const { data } = await api.post(`/admin/projects/${id}/gallery`, formData)
-        return data.data.gallery
+        const gallery = data.data.gallery
+        const index = projects.value.findIndex(p => p.id === id)
+        if (index !== -1 && gallery) {
+            projects.value[index].gallery = gallery
+        }
+        return gallery
     }
 
     async function removeGalleryImage(id, imagePath) {
         const { data } = await api.delete(`/admin/projects/${id}/gallery`, {
             data: { image: imagePath }
         })
-        return data.data.gallery
+        const gallery = data.data.gallery
+        const index = projects.value.findIndex(p => p.id === id)
+        if (index !== -1 && gallery) {
+            projects.value[index].gallery = gallery
+        }
+        return gallery
     }
 
     return {

@@ -11,12 +11,43 @@ use Illuminate\Validation\Rule;
 class ProjectController extends Controller
 {
     /**
+     * Helper to format image paths to web-accessible URLs.
+     */
+    private function formatImageUrl(?string $path): ?string
+    {
+        if (!$path) return null;
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
+            return $path;
+        }
+        return '/storage/' . ltrim($path, '/');
+    }
+
+    /**
+     * Helper to transform a project model for admin API responses.
+     */
+    private function transformProject(Project $project): array
+    {
+        $data = $project->toArray();
+        $data['cover_image'] = $this->formatImageUrl($project->cover_image);
+        if (!empty($project->gallery) && is_array($project->gallery)) {
+            $data['gallery'] = array_values(array_map(fn($img) => $this->formatImageUrl($img), $project->gallery));
+        } else {
+            $data['gallery'] = [];
+        }
+        return $data;
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $projects = Project::orderBy('order')->get()->map(function ($project) {
+            return $this->transformProject($project);
+        });
+
         return response()->json([
-            'data' => Project::orderBy('order')->get()
+            'data' => $projects
         ]);
     }
 
@@ -31,15 +62,21 @@ class ProjectController extends Controller
             'category' => ['required', Rule::in(['residential', 'commercial', 'hospitality', 'landscape', 'retail'])],
             'description_en' => 'required|string',
             'description_ar' => 'required|string',
+            'cover_image' => 'nullable|string',
+            'gallery' => 'nullable|array',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
-            'order' => 'integer',
+            'order' => 'nullable|integer',
         ]);
+
+        if (!isset($validated['order'])) {
+            $validated['order'] = (int) Project::max('order') + 1;
+        }
 
         $project = Project::create($validated);
 
         return response()->json([
-            'data' => $project,
+            'data' => $this->transformProject($project),
             'message' => 'Project created successfully.'
         ], 201);
     }
@@ -56,6 +93,8 @@ class ProjectController extends Controller
             'category' => [Rule::in(['residential', 'commercial', 'hospitality', 'landscape', 'retail'])],
             'description_en' => 'string',
             'description_ar' => 'string',
+            'cover_image' => 'nullable|string',
+            'gallery' => 'nullable|array',
             'is_featured' => 'boolean',
             'is_active' => 'boolean',
             'order' => 'integer',
@@ -64,7 +103,7 @@ class ProjectController extends Controller
         $project->update($validated);
 
         return response()->json([
-            'data' => $project,
+            'data' => $this->transformProject($project->fresh()),
             'message' => 'Project updated successfully.'
         ]);
     }
@@ -89,7 +128,7 @@ class ProjectController extends Controller
         $project->update(['is_active' => !$project->is_active]);
 
         return response()->json([
-            'data' => $project,
+            'data' => $this->transformProject($project->fresh()),
             'message' => 'Project status toggled.'
         ]);
     }
@@ -103,7 +142,7 @@ class ProjectController extends Controller
         $project->update(['is_featured' => !$project->is_featured]);
 
         return response()->json([
-            'data' => $project,
+            'data' => $this->transformProject($project->fresh()),
             'message' => 'Project featured status toggled.'
         ]);
     }
@@ -131,16 +170,22 @@ class ProjectController extends Controller
     public function uploadCover(Request $request, string $id)
     {
         $project = Project::findOrFail($id);
-        $request->validate(['file' => 'required|file|mimes:jpeg,png,jpg,webp|max:5120']);
+        $request->validate(['file' => 'required|file|mimes:jpeg,png,jpg,webp,svg|max:10240']);
 
         $project->clearMediaCollection('cover');
         $media = $project->addMediaFromRequest('file')
             ->toMediaCollection('cover');
 
-        $project->update(['cover_image' => $media->id . '/' . $media->file_name]);
+        $relativePath = $media->id . '/' . $media->file_name;
+        $project->update(['cover_image' => $relativePath]);
+
+        $formattedUrl = $this->formatImageUrl($relativePath);
 
         return response()->json([
-            'data' => ['url' => $media->getUrl()],
+            'data' => [
+                'url' => $formattedUrl,
+                'cover_image' => $formattedUrl
+            ],
             'message' => 'Cover image uploaded successfully.'
         ]);
     }
@@ -153,7 +198,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $request->validate([
             'images' => 'required|array',
-            'images.*' => 'file|mimes:jpeg,png,jpg,webp|max:5120'
+            'images.*' => 'file|mimes:jpeg,png,jpg,webp,svg|max:10240'
         ]);
 
         $paths = [];
@@ -163,10 +208,13 @@ class ProjectController extends Controller
         }
 
         $currentGallery = $project->gallery ?? [];
-        $project->update(['gallery' => array_merge($currentGallery, $paths)]);
+        $merged = array_values(array_unique(array_merge($currentGallery, $paths)));
+        $project->update(['gallery' => $merged]);
+
+        $galleryUrls = array_values(array_map(fn($img) => $this->formatImageUrl($img), $merged));
 
         return response()->json([
-            'data' => ['gallery' => $project->getMedia('gallery')->map(fn($m) => $m->getUrl())],
+            'data' => ['gallery' => $galleryUrls],
             'message' => 'Gallery images uploaded successfully.'
         ]);
     }
@@ -177,21 +225,42 @@ class ProjectController extends Controller
     public function removeGallery(Request $request, string $id)
     {
         $project = Project::findOrFail($id);
-        $request->validate(['image_id' => 'required|integer']);
+        $request->validate([
+            'image_id' => 'nullable|integer',
+            'image' => 'nullable|string'
+        ]);
 
-        $media = $project->getMedia('gallery')->find($request->image_id);
-        if ($media) {
-            $pathToRemove = $media->id . '/' . $media->file_name;
-            $media->delete();
-            
-            $gallery = $project->gallery ?? [];
-            $project->update([
-                'gallery' => array_values(array_filter($gallery, fn($path) => $path !== $pathToRemove))
-            ]);
+        $gallery = $project->gallery ?? [];
+
+        if ($request->filled('image_id')) {
+            $media = $project->getMedia('gallery')->find($request->image_id);
+            if ($media) {
+                $pathToRemove = $media->id . '/' . $media->file_name;
+                $media->delete();
+                $gallery = array_values(array_filter($gallery, fn($path) => $path !== $pathToRemove));
+            }
+        } elseif ($request->filled('image')) {
+            $target = $request->input('image');
+            foreach ($project->getMedia('gallery') as $m) {
+                $p = $m->id . '/' . $m->file_name;
+                if ($p === $target || $m->getUrl() === $target || basename($p) === basename($target)) {
+                    $m->delete();
+                    break;
+                }
+            }
+            $gallery = array_values(array_filter($gallery, function($path) use ($target) {
+                return $path !== $target && 
+                       $this->formatImageUrl($path) !== $target && 
+                       basename($path) !== basename($target);
+            }));
         }
 
+        $project->update(['gallery' => $gallery]);
+
+        $galleryUrls = array_values(array_map(fn($img) => $this->formatImageUrl($img), $gallery));
+
         return response()->json([
-            'data' => ['gallery' => $project->getMedia('gallery')->map(fn($m) => $m->getUrl())],
+            'data' => ['gallery' => $galleryUrls],
             'message' => 'Image removed from gallery.'
         ]);
     }
