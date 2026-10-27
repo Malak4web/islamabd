@@ -77,35 +77,129 @@
 
           <!-- Media Tab -->
           <div v-if="activeTab === 'Media'" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Icon Section -->
             <div class="space-y-6">
-              <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">{{ $t('admin.iconography') }}</label>
+              <div class="flex items-center justify-between">
+                <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">{{ $t('admin.iconography') }}</label>
+                <button 
+                  v-if="form.icon" 
+                  type="button" 
+                  @click="$emit('clear-icon')"
+                  class="text-xs font-bold text-red-500 hover:text-red-700 transition-colors flex items-center gap-1.5"
+                >
+                  <Trash2 class="w-3.5 h-3.5" />
+                  {{ $t('admin.remove') || 'Remove' }}
+                </button>
+              </div>
+
+              <!-- Icon Upload Progress Bar -->
+              <div v-if="iconUploadProgress > 0" class="space-y-2 p-4 bg-[#F7F5F0] border border-[#E0DACE] rounded-2xl">
+                <div class="flex justify-between text-xs font-bold text-[#555555]">
+                  <span class="flex items-center gap-2">
+                    <Upload class="w-3.5 h-3.5 animate-bounce text-[#C5A880]" />
+                    {{ $t('admin.uploading') || 'Uploading icon...' }}
+                  </span>
+                  <span class="font-mono text-[#C5A880]">{{ iconUploadProgress }}%</span>
+                </div>
+                <div class="w-full bg-[#E0DACE] rounded-full h-2 overflow-hidden">
+                  <div class="bg-[#C5A880] h-2 rounded-full transition-all duration-200" :style="{ width: `${iconUploadProgress}%` }"></div>
+                </div>
+              </div>
+
               <div class="relative group border-2 border-dashed border-[#E0DACE] hover:border-[#C5A880]/50 rounded-[2.5rem] p-10 text-center transition-all bg-[#F7F5F0]">
-                <input type="file" @change="e => $emit('upload', { event: e, type: 'icon' })" class="absolute inset-0 opacity-0 cursor-pointer" :disabled="!isEditing">
+                <input 
+                  type="file" 
+                  accept="image/*,.svg"
+                  @change="e => $emit('upload', { event: e, type: 'icon' })" 
+                  class="absolute inset-0 opacity-0 cursor-pointer z-10"
+                >
                 <div v-if="form.icon" class="mb-6 relative inline-block">
                   <div class="w-24 h-24 bg-[#F0ECE1] rounded-2xl p-4 flex items-center justify-center border border-[#E0DACE] group-hover:scale-105 transition-transform duration-500">
-                    <img :src="form.icon" class="w-full h-full object-contain opacity-80" />
+                    <img :src="form.icon" @error="onIconError" class="w-full h-full object-contain" />
+                  </div>
+                  <div class="absolute inset-0 bg-[#111111]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-2xl">
+                    <Upload class="w-5 h-5 text-white" />
                   </div>
                 </div>
                 <div v-else class="w-24 h-24 mx-auto mb-6 bg-[#F0ECE1] rounded-2xl flex items-center justify-center text-[#555555]">
                   <ImageIcon class="w-10 h-10" />
                 </div>
-                <p class="text-xs font-bold text-[#555555] uppercase tracking-widest">{{ isEditing ? $t('admin.change_icon') : $t('admin.save_first_upload') }}</p>
+                <p class="text-xs font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.change_icon') }}</p>
                 <p class="mt-2 text-[10px] text-[#555555] uppercase tracking-tighter">{{ $t('admin.svg_png_hint') }}</p>
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">
+                  {{ $t('admin.icon_url') || 'Icon Path / URL (Optional)' }}
+                </label>
+                <input 
+                  v-model="form.icon" 
+                  type="text" 
+                  placeholder="e.g. /images/icons/architect.svg"
+                  class="w-full bg-[#F7F5F0] border border-[#E0DACE] p-3 rounded-xl outline-none focus:border-[#C5A880] transition-all text-xs font-medium text-[#111111]"
+                >
               </div>
             </div>
 
+            <!-- Image (Cover) Section -->
             <div class="space-y-6">
-              <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">{{ $t('admin.cover_narrative') }}</label>
+              <div class="flex items-center justify-between">
+                <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">{{ $t('admin.cover_narrative') }}</label>
+                <button 
+                  v-if="form.image" 
+                  type="button" 
+                  @click="$emit('clear-image')"
+                  class="text-xs font-bold text-red-500 hover:text-red-700 transition-colors flex items-center gap-1.5"
+                >
+                  <Trash2 class="w-3.5 h-3.5" />
+                  {{ $t('admin.remove') || 'Remove' }}
+                </button>
+              </div>
+
+              <!-- Image Upload Progress Bar -->
+              <div v-if="imageUploadProgress > 0" class="space-y-2 p-4 bg-[#F7F5F0] border border-[#E0DACE] rounded-2xl">
+                <div class="flex justify-between text-xs font-bold text-[#555555]">
+                  <span class="flex items-center gap-2">
+                    <Upload class="w-3.5 h-3.5 animate-bounce text-[#C5A880]" />
+                    {{ $t('admin.uploading') || 'Uploading cover image...' }}
+                  </span>
+                  <span class="font-mono text-[#C5A880]">{{ imageUploadProgress }}%</span>
+                </div>
+                <div class="w-full bg-[#E0DACE] rounded-full h-2 overflow-hidden">
+                  <div class="bg-[#C5A880] h-2 rounded-full transition-all duration-200" :style="{ width: `${imageUploadProgress}%` }"></div>
+                </div>
+              </div>
+
               <div class="relative group border-2 border-dashed border-[#E0DACE] hover:border-[#C5A880]/50 rounded-[2.5rem] p-10 text-center transition-all bg-[#F7F5F0]">
-                <input type="file" @change="e => $emit('upload', { event: e, type: 'image' })" class="absolute inset-0 opacity-0 cursor-pointer" :disabled="!isEditing">
-                <div v-if="form.image" class="mb-6 h-24 overflow-hidden rounded-2xl border border-[#E0DACE] group-hover:scale-105 transition-transform duration-500">
-                  <img :src="form.image" class="w-full h-full object-cover" />
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  @change="e => $emit('upload', { event: e, type: 'image' })" 
+                  class="absolute inset-0 opacity-0 cursor-pointer z-10"
+                >
+                <div v-if="form.image" class="mb-6 h-32 overflow-hidden rounded-2xl border border-[#E0DACE] relative group">
+                  <img :src="form.image" @error="onImageError" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-[#111111]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <Upload class="w-6 h-6 text-white" />
+                  </div>
                 </div>
                 <div v-else class="w-24 h-24 mx-auto mb-6 bg-[#F0ECE1] rounded-2xl flex items-center justify-center text-[#555555]">
                   <Upload class="w-10 h-10" />
                 </div>
-                <p class="text-xs font-bold text-[#555555] uppercase tracking-widest">{{ isEditing ? $t('admin.change_image') : $t('admin.save_first_upload') }}</p>
+                <p class="text-xs font-bold text-[#555555] uppercase tracking-widest">{{ $t('admin.change_image') }}</p>
                 <p class="mt-2 text-[10px] text-[#555555] uppercase tracking-tighter">{{ $t('admin.high_res_jpg_hint') }}</p>
+              </div>
+
+              <div class="space-y-1">
+                <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">
+                  {{ $t('admin.image_url') || 'Image Path / URL (Optional)' }}
+                </label>
+                <input 
+                  v-model="form.image" 
+                  type="text" 
+                  placeholder="e.g. /images/services/administrative-1080.jpg"
+                  class="w-full bg-[#F7F5F0] border border-[#E0DACE] p-3 rounded-xl outline-none focus:border-[#C5A880] transition-all text-xs font-medium text-[#111111]"
+                >
               </div>
             </div>
           </div>
@@ -131,18 +225,34 @@
 
 <script setup>
 import { ref } from 'vue'
-import { X, Image as ImageIcon, Upload } from 'lucide-vue-next'
+import { X, Image as ImageIcon, Upload, Trash2 } from 'lucide-vue-next'
 
 defineProps({
   isOpen: Boolean,
   isEditing: Boolean,
   form: Object,
-  loading: Boolean
+  loading: Boolean,
+  iconUploadProgress: {
+    type: Number,
+    default: 0
+  },
+  imageUploadProgress: {
+    type: Number,
+    default: 0
+  }
 })
 
-defineEmits(['close', 'save', 'upload'])
+defineEmits(['close', 'save', 'upload', 'clear-icon', 'clear-image'])
 
 const activeTab = ref('English')
+
+const onIconError = (e) => {
+  e.target.style.display = 'none'
+}
+
+const onImageError = (e) => {
+  e.target.src = '/images/defaults/hero_fallback.jpg'
+}
 </script>
 
 <style scoped>

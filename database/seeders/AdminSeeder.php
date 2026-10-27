@@ -18,6 +18,17 @@ class AdminSeeder extends Seeder
             [
                 'name' => 'Eslam Abdulghani Designs Admin',
                 'email' => 'admin@eslamabdulghanidesigns.com',
+                'role' => 'admin',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        Admin::updateOrCreate(
+            ['id' => 2],
+            [
+                'name' => 'Data Entry Member',
+                'email' => 'editor@eslamabdulghanidesigns.com',
+                'role' => 'data_entry',
                 'password' => Hash::make('password'),
             ]
         );

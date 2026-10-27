@@ -26,10 +26,21 @@ class AdminFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'role' => 'admin',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Indicate that the admin is a data entry officer.
+     */
+    public function dataEntry(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => 'data_entry',
+        ]);
     }
 
     /**

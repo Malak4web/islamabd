@@ -63,19 +63,9 @@ const router = createRouter({
                     component: () => import('../views/admin/AdminDashboard.vue')
                 },
                 {
-                    path: 'settings',
-                    name: 'admin.settings',
-                    component: () => import('../views/admin/AdminSettings.vue')
-                },
-                {
-                    path: 'pages',
-                    name: 'admin.pages',
-                    component: () => import('../views/admin/AdminPages.vue')
-                },
-                {
-                    path: 'pages/:id/sections',
-                    name: 'admin.sections',
-                    component: () => import('../views/admin/AdminSections.vue')
+                    path: 'projects',
+                    name: 'admin.projects',
+                    component: () => import('../views/admin/AdminProjects.vue')
                 },
                 {
                     path: 'services',
@@ -83,9 +73,9 @@ const router = createRouter({
                     component: () => import('../views/admin/AdminServices.vue')
                 },
                 {
-                    path: 'projects',
-                    name: 'admin.projects',
-                    component: () => import('../views/admin/AdminProjects.vue')
+                    path: 'media',
+                    name: 'admin.media',
+                    component: () => import('../views/admin/AdminMedia.vue')
                 },
                 {
                     path: 'contacts',
@@ -93,38 +83,62 @@ const router = createRouter({
                     component: () => import('../views/admin/AdminContacts.vue')
                 },
                 {
-                    path: 'media',
-                    name: 'admin.media',
-                    component: () => import('../views/admin/AdminMedia.vue')
+                    path: 'users',
+                    name: 'admin.users',
+                    component: () => import('../views/admin/AdminUsers.vue'),
+                    meta: { adminOnly: true }
+                },
+                {
+                    path: 'pages',
+                    name: 'admin.pages',
+                    component: () => import('../views/admin/AdminPages.vue'),
+                    meta: { adminOnly: true }
+                },
+                {
+                    path: 'pages/:id/sections',
+                    name: 'admin.sections',
+                    component: () => import('../views/admin/AdminSections.vue'),
+                    meta: { adminOnly: true }
                 },
                 {
                     path: 'code-injections',
                     name: 'admin.code_injections',
-                    component: () => import('../views/admin/AdminCodeInjection.vue')
+                    component: () => import('../views/admin/AdminCodeInjection.vue'),
+                    meta: { adminOnly: true }
+                },
+                {
+                    path: 'settings',
+                    name: 'admin.settings',
+                    component: () => import('../views/admin/AdminSettings.vue'),
+                    meta: { adminOnly: true }
                 }
             ]
         }
     ]
 });
 
-
-
-
-
 router.beforeEach(async (to) => {
     const auth = useAuthStore()
 
     // Protected routes
-    if (to.meta.requiresAuth && !auth.isLoggedIn) {
-        try {
-            await auth.fetchUser()
-            return true // Authenticated via session
-        } catch (err) {
-            return { 
-                name: 'admin.login', 
-                query: { redirect: to.fullPath } 
+    if (to.meta.requiresAuth || to.matched.some(record => record.meta.requiresAuth)) {
+        if (!auth.isLoggedIn) {
+            try {
+                await auth.fetchUser()
+            } catch (err) {
+                return { 
+                    name: 'admin.login', 
+                    query: { redirect: to.fullPath } 
+                }
             }
         }
+
+        // Restrict adminOnly routes to users with role 'admin'
+        if (to.meta.adminOnly && auth.role !== 'admin') {
+            return { name: 'admin.dashboard' }
+        }
+
+        return true
     }
 
     // Guest only routes (like login)

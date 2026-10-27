@@ -18,6 +18,7 @@ class Admin extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
     ];
 
@@ -42,5 +43,21 @@ class Admin extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Determine if admin has full administrator privileges.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Determine if admin is restricted to data entry.
+     */
+    public function isDataEntry(): bool
+    {
+        return $this->role === 'data_entry';
     }
 }

@@ -10,12 +10,45 @@ use Illuminate\Support\Facades\Storage;
 class ServiceController extends Controller
 {
     /**
+     * Helper to format image paths to web-accessible URLs.
+     */
+    private function formatImageUrl(?string $path): ?string
+    {
+        if (!$path) return null;
+        $path = preg_replace('#^https?://(localhost|127\.0\.0\.1)(:\d+)?/storage/#', '/storage/', $path);
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
+            return $path;
+        }
+        return '/storage/' . ltrim($path, '/');
+    }
+
+    /**
+     * Transform a service model for admin API responses.
+     */
+    private function transformService(Service $service): array
+    {
+        $data = $service->toArray();
+        $data['image'] = $this->formatImageUrl($service->image);
+        $data['icon'] = $this->formatImageUrl($service->icon);
+        if (!empty($service->gallery) && is_array($service->gallery)) {
+            $data['gallery'] = array_values(array_map(fn($img) => $this->formatImageUrl($img), $service->gallery));
+        } else {
+            $data['gallery'] = [];
+        }
+        return $data;
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $services = Service::orderBy('order')->get()->map(function ($service) {
+            return $this->transformService($service);
+        });
+
         return response()->json([
-            'data' => Service::orderBy('order')->get()
+            'data' => $services
         ]);
     }
 
@@ -25,22 +58,25 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title_en' => 'required|string',
-            'title_ar' => 'required|string',
+            'title_en' => 'required|string|max:255',
+            'title_ar' => 'required|string|max:255',
             'description_en' => 'nullable|string',
             'description_ar' => 'nullable|string',
+            'image' => 'nullable|string',
+            'icon' => 'nullable|string',
+            'gallery' => 'nullable|array',
             'order' => 'nullable|integer',
             'is_active' => 'boolean'
         ]);
 
         if (!isset($validated['order'])) {
-            $validated['order'] = Service::max('order') + 1;
+            $validated['order'] = (int) Service::max('order') + 1;
         }
 
         $service = Service::create($validated);
 
         return response()->json([
-            'data' => $service,
+            'data' => $this->transformService($service),
             'message' => 'Service created successfully.'
         ], 201);
     }
@@ -53,10 +89,13 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         $validated = $request->validate([
-            'title_en' => 'required|string',
-            'title_ar' => 'required|string',
+            'title_en' => 'required|string|max:255',
+            'title_ar' => 'required|string|max:255',
             'description_en' => 'nullable|string',
             'description_ar' => 'nullable|string',
+            'image' => 'nullable|string',
+            'icon' => 'nullable|string',
+            'gallery' => 'nullable|array',
             'order' => 'nullable|integer',
             'is_active' => 'boolean'
         ]);
@@ -64,7 +103,7 @@ class ServiceController extends Controller
         $service->update($validated);
 
         return response()->json([
-            'data' => $service,
+            'data' => $this->transformService($service->fresh()),
             'message' => 'Service updated successfully.'
         ]);
     }
@@ -89,7 +128,7 @@ class ServiceController extends Controller
         $service->update(['is_active' => !$service->is_active]);
 
         return response()->json([
-            'data' => $service,
+            'data' => $this->transformService($service->fresh()),
             'message' => 'Service visibility toggled.'
         ]);
     }
@@ -119,18 +158,23 @@ class ServiceController extends Controller
     public function uploadImage(Request $request, string $id)
     {
         $service = Service::findOrFail($id);
-        $request->validate(['file' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+        $request->validate(['file' => 'required|file|max:25600']);
 
         $service->clearMediaCollection('image');
         $media = $service->addMediaFromRequest('file')->toMediaCollection('image');
-        $service->update(['image' => $media->id . '/' . $media->file_name]);
+        $relativePath = $media->id . '/' . $media->file_name;
+        $service->update(['image' => $relativePath]);
+
+        $formattedUrl = $this->formatImageUrl($relativePath);
 
         return response()->json([
-            'data' => ['url' => $media->getUrl()],
+            'data' => [
+                'url' => $formattedUrl,
+                'image' => $formattedUrl
+            ],
             'message' => 'Image uploaded successfully.'
         ]);
     }
-
 
     /**
      * Upload service icon.
@@ -138,14 +182,20 @@ class ServiceController extends Controller
     public function uploadIcon(Request $request, string $id)
     {
         $service = Service::findOrFail($id);
-        $request->validate(['file' => 'required|file|max:1024']); // Icons can be SVG
+        $request->validate(['file' => 'required|file|max:10240']);
 
         $service->clearMediaCollection('icon');
         $media = $service->addMediaFromRequest('file')->toMediaCollection('icon');
-        $service->update(['icon' => $media->id . '/' . $media->file_name]);
+        $relativePath = $media->id . '/' . $media->file_name;
+        $service->update(['icon' => $relativePath]);
+
+        $formattedUrl = $this->formatImageUrl($relativePath);
 
         return response()->json([
-            'data' => ['url' => $media->getUrl()],
+            'data' => [
+                'url' => $formattedUrl,
+                'icon' => $formattedUrl
+            ],
             'message' => 'Icon uploaded successfully.'
         ]);
     }

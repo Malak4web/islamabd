@@ -70,16 +70,24 @@
                 <GripVertical class="w-5 h-5" />
               </div>
             </div>
-            <div class="col-span-5 flex items-center gap-6">
-              <div class="w-16 h-16 bg-[#F0ECE1] rounded-2xl p-4 border border-[#E0DACE] flex-shrink-0 relative overflow-hidden group-hover:border-[#C5A880]/30 transition-all">
-                <img v-if="element.icon" :src="element.icon" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-all">
-                <div v-else class="w-full h-full flex items-center justify-center text-[#555555]">
-                   <Box class="w-6 h-6" />
+            <div class="col-span-5 flex items-center gap-5">
+              <!-- Service Icon -->
+              <div class="w-14 h-14 bg-[#F0ECE1] rounded-2xl p-3 border border-[#E0DACE] flex-shrink-0 relative overflow-hidden group-hover:border-[#C5A880]/30 transition-all flex items-center justify-center" :title="$t('admin.iconography')">
+                <img v-if="element.icon" :src="element.icon" class="w-full h-full object-contain opacity-85 group-hover:opacity-100 transition-all">
+                <Box v-else class="w-6 h-6 text-[#555555]" />
+              </div>
+
+              <!-- Service Cover Image Thumbnail -->
+              <div class="w-20 h-14 bg-[#F0ECE1] rounded-xl border border-[#E0DACE] overflow-hidden flex-shrink-0 relative group-hover:border-[#C5A880]/30 transition-all shadow-sm" :title="$t('admin.cover_narrative')">
+                <img v-if="element.image" :src="element.image" @error="onThumbnailError" class="w-full h-full object-cover">
+                <div v-else class="w-full h-full flex items-center justify-center text-[#999999] text-[9px] uppercase font-bold tracking-wider">
+                  No Cover
                 </div>
               </div>
-              <div class="space-y-1">
-                <h3 class="text-base font-bold text-[#111111] group-hover:text-[#C5A880] transition-colors uppercase tracking-tight">{{ element.title_en }}</h3>
-                <p class="text-xs text-[#555555] font-bold tracking-widest">{{ element.title_ar }}</p>
+
+              <div class="space-y-1 min-w-0">
+                <h3 class="text-base font-bold text-[#111111] group-hover:text-[#C5A880] transition-colors uppercase tracking-tight truncate">{{ element.title_en }}</h3>
+                <p class="text-xs text-[#555555] font-bold tracking-widest truncate">{{ element.title_ar }}</p>
               </div>
             </div>
             <div class="col-span-2 text-center">
@@ -124,9 +132,13 @@
       :is-editing="isEditing"
       :form="form"
       :loading="serviceStore.isLoading"
+      :icon-upload-progress="iconUploadProgress"
+      :image-upload-progress="imageUploadProgress"
       @close="showModal = false"
       @save="saveService"
       @upload="handleUpload"
+      @clear-icon="handleClearIcon"
+      @clear-image="handleClearImage"
     />
 
     <ConfirmModal 
@@ -143,6 +155,7 @@
 import { ref, onMounted, reactive, watch } from 'vue'
 import draggable from 'vuedraggable'
 import { useServiceStore } from '@/stores/serviceStore'
+import { useToast } from '@/composables/useToast'
 import { useI18n } from 'vue-i18n'
 import { 
   Plus, 
@@ -159,12 +172,18 @@ import ConfirmModal from '@/components/admin/ConfirmModal.vue'
 
 const serviceStore = useServiceStore()
 const { t } = useI18n()
+const { toast } = useToast()
+
 const localServices = ref([])
 const showModal = ref(false)
 const showDeleteConfirm = ref(false)
 const isEditing = ref(false)
 const editingId = ref(null)
 const serviceToDelete = ref(null)
+
+const iconUploadProgress = ref(0)
+const imageUploadProgress = ref(0)
+const pendingFiles = reactive({ icon: null, image: null })
 
 const form = reactive({
     title_en: '',
@@ -185,9 +204,17 @@ watch(() => serviceStore.services, (newVal) => {
     localServices.value = [...newVal]
 }, { deep: true })
 
+const onThumbnailError = (e) => {
+  e.target.src = '/images/defaults/hero_fallback.jpg'
+}
+
 const openAddModal = () => {
     isEditing.value = false
     editingId.value = null
+    iconUploadProgress.value = 0
+    imageUploadProgress.value = 0
+    pendingFiles.icon = null
+    pendingFiles.image = null
     Object.assign(form, {
         title_en: '',
         title_ar: '',
@@ -203,6 +230,10 @@ const openAddModal = () => {
 const editService = (service) => {
     isEditing.value = true
     editingId.value = service.id
+    iconUploadProgress.value = 0
+    imageUploadProgress.value = 0
+    pendingFiles.icon = null
+    pendingFiles.image = null
     Object.assign(form, { ...service })
     showModal.value = true
 }
@@ -211,12 +242,34 @@ const saveService = async () => {
     try {
         if (isEditing.value) {
             await serviceStore.updateService(editingId.value, { ...form })
+            toast.success(t('admin.saved') || 'Service updated successfully')
         } else {
-            await serviceStore.createService({ ...form })
+            const created = await serviceStore.createService({ ...form })
+            if (created && created.id) {
+                if (pendingFiles.icon) {
+                    iconUploadProgress.value = 10
+                    await serviceStore.uploadIcon(created.id, pendingFiles.icon, (p) => {
+                        iconUploadProgress.value = p
+                    })
+                }
+                if (pendingFiles.image) {
+                    imageUploadProgress.value = 10
+                    await serviceStore.uploadImage(created.id, pendingFiles.image, (p) => {
+                        imageUploadProgress.value = p
+                    })
+                }
+                await serviceStore.fetchAdminServices()
+            }
+            toast.success(t('admin.saved') || 'Service created successfully')
         }
+        iconUploadProgress.value = 0
+        imageUploadProgress.value = 0
         showModal.value = false
     } catch (err) {
         console.error(err)
+        iconUploadProgress.value = 0
+        imageUploadProgress.value = 0
+        toast.error(err?.response?.data?.message || t('admin.error') || 'Failed to save service')
     }
 }
 
@@ -227,22 +280,56 @@ const toggleService = async (service) => {
 const handleReorder = async () => {
     const ids = localServices.value.map(s => s.id)
     await serviceStore.reorderServices(ids)
-    alert(t('admin.reordered_success'))
+    toast.success(t('admin.reordered_success') || 'Services reordered successfully')
 }
 
 const handleUpload = async ({ event, type }) => {
     const file = event.target.files[0]
     if (!file) return
 
-    try {
-        const url = type === 'icon' 
-            ? await serviceStore.uploadIcon(editingId.value, file)
-            : await serviceStore.uploadImage(editingId.value, file)
-        
-        form[type] = url
-    } catch (err) {
-        console.error(err)
+    if (isEditing.value && editingId.value) {
+        if (type === 'icon') iconUploadProgress.value = 5
+        if (type === 'image') imageUploadProgress.value = 5
+
+        try {
+            const progressCb = (p) => {
+                if (type === 'icon') iconUploadProgress.value = p
+                if (type === 'image') imageUploadProgress.value = p
+            }
+
+            const url = type === 'icon' 
+                ? await serviceStore.uploadIcon(editingId.value, file, progressCb)
+                : await serviceStore.uploadImage(editingId.value, file, progressCb)
+            
+            form[type] = url
+            toast.success(t('admin.saved') || `${type === 'icon' ? 'Icon' : 'Image'} uploaded successfully`)
+
+            setTimeout(() => {
+                if (type === 'icon') iconUploadProgress.value = 0
+                if (type === 'image') imageUploadProgress.value = 0
+            }, 1200)
+        } catch (err) {
+            console.error(err)
+            if (type === 'icon') iconUploadProgress.value = 0
+            if (type === 'image') imageUploadProgress.value = 0
+            toast.error(err?.response?.data?.message || 'Upload failed')
+        }
+    } else {
+        pendingFiles[type] = file
+        form[type] = URL.createObjectURL(file)
     }
+
+    event.target.value = ''
+}
+
+const handleClearIcon = () => {
+    form.icon = null
+    pendingFiles.icon = null
+}
+
+const handleClearImage = () => {
+    form.image = null
+    pendingFiles.image = null
 }
 
 const openDeleteConfirm = (service) => {
@@ -255,5 +342,6 @@ const deleteService = async () => {
     await serviceStore.deleteService(serviceToDelete.value.id)
     showDeleteConfirm.value = false
     serviceToDelete.value = null
+    toast.success('Service deleted successfully')
 }
 </script>

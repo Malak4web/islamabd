@@ -25,8 +25,8 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="p-4 space-y-2">
-      <div v-for="item in navItems" :key="item.key">
+    <nav class="p-4 space-y-2 overflow-y-auto max-h-[calc(100vh-10rem)]">
+      <div v-for="item in visibleNavItems" :key="item.key">
         <RouterLink 
           :to="item.path" 
           class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all group"
@@ -47,12 +47,18 @@
     <!-- Footer / User -->
     <div class="absolute bottom-0 left-0 w-full p-4 border-t border-[#E0DACE] bg-[#FFFFFF]">
       <div class="flex items-center gap-3 p-3 rounded-xl bg-[#F7F5F0] border border-[#E0DACE]">
-        <div class="w-10 h-10 rounded-full bg-[#E0DACE] flex items-center justify-center text-[#111111] font-bold">
-           {{ auth.user?.name?.charAt(0) }}
+        <div 
+          class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0"
+          :class="auth.role === 'admin' ? 'bg-[#C5A880] text-white' : 'bg-emerald-600 text-white'"
+        >
+           {{ auth.user?.name?.charAt(0) || 'A' }}
         </div>
         <div v-if="!isCollapsed" class="flex flex-col min-w-0">
           <span class="text-xs font-bold text-[#111111] truncate">{{ auth.user?.name }}</span>
-          <button @click="handleLogout" class="text-[10px] font-bold text-[#555555] hover:text-red-500 text-left rtl:text-right uppercase tracking-tighter">
+          <span class="text-[9px] font-black uppercase tracking-wider" :class="auth.role === 'admin' ? 'text-[#C5A880]' : 'text-emerald-600'">
+            {{ auth.role === 'admin' ? ($t('admin.role_admin') || 'Administrator') : ($t('admin.role_data_entry') || 'Data Entry') }}
+          </span>
+          <button @click="handleLogout" class="text-[10px] font-bold text-[#555555] hover:text-red-500 text-left rtl:text-right uppercase tracking-tighter mt-0.5">
             {{ $t('admin.logout') }}
           </button>
         </div>
@@ -80,7 +86,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { useContactStore } from '@/stores/contactStore'
@@ -94,7 +100,8 @@ import {
   Construction, 
   Mail, 
   Code, 
-  Image as ImageIcon 
+  Image as ImageIcon,
+  Users
 } from 'lucide-vue-next'
 
 const auth = useAuthStore()
@@ -104,18 +111,28 @@ const settingStore = useSettingStore()
 const router = useRouter()
 const isCollapsed = ref(false)
 
-const newContactsCount = ref(0) // Should come from store
+const newContactsCount = ref(0)
 
 const navItems = [
   { name: 'Dashboard', key: 'dashboard', path: '/admin', routeName: 'admin.dashboard', icon: LayoutDashboard },
-  { name: 'Pages', key: 'pages', path: '/admin/pages', routeName: 'admin.pages', icon: FileText },
-  { name: 'Services', key: 'services', path: '/admin/services', routeName: 'admin.services', icon: Wrench },
   { name: 'Projects', key: 'projects', path: '/admin/projects', routeName: 'admin.projects', icon: Construction },
-  { name: 'Inbox', key: 'inbox', path: '/admin/contacts', routeName: 'admin.contacts', icon: Mail },
+  { name: 'Services', key: 'services', path: '/admin/services', routeName: 'admin.services', icon: Wrench },
   { name: 'Media', key: 'media', path: '/admin/media', routeName: 'admin.media', icon: ImageIcon },
-  { name: 'Code Injection', key: 'code_injection', path: '/admin/code-injections', routeName: 'admin.code_injections', icon: Code },
-  { name: 'Settings', key: 'settings', path: '/admin/settings', routeName: 'admin.settings', icon: Settings }
+  { name: 'Inbox', key: 'inbox', path: '/admin/contacts', routeName: 'admin.contacts', icon: Mail },
+  { name: 'Team Members', key: 'users', path: '/admin/users', routeName: 'admin.users', icon: Users, adminOnly: true },
+  { name: 'Pages', key: 'pages', path: '/admin/pages', routeName: 'admin.pages', icon: FileText, adminOnly: true },
+  { name: 'Code Injection', key: 'code_injection', path: '/admin/code-injections', routeName: 'admin.code_injections', icon: Code, adminOnly: true },
+  { name: 'Settings', key: 'settings', path: '/admin/settings', routeName: 'admin.settings', icon: Settings, adminOnly: true }
 ]
+
+const visibleNavItems = computed(() => {
+  return navItems.filter(item => {
+    if (item.adminOnly && auth.role !== 'admin') {
+      return false
+    }
+    return true
+  })
+})
 
 const handleLogout = async () => {
   await auth.logout()

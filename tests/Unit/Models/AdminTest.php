@@ -13,7 +13,7 @@ class AdminTest extends TestCase
     public function test_admin_has_correct_fillable_fields()
     {
         $admin = new Admin();
-        $this->assertEquals(['name', 'email', 'password'], $admin->getFillable());
+        $this->assertEquals(['name', 'email', 'role', 'password'], $admin->getFillable());
     }
 
     public function test_admin_password_is_hidden()
@@ -30,5 +30,17 @@ class AdminTest extends TestCase
         $this->assertDatabaseHas('admins', [
             'email' => $admin->email,
         ]);
+        $this->assertTrue($admin->isAdmin());
+    }
+
+    public function test_admin_roles_helper_methods()
+    {
+        $admin = new Admin(['role' => 'admin']);
+        $this->assertTrue($admin->isAdmin());
+        $this->assertFalse($admin->isDataEntry());
+
+        $dataEntry = new Admin(['role' => 'data_entry']);
+        $this->assertTrue($dataEntry->isDataEntry());
+        $this->assertFalse($dataEntry->isAdmin());
     }
 }

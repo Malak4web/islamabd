@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     /**
+     * Helper to format image paths to web-accessible URLs.
+     */
+    private function formatImageUrl(?string $path): ?string
+    {
+        if (!$path) return null;
+        $path = preg_replace('#^https?://(localhost|127\.0\.0\.1)(:\d+)?/storage/#', '/storage/', $path);
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
+            return $path;
+        }
+        return '/storage/' . ltrim($path, '/');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
@@ -36,22 +49,11 @@ class ServiceController extends Controller
 
     private function localize($service, $locale)
     {
-        $icon = $service->icon;
-        if ($icon && !str_starts_with($icon, 'http')) {
-            $icon = \Illuminate\Support\Facades\Storage::disk('public')->url($icon);
-        }
-
-        $image = $service->image;
-        if ($image && !str_starts_with($image, 'http')) {
-            $image = \Illuminate\Support\Facades\Storage::disk('public')->url($image);
-        }
+        $icon = $this->formatImageUrl($service->icon);
+        $image = $this->formatImageUrl($service->image);
 
         $gallery = $service->gallery ?: [];
-        $gallery = array_map(function($img) {
-            return (str_starts_with($img, 'http')) 
-                ? $img 
-                : \Illuminate\Support\Facades\Storage::disk('public')->url($img);
-        }, $gallery);
+        $gallery = array_values(array_filter(array_map(fn($img) => $this->formatImageUrl($img), $gallery)));
 
         return [
             'id' => $service->id,

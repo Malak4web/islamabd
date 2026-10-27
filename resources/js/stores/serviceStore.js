@@ -88,18 +88,44 @@ export const useServiceStore = defineStore('service', () => {
         }
     }
 
-    async function uploadImage(id, file) {
+    async function uploadImage(id, file, onProgress = null) {
         const formData = new FormData()
         formData.append('file', file)
-        const { data } = await api.post(`/admin/services/${id}/image`, formData)
-        return data.data.url
+        const { data } = await api.post(`/admin/services/${id}/image`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+            onUploadProgress: (progressEvent) => {
+                if (onProgress && progressEvent.total) {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                    onProgress(percent)
+                }
+            }
+        })
+        const url = data.data.url || data.data.image
+        const index = services.value.findIndex(s => s.id === id)
+        if (index !== -1) {
+            services.value[index].image = url
+        }
+        return url
     }
 
-    async function uploadIcon(id, file) {
+    async function uploadIcon(id, file, onProgress = null) {
         const formData = new FormData()
         formData.append('file', file)
-        const { data } = await api.post(`/admin/services/${id}/icon`, formData)
-        return data.data.url
+        const { data } = await api.post(`/admin/services/${id}/icon`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+            onUploadProgress: (progressEvent) => {
+                if (onProgress && progressEvent.total) {
+                    const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                    onProgress(percent)
+                }
+            }
+        })
+        const url = data.data.url || data.data.icon
+        const index = services.value.findIndex(s => s.id === id)
+        if (index !== -1) {
+            services.value[index].icon = url
+        }
+        return url
     }
 
     return {
