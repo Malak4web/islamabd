@@ -16,6 +16,7 @@ class ProjectController extends Controller
     private function formatImageUrl(?string $path): ?string
     {
         if (!$path) return null;
+        $path = preg_replace('#^https?://(localhost|127\.0\.0\.1)(:\d+)?/storage/#', '/storage/', $path);
         if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
             return $path;
         }
@@ -197,14 +198,19 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $request->validate([
-            'images' => 'required|array',
-            'images.*' => 'file|mimes:jpeg,png,jpg,webp,svg|max:10240'
+            'images' => 'required',
+            'images.*' => 'file|max:25600'
         ]);
 
+        $rawFiles = $request->file('images');
+        $files = is_array($rawFiles) ? $rawFiles : [$rawFiles];
+
         $paths = [];
-        foreach ($request->file('images') as $file) {
-            $media = $project->addMedia($file)->toMediaCollection('gallery');
-            $paths[] = $media->id . '/' . $media->file_name;
+        foreach ($files as $file) {
+            if ($file && $file->isValid()) {
+                $media = $project->addMedia($file)->toMediaCollection('gallery');
+                $paths[] = $media->id . '/' . $media->file_name;
+            }
         }
 
         $currentGallery = $project->gallery ?? [];

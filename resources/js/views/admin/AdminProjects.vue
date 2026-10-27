@@ -237,12 +237,15 @@
       :is-editing="isEditing"
       :form="form"
       :loading="projectStore.isLoading"
+      :cover-upload-progress="coverUploadProgress"
+      :gallery-upload-progress="galleryUploadProgress"
       @close="showModal = false"
       @save="saveProject"
       @upload-cover="handleCoverUpload"
       @upload-gallery="handleGalleryUpload"
       @remove-image="handleRemoveImage"
       @clear-cover="handleClearCover"
+      @reorder-gallery="handleGalleryReorder"
     />
 
     <ConfirmModal 
@@ -293,6 +296,8 @@ const projectToDelete = ref(null)
 const localProjects = ref([])
 const pendingCoverFile = ref(null)
 const pendingGalleryFiles = ref([])
+const coverUploadProgress = ref(0)
+const galleryUploadProgress = ref(0)
 
 const CATEGORY_FALLBACKS = {
   residential: '/images/projects/residential-1-1600.jpg',
@@ -385,6 +390,8 @@ const openAddModal = () => {
   editingId.value = null
   pendingCoverFile.value = null
   pendingGalleryFiles.value = []
+  coverUploadProgress.value = 0
+  galleryUploadProgress.value = 0
   Object.assign(form, {
     title_en: '',
     title_ar: '',
@@ -404,6 +411,8 @@ const editProject = (project) => {
   editingId.value = project.id
   pendingCoverFile.value = null
   pendingGalleryFiles.value = []
+  coverUploadProgress.value = 0
+  galleryUploadProgress.value = 0
   Object.assign(form, { 
     ...project,
     gallery: Array.isArray(project.gallery) ? [...project.gallery] : []
@@ -420,19 +429,29 @@ const saveProject = async () => {
       const created = await projectStore.createProject({ ...form })
       if (created && created.id) {
         if (pendingCoverFile.value) {
-          await projectStore.uploadCover(created.id, pendingCoverFile.value)
+          coverUploadProgress.value = 10
+          await projectStore.uploadCover(created.id, pendingCoverFile.value, (p) => {
+            coverUploadProgress.value = p
+          })
         }
         if (pendingGalleryFiles.value.length) {
-          await projectStore.uploadGallery(created.id, pendingGalleryFiles.value)
+          galleryUploadProgress.value = 10
+          await projectStore.uploadGallery(created.id, pendingGalleryFiles.value, (p) => {
+            galleryUploadProgress.value = p
+          })
         }
         await projectStore.fetchAdminProjects()
       }
       toast.success(t('admin.project_created') || 'Project created successfully')
     }
+    coverUploadProgress.value = 0
+    galleryUploadProgress.value = 0
     showModal.value = false
   } catch (err) {
     console.error(err)
-    toast.error('Failed to save project')
+    coverUploadProgress.value = 0
+    galleryUploadProgress.value = 0
+    toast.error(err?.response?.data?.message || 'Failed to save project')
   }
 }
 
@@ -444,35 +463,58 @@ const toggleFeatured = async (project) => {
   await projectStore.featureProject(project.id)
 }
 
+const handleGalleryReorder = async () => {
+  if (isEditing.value && editingId.value) {
+    try {
+      await projectStore.updateProject(editingId.value, { gallery: form.gallery })
+      toast.success(t('admin.reorder_success') || 'Gallery order updated successfully')
+    } catch (err) {
+      console.error(err)
+      toast.error('Failed to save gallery order')
+    }
+  }
+}
+
 const handleCoverUpload = async (event) => {
   const file = event.target.files[0]
   if (!file) return
   if (isEditing.value && editingId.value) {
+    coverUploadProgress.value = 5
     try {
-      const url = await projectStore.uploadCover(editingId.value, file)
+      const url = await projectStore.uploadCover(editingId.value, file, (progress) => {
+        coverUploadProgress.value = progress
+      })
       form.cover_image = url
-      toast.success('Cover image updated successfully')
+      toast.success(t('admin.cover_uploaded') || 'Cover image updated successfully')
+      setTimeout(() => { coverUploadProgress.value = 0 }, 1200)
     } catch (err) {
       console.error(err)
-      toast.error('Failed to upload cover image')
+      coverUploadProgress.value = 0
+      toast.error(err?.response?.data?.message || 'Failed to upload cover image')
     }
   } else {
     pendingCoverFile.value = file
     form.cover_image = URL.createObjectURL(file)
   }
+  event.target.value = ''
 }
 
 const handleGalleryUpload = async (event) => {
   const files = Array.from(event.target.files || [])
   if (!files.length) return
   if (isEditing.value && editingId.value) {
+    galleryUploadProgress.value = 5
     try {
-      const newGallery = await projectStore.uploadGallery(editingId.value, files)
+      const newGallery = await projectStore.uploadGallery(editingId.value, files, (progress) => {
+        galleryUploadProgress.value = progress
+      })
       form.gallery = newGallery
-      toast.success('Gallery images uploaded successfully')
+      toast.success(t('admin.gallery_uploaded') || 'Gallery images uploaded successfully')
+      setTimeout(() => { galleryUploadProgress.value = 0 }, 1200)
     } catch (err) {
       console.error(err)
-      toast.error('Failed to upload gallery images')
+      galleryUploadProgress.value = 0
+      toast.error(err?.response?.data?.message || 'Failed to upload gallery images')
     }
   } else {
     files.forEach(f => {
@@ -480,6 +522,7 @@ const handleGalleryUpload = async (event) => {
       form.gallery.push(URL.createObjectURL(f))
     })
   }
+  event.target.value = ''
 }
 
 const handleRemoveImage = async (imagePath) => {

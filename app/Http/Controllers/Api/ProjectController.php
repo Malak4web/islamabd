@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
 {
     /**
+     * Helper to format image paths to web-accessible URLs.
+     */
+    private function formatImageUrl(?string $path): ?string
+    {
+        if (!$path) return null;
+        $path = preg_replace('#^https?://(localhost|127\.0\.0\.1)(:\d+)?/storage/#', '/storage/', $path);
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '/')) {
+            return $path;
+        }
+        return '/storage/' . ltrim($path, '/');
+    }
+
+    /**
      * Display a listing of projects.
      */
     public function index(Request $request)
@@ -31,15 +44,11 @@ class ProjectController extends Controller
 
         return response()->json([
             'data' => $projects->map(function($p) use ($locale) {
-                $cover = $p->cover_image;
-                if ($cover && !str_starts_with($cover, 'http') && !str_starts_with($cover, '/')) {
-                    $cover = Storage::disk('public')->url($cover);
-                }
                 return [
                     'id' => $p->id,
                     'title' => $p->{"title_$locale"},
                     'category' => $p->category,
-                    'cover_image' => $cover,
+                    'cover_image' => $this->formatImageUrl($p->cover_image),
                     'is_featured' => $p->is_featured,
                     'order' => $p->order,
                 ];
@@ -62,17 +71,11 @@ class ProjectController extends Controller
         $locale = app()->getLocale();
         $project = Project::active()->findOrFail($id);
 
-        $cover = $project->cover_image;
-        if ($cover && !str_starts_with($cover, 'http') && !str_starts_with($cover, '/')) {
-            $cover = Storage::disk('public')->url($cover);
-        }
+        $cover = $this->formatImageUrl($project->cover_image);
 
         $gallery = collect($project->gallery)->map(function ($img) {
-            if ($img && !str_starts_with($img, 'http') && !str_starts_with($img, '/')) {
-                return Storage::disk('public')->url($img);
-            }
-            return $img;
-        });
+            return $this->formatImageUrl($img);
+        })->filter()->values();
 
         return response()->json([
             'data' => [

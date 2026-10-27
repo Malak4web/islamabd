@@ -107,6 +107,20 @@
               </button>
             </div>
 
+            <!-- Upload Progress Bar -->
+            <div v-if="coverUploadProgress > 0" class="space-y-2 p-4 bg-[#F7F5F0] border border-[#E0DACE] rounded-2xl">
+              <div class="flex justify-between text-xs font-bold text-[#555555]">
+                <span class="flex items-center gap-2">
+                  <Upload class="w-3.5 h-3.5 animate-bounce text-[#C5A880]" />
+                  {{ $t('admin.uploading') || 'Uploading cover image...' }}
+                </span>
+                <span class="font-mono text-[#C5A880]">{{ coverUploadProgress }}%</span>
+              </div>
+              <div class="w-full bg-[#E0DACE] rounded-full h-2 overflow-hidden">
+                <div class="bg-[#C5A880] h-2 rounded-full transition-all duration-200" :style="{ width: `${coverUploadProgress}%` }"></div>
+              </div>
+            </div>
+
             <div class="relative group border-2 border-dashed border-[#E0DACE] hover:border-[#C5A880]/50 rounded-[3rem] p-12 text-center transition-all bg-[#F7F5F0]">
               <input 
                 type="file" 
@@ -155,6 +169,21 @@
           <div v-if="activeTab === 'Gallery'" class="space-y-8">
              <div class="space-y-4">
                 <label class="block text-[10px] font-bold uppercase text-[#555555] tracking-widest">{{ $t('admin.project_visual_collection') }}</label>
+
+                <!-- Gallery Upload Progress Bar -->
+                <div v-if="galleryUploadProgress > 0" class="space-y-2 p-4 bg-[#F7F5F0] border border-[#E0DACE] rounded-2xl">
+                  <div class="flex justify-between text-xs font-bold text-[#555555]">
+                    <span class="flex items-center gap-2">
+                      <Upload class="w-3.5 h-3.5 animate-bounce text-[#C5A880]" />
+                      {{ $t('admin.uploading') || 'Uploading gallery images...' }}
+                    </span>
+                    <span class="font-mono text-[#C5A880]">{{ galleryUploadProgress }}%</span>
+                  </div>
+                  <div class="w-full bg-[#E0DACE] rounded-full h-2 overflow-hidden">
+                    <div class="bg-[#C5A880] h-2 rounded-full transition-all duration-200" :style="{ width: `${galleryUploadProgress}%` }"></div>
+                  </div>
+                </div>
+
                 <div class="relative group border-2 border-dashed border-[#E0DACE] hover:border-[#C5A880]/50 rounded-[2.5rem] p-8 text-center transition-all bg-[#F7F5F0]">
                   <input 
                     type="file" 
@@ -172,20 +201,51 @@
                 </div>
              </div>
 
-             <div v-if="form.gallery?.length" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                <TransitionGroup name="gallery">
-                  <div v-for="(img, index) in form.gallery" :key="img" class="relative group aspect-[4/3] rounded-2xl overflow-hidden border border-[#E0DACE] hover:border-[#C5A880]/50 transition-all shadow-lg bg-[#F7F5F0]">
-                    <img :src="resolveImage(img)" @error="onGalleryPreviewError($event, index)" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div class="absolute inset-0 bg-[#111111]/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <button 
-                      type="button"
-                      @click.stop="$emit('remove-image', img)"
-                      class="absolute top-3 right-3 w-8 h-8 bg-red-500 text-white rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-red-500 shadow-xl z-20"
-                    >
-                      <Trash2 class="w-4 h-4" />
-                    </button>
-                  </div>
-                </TransitionGroup>
+             <!-- Reorderable Gallery Grid -->
+             <div v-if="form.gallery?.length" class="space-y-4">
+                <div class="flex items-center justify-between text-xs font-bold text-[#555555]">
+                  <span class="flex items-center gap-2">
+                    <GripVertical class="w-4 h-4 text-[#C5A880]" />
+                    {{ $t('admin.drag_reorder') || 'Drag images to reorder gallery' }} ({{ form.gallery.length }})
+                  </span>
+                </div>
+
+                <draggable
+                  v-model="form.gallery"
+                  :item-key="(item, index) => item || index"
+                  handle=".gallery-drag-handle"
+                  @end="$emit('reorder-gallery')"
+                  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+                >
+                  <template #item="{ element: img, index }">
+                    <div class="relative group aspect-[4/3] rounded-2xl overflow-hidden border border-[#E0DACE] hover:border-[#C5A880]/50 transition-all shadow-lg bg-[#F7F5F0]">
+                      <img :src="resolveImage(img)" @error="onGalleryPreviewError($event, index)" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      
+                      <!-- Drag Handle Overlay -->
+                      <div 
+                        class="gallery-drag-handle absolute top-3 left-3 w-8 h-8 bg-black/60 backdrop-blur-sm text-white hover:text-[#C5A880] rounded-lg flex items-center justify-center cursor-grab active:cursor-grabbing hover:bg-black/80 transition-all z-20" 
+                        :title="$t('admin.drag_reorder') || 'Drag to reorder'"
+                      >
+                        <GripVertical class="w-4 h-4" />
+                      </div>
+
+                      <!-- Order Badge -->
+                      <div class="absolute bottom-3 left-3 px-2 py-0.5 bg-black/70 backdrop-blur-sm text-white text-[10px] font-mono font-bold rounded-md z-10">
+                        #{{ index + 1 }}
+                      </div>
+
+                      <!-- Delete Button -->
+                      <button 
+                        type="button"
+                        @click.stop="$emit('remove-image', img)"
+                        class="absolute top-3 right-3 w-8 h-8 bg-red-500 text-white rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-white hover:text-red-500 shadow-xl z-20"
+                        :title="$t('admin.delete') || 'Delete image'"
+                      >
+                        <Trash2 class="w-4 h-4" />
+                      </button>
+                    </div>
+                  </template>
+                </draggable>
              </div>
              
              <div v-else class="py-16 text-center border border-[#E0DACE] rounded-3xl bg-[#F7F5F0]/50">
@@ -214,16 +274,25 @@
 
 <script setup>
 import { ref } from 'vue'
-import { X, Upload, Plus, Trash2 } from 'lucide-vue-next'
+import draggable from 'vuedraggable'
+import { X, Upload, Plus, Trash2, GripVertical } from 'lucide-vue-next'
 
 defineProps({
   isOpen: Boolean,
   isEditing: Boolean,
   form: Object,
-  loading: Boolean
+  loading: Boolean,
+  coverUploadProgress: {
+    type: Number,
+    default: 0
+  },
+  galleryUploadProgress: {
+    type: Number,
+    default: 0
+  }
 })
 
-defineEmits(['close', 'save', 'upload-cover', 'upload-gallery', 'remove-image', 'clear-cover'])
+defineEmits(['close', 'save', 'upload-cover', 'upload-gallery', 'remove-image', 'clear-cover', 'reorder-gallery'])
 
 const activeTab = ref('General')
 

@@ -102,10 +102,17 @@ export const useProjectStore = defineStore('project', () => {
         projects.value = ordered
     }
 
-    async function uploadCover(id, file) {
+    async function uploadCover(id, file, onProgress = null) {
         const formData = new FormData()
         formData.append('file', file)
-        const { data } = await api.post(`/admin/projects/${id}/cover`, formData)
+        const config = onProgress ? {
+            onUploadProgress: (e) => {
+                if (e.total) onProgress(Math.round((e.loaded * 100) / e.total))
+            }
+        } : undefined
+        const { data } = config
+            ? await api.post(`/admin/projects/${id}/cover`, formData, config)
+            : await api.post(`/admin/projects/${id}/cover`, formData)
         const url = data.data.url || data.data.cover_image
         const index = projects.value.findIndex(p => p.id === id)
         if (index !== -1 && url) {
@@ -114,12 +121,19 @@ export const useProjectStore = defineStore('project', () => {
         return url
     }
 
-    async function uploadGallery(id, files) {
+    async function uploadGallery(id, files, onProgress = null) {
         const formData = new FormData()
         for (let i = 0; i < files.length; i++) {
             formData.append('images[]', files[i])
         }
-        const { data } = await api.post(`/admin/projects/${id}/gallery`, formData)
+        const config = onProgress ? {
+            onUploadProgress: (e) => {
+                if (e.total) onProgress(Math.round((e.loaded * 100) / e.total))
+            }
+        } : undefined
+        const { data } = config
+            ? await api.post(`/admin/projects/${id}/gallery`, formData, config)
+            : await api.post(`/admin/projects/${id}/gallery`, formData)
         const gallery = data.data.gallery
         const index = projects.value.findIndex(p => p.id === id)
         if (index !== -1 && gallery) {
